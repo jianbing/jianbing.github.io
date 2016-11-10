@@ -27,9 +27,7 @@
 
 
 
-  
-  
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
 
 
 
@@ -61,11 +59,9 @@
 
 
 
-
-
 <link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
   <meta name="keywords" content="游戏测试,python," />
@@ -79,7 +75,7 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
 
 
 
@@ -106,7 +102,7 @@
 部分函数的写法不太合理
 
 周末的时候，重新封装了一个ADB工具类，把之前的函数整合进去。来看看怎么使用吧~">
-<meta property="og:updated_time" content="2016-10-27T08:38:25.449Z">
+<meta property="og:updated_time" content="2016-04-30T07:22:22.450Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ADB工具类分享">
 <meta name="twitter:description" content="之前封装了一批基于adb命令的函数，用于辅助游戏安卓版本的测试，源码在此。
@@ -128,22 +124,16 @@
     fancybox: true,
     motion: true,
     duoshuo: {
-      userId: '0',
+      userId: 0,
       author: '博主'
     }
   };
 </script>
 
-
-
-
-  <link rel="canonical" href="http://jianbing.github.io/2016/04/27/adb-tool/"/>
-
-
   <title> ADB工具类分享 | 煎饼的博客 </title>
 </head>
 
-<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
 
@@ -164,7 +154,7 @@
   <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-meta ">
   
 
@@ -196,7 +186,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
             
             首页
           </a>
@@ -206,7 +196,7 @@
         <li class="menu-item menu-item-about">
           <a href="/about" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
             
             关于
           </a>
@@ -216,7 +206,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
             
             归档
           </a>
@@ -226,7 +216,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
             
             标签
           </a>
@@ -259,7 +249,7 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
 
     
       <header class="post-header">
@@ -327,36 +317,34 @@
 <p>周末的时候，重新封装了一个ADB工具类，把之前的函数整合进去。来看看怎么使用吧~</p>
 <a id="more"></a>
 <h3 id="连接手机"><a href="#连接手机" class="headerlink" title="连接手机"></a>连接手机</h3><p>USB方式</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">adb = ADB()</div></pre></td></tr></table></figure>
-<p>Wifi方式，手机需要安装adbWireless，在手机端启动后，查看当前手机的IP<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">adb = ADB(adb_remote=<span class="string">'192.168.1.120'</span>)</div></pre></td></tr></table></figure></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb = ADB()</span><br></pre></td></tr></table></figure>
+<p>Wifi方式，手机需要安装adbWireless，在手机端启动后，查看当前手机的IP<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb = ADB(adb_remote=<span class="string">'192.168.1.120'</span>)</span><br></pre></td></tr></table></figure></p>
 <h3 id="常用功能"><a href="#常用功能" class="headerlink" title="常用功能"></a>常用功能</h3><p>屏幕截图，保存到指定目录，可以在截图的文件名中添加附加信息</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">adb.screenshot(<span class="string">r"E:\shot"</span>, <span class="string">"screenshot"</span>)</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb.screenshot(<span class="string">r"E:\shot"</span>, <span class="string">"screenshot"</span>)</span><br></pre></td></tr></table></figure>
 <p>查看当前运行的程序信息</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">print</span> adb.current_package_name()   </div><div class="line"><span class="keyword">print</span> adb.current_activity_name()</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">print</span> adb.current_package_name()   </span><br><span class="line"><span class="keyword">print</span> adb.current_activity_name()</span><br></pre></td></tr></table></figure>
 <p>查看程序的CPU和内存占用情况</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">print</span> adb.get_mem_using(adb.current_package_name())</div><div class="line"><span class="keyword">print</span> adb.get_cpu_using(adb.current_activity_name())</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">print</span> adb.get_mem_using(adb.current_package_name())</span><br><span class="line"><span class="keyword">print</span> adb.get_cpu_using(adb.current_activity_name())</span><br></pre></td></tr></table></figure>
 <p>备份和自动安装APK</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">adb.backup_current_apk()  <span class="comment"># 备份当前正在运行的APK</span></div><div class="line">adb.auto_install(<span class="string">r"E:\apks"</span>)  <span class="comment"># 自动安装指定目录的全部APK文件，如果已经安装，则先卸载后再进行安装</span></div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">adb.backup_current_apk()  <span class="comment"># 备份当前正在运行的APK</span></span><br><span class="line">adb.auto_install(<span class="string">r"E:\apks"</span>)  <span class="comment"># 自动安装指定目录的全部APK文件，如果已经安装，则先卸载后再进行安装</span></span><br></pre></td></tr></table></figure>
 <p>执行adb和adb shell命令</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">print</span> adb.adb(<span class="string">'devices'</span>)</div><div class="line"><span class="keyword">print</span> adb.adb_shell(<span class="string">'dumpsys cpuinfo'</span>)</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">print</span> adb.adb(<span class="string">'devices'</span>)</span><br><span class="line"><span class="keyword">print</span> adb.adb_shell(<span class="string">'dumpsys cpuinfo'</span>)</span><br></pre></td></tr></table></figure>
 <p>打开调试模式，会打印每一次执行的adb命令，以及返回的结果</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">adb = ADB(debug=<span class="keyword">True</span>)</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb = ADB(debug=<span class="keyword">True</span>)</span><br></pre></td></tr></table></figure>
 <h3 id="更多的功能"><a href="#更多的功能" class="headerlink" title="更多的功能"></a>更多的功能</h3><p>自己去源码中发现吧，<a href="https://github.com/jianbing/utils/blob/master/tools/adb.py" target="_blank" rel="external">点击查看</a>。</p>
 
       
     </div>
-
+    
     <div>
       
         
-
       
     </div>
 
     <div>
       
         
-
       
     </div>
 
@@ -466,7 +454,7 @@
       
 
       <section class="site-overview sidebar-panel ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.png"
                alt="煎饼" />
@@ -476,7 +464,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">29</span>
+              <span class="site-state-item-count">28</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -509,7 +497,7 @@
               <span class="links-of-author-item">
                 <a href="https://github.com/jianbing" target="_blank" title="github">
                   
-                    <i class="fa fa-fw fa-globe"></i>
+                    <i class="fa fa-globe"></i>
                   
                   github
                 </a>
@@ -525,7 +513,7 @@
         
           <div class="links-of-blogroll motion-element links-of-blogroll-inline">
             <div class="links-of-blogroll-title">
-              <i class="fa  fa-fw fa-globe"></i>
+              <i class="fa fa-globe fa-fw"></i>
               
             </div>
             <ul class="links-of-blogroll-list">
@@ -586,7 +574,7 @@
 </div>
 
 <div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
 </div>
 
 <div class="theme-info">
@@ -649,25 +637,25 @@
   
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
 
 
 
   
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
 
 
 
@@ -692,10 +680,7 @@
 
   
     
-    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
-    <script src="/js/src/hook-duoshuo.js"></script>
   
-
 
 
 
@@ -703,15 +688,11 @@
 
   
   
-
   
 
   
 
   
-
-  
-
 
 </body>
 </html>

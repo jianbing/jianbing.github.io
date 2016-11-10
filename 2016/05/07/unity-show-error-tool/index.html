@@ -27,9 +27,7 @@
 
 
 
-  
-  
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
 
 
 
@@ -61,11 +59,9 @@
 
 
 
-
-
 <link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
   <meta name="keywords" content="游戏测试,测试工具," />
@@ -79,7 +75,7 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
 
 
 
@@ -97,7 +93,7 @@
 工具起源Unity游戏导出的PC版本，默认情况下是看不到报错信息的，为了方便测试人员查看报错信息，定位Bug的归属，于是有了下边这个小工具。
 先看效果图吧。">
 <meta property="og:image" content="http://jianbing.github.io/images/unity-show-error-tool/pic1.png">
-<meta property="og:updated_time" content="2016-10-27T08:38:25.537Z">
+<meta property="og:updated_time" content="2016-05-14T00:14:50.193Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Unity游戏内显示报错信息">
 <meta name="twitter:description" content="忙碌的五月份开始咯~最近刚好做了一个Unity的显示报错工具，就分享出来吧~
@@ -115,22 +111,16 @@
     fancybox: true,
     motion: true,
     duoshuo: {
-      userId: '0',
+      userId: 0,
       author: '博主'
     }
   };
 </script>
 
-
-
-
-  <link rel="canonical" href="http://jianbing.github.io/2016/05/07/unity-show-error-tool/"/>
-
-
   <title> Unity游戏内显示报错信息 | 煎饼的博客 </title>
 </head>
 
-<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
 
@@ -151,7 +141,7 @@
   <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-meta ">
   
 
@@ -183,7 +173,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
             
             首页
           </a>
@@ -193,7 +183,7 @@
         <li class="menu-item menu-item-about">
           <a href="/about" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
             
             关于
           </a>
@@ -203,7 +193,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
             
             归档
           </a>
@@ -213,7 +203,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
             
             标签
           </a>
@@ -246,7 +236,7 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
 
     
       <header class="post-header">
@@ -321,23 +311,21 @@
 </li>
 </ul>
 <p>直接上代码吧~</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div></pre></td><td class="code"><pre><div class="line">using System.Collections.Generic;</div><div class="line">using UnityEngine;</div><div class="line"></div><div class="line">namespace TestCenter.Utils &#123;</div><div class="line"></div><div class="line">    public class ShowError : MonoBehaviour &#123;</div><div class="line"></div><div class="line">        static List&lt;string&gt; ErrorMsgs = new List&lt;string&gt;();</div><div class="line">        bool ShowWindow = false;</div><div class="line">        bool Record = false;</div><div class="line">        Rect UIRect = new Rect(0, Screen.height / 2, Screen.width, Screen.height / 2);</div><div class="line">        Vector2 ScrollPosition = Vector2.zero;</div><div class="line"></div><div class="line">        void Start() &#123;</div><div class="line"></div><div class="line">        &#125;</div><div class="line"></div><div class="line">        void OnGUI() &#123;</div><div class="line"></div><div class="line">            if (ShowWindow) &#123;</div><div class="line">                if (GUI.Button(new Rect(0, (Screen.height / 3 + 90), 50, 30), &quot;隐藏&quot;)) &#123;</div><div class="line">                    ShowWindow = false;</div><div class="line">                &#125;</div><div class="line">            &#125; else &#123;</div><div class="line">                if (GUI.Button(new Rect(0, (Screen.height / 3 + 90), 50, 30), &quot;显示&quot;)) &#123;</div><div class="line">                    ShowWindow = true;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            if (ShowWindow) &#123;</div><div class="line">                UIRect = GUI.Window(1, UIRect, ErrorWindowFunc, &quot;Log监听&quot;);</div><div class="line">            &#125;</div><div class="line"></div><div class="line">        &#125;</div><div class="line"></div><div class="line">        void ErrorWindowFunc(int windowID) &#123;</div><div class="line"></div><div class="line">            GUI.DragWindow(new Rect(0, 0, UIRect.width, 30));</div><div class="line">            GUI.Box(new Rect(0, 0, UIRect.width, UIRect.height), &quot;&quot;);</div><div class="line">            GUILayout.BeginArea(new Rect(5, 20, UIRect.width - 10, UIRect.height));</div><div class="line"></div><div class="line">            ScrollPosition = GUILayout.BeginScrollView(ScrollPosition, GUILayout.Width(UIRect.width - 10), GUILayout.Height(UIRect.height - 60));</div><div class="line">            GUILayout.BeginVertical();</div><div class="line"></div><div class="line">            foreach (var Log in ErrorMsgs) &#123;</div><div class="line">                GUILayout.Label(Log);</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            GUILayout.EndVertical();</div><div class="line">            GUILayout.EndScrollView();</div><div class="line"></div><div class="line">            GUILayout.BeginHorizontal();</div><div class="line"></div><div class="line"></div><div class="line">            if (Record) &#123;</div><div class="line">                if (GUILayout.Button(&quot;停止监听&quot;)) &#123;</div><div class="line">                    Application.logMessageReceived -= HandleLog;</div><div class="line">                    Record = false;</div><div class="line">                &#125;</div><div class="line">            &#125; else &#123;</div><div class="line">                if (GUILayout.Button(&quot;监听Log&quot;)) &#123;</div><div class="line">                    Application.logMessageReceived += HandleLog;</div><div class="line">                    Record = true;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            if (GUILayout.Button(&quot;清空记录&quot;)) &#123;</div><div class="line">                ErrorMsgs.Clear();</div><div class="line">            &#125;</div><div class="line">            GUILayout.EndHorizontal();</div><div class="line"></div><div class="line">            GUILayout.EndArea();</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        void Update() &#123;</div><div class="line"></div><div class="line">        &#125;</div><div class="line">        void HandleLog(string log, string trace, LogType type) &#123;</div><div class="line">            if (type.Equals(LogType.Error) || type.Equals(LogType.Exception)) &#123;</div><div class="line">                ErrorMsgs.Add(log);</div><div class="line">                ErrorMsgs.Add(trace);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line">using System.Collections.Generic;</span><br><span class="line">using UnityEngine;</span><br><span class="line"></span><br><span class="line">namespace TestCenter.Utils &#123;</span><br><span class="line"></span><br><span class="line">    public class ShowError : MonoBehaviour &#123;</span><br><span class="line"></span><br><span class="line">        static List&lt;string&gt; ErrorMsgs = new List&lt;string&gt;();</span><br><span class="line">        bool ShowWindow = false;</span><br><span class="line">        bool Record = false;</span><br><span class="line">        Rect UIRect = new Rect(0, Screen.height / 2, Screen.width, Screen.height / 2);</span><br><span class="line">        Vector2 ScrollPosition = Vector2.zero;</span><br><span class="line"></span><br><span class="line">        void Start() &#123;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        void OnGUI() &#123;</span><br><span class="line"></span><br><span class="line">            if (ShowWindow) &#123;</span><br><span class="line">                if (GUI.Button(new Rect(0, (Screen.height / 3 + 90), 50, 30), &quot;隐藏&quot;)) &#123;</span><br><span class="line">                    ShowWindow = false;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                if (GUI.Button(new Rect(0, (Screen.height / 3 + 90), 50, 30), &quot;显示&quot;)) &#123;</span><br><span class="line">                    ShowWindow = true;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            if (ShowWindow) &#123;</span><br><span class="line">                UIRect = GUI.Window(1, UIRect, ErrorWindowFunc, &quot;Log监听&quot;);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        void ErrorWindowFunc(int windowID) &#123;</span><br><span class="line"></span><br><span class="line">            GUI.DragWindow(new Rect(0, 0, UIRect.width, 30));</span><br><span class="line">            GUI.Box(new Rect(0, 0, UIRect.width, UIRect.height), &quot;&quot;);</span><br><span class="line">            GUILayout.BeginArea(new Rect(5, 20, UIRect.width - 10, UIRect.height));</span><br><span class="line"></span><br><span class="line">            ScrollPosition = GUILayout.BeginScrollView(ScrollPosition, GUILayout.Width(UIRect.width - 10), GUILayout.Height(UIRect.height - 60));</span><br><span class="line">            GUILayout.BeginVertical();</span><br><span class="line"></span><br><span class="line">            foreach (var Log in ErrorMsgs) &#123;</span><br><span class="line">                GUILayout.Label(Log);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            GUILayout.EndVertical();</span><br><span class="line">            GUILayout.EndScrollView();</span><br><span class="line"></span><br><span class="line">            GUILayout.BeginHorizontal();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">            if (Record) &#123;</span><br><span class="line">                if (GUILayout.Button(&quot;停止监听&quot;)) &#123;</span><br><span class="line">                    Application.logMessageReceived -= HandleLog;</span><br><span class="line">                    Record = false;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                if (GUILayout.Button(&quot;监听Log&quot;)) &#123;</span><br><span class="line">                    Application.logMessageReceived += HandleLog;</span><br><span class="line">                    Record = true;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            if (GUILayout.Button(&quot;清空记录&quot;)) &#123;</span><br><span class="line">                ErrorMsgs.Clear();</span><br><span class="line">            &#125;</span><br><span class="line">            GUILayout.EndHorizontal();</span><br><span class="line"></span><br><span class="line">            GUILayout.EndArea();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        void Update() &#123;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        void HandleLog(string log, string trace, LogType type) &#123;</span><br><span class="line">            if (type.Equals(LogType.Error) || type.Equals(LogType.Exception)) &#123;</span><br><span class="line">                ErrorMsgs.Add(log);</span><br><span class="line">                ErrorMsgs.Add(trace);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>将脚本直接挂在主场景的Main Camera即可使用，源码已在<a href="https://github.com/jianbing/UnityTestTool" target="_blank" rel="external">Github</a></p>
 
       
     </div>
-
+    
     <div>
       
         
-
       
     </div>
 
     <div>
       
         
-
       
     </div>
 
@@ -447,7 +435,7 @@
       
 
       <section class="site-overview sidebar-panel ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.png"
                alt="煎饼" />
@@ -457,7 +445,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">29</span>
+              <span class="site-state-item-count">28</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -490,7 +478,7 @@
               <span class="links-of-author-item">
                 <a href="https://github.com/jianbing" target="_blank" title="github">
                   
-                    <i class="fa fa-fw fa-globe"></i>
+                    <i class="fa fa-globe"></i>
                   
                   github
                 </a>
@@ -506,7 +494,7 @@
         
           <div class="links-of-blogroll motion-element links-of-blogroll-inline">
             <div class="links-of-blogroll-title">
-              <i class="fa  fa-fw fa-globe"></i>
+              <i class="fa fa-globe fa-fw"></i>
               
             </div>
             <ul class="links-of-blogroll-list">
@@ -567,7 +555,7 @@
 </div>
 
 <div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
 </div>
 
 <div class="theme-info">
@@ -630,25 +618,25 @@
   
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
 
 
 
   
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
 
 
 
@@ -673,10 +661,7 @@
 
   
     
-    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
-    <script src="/js/src/hook-duoshuo.js"></script>
   
-
 
 
 
@@ -684,15 +669,11 @@
 
   
   
-
   
 
   
 
   
-
-  
-
 
 </body>
 </html>

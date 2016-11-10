@@ -27,9 +27,7 @@
 
 
 
-  
-  
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
 
 
 
@@ -61,11 +59,9 @@
 
 
 
-
-
 <link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
   <meta name="keywords" content="测试工具," />
@@ -79,7 +75,7 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
 
 
 
@@ -110,7 +106,7 @@
 在工具面板点击发版按钮（开发提供）
 
 偶尔会忘记拉取最新代码，偶尔会忘记打包资源，最重要的是，这发版步骤还是略繁琐，">
-<meta property="og:updated_time" content="2016-10-27T08:38:25.529Z">
+<meta property="og:updated_time" content="2016-07-09T16:24:15.002Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Unity一键发版脚本折腾记（Windows版）">
 <meta name="twitter:description" content="脚本起源策划：煎饼啊，给我一个最新的电脑版~煎饼：好~
@@ -134,22 +130,16 @@
     fancybox: true,
     motion: true,
     duoshuo: {
-      userId: '0',
+      userId: 0,
       author: '博主'
     }
   };
 </script>
 
-
-
-
-  <link rel="canonical" href="http://jianbing.github.io/2016/07/08/unity-auto-build-windows/"/>
-
-
   <title> Unity一键发版脚本折腾记（Windows版） | 煎饼的博客 </title>
 </head>
 
-<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
 
@@ -170,7 +160,7 @@
   <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-meta ">
   
 
@@ -202,7 +192,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
             
             首页
           </a>
@@ -212,7 +202,7 @@
         <li class="menu-item menu-item-about">
           <a href="/about" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
             
             关于
           </a>
@@ -222,7 +212,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
             
             归档
           </a>
@@ -232,7 +222,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
             
             标签
           </a>
@@ -265,7 +255,7 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
 
     
       <header class="post-header">
@@ -337,35 +327,33 @@
 <h3 id="探索过程"><a href="#探索过程" class="headerlink" title="探索过程"></a>探索过程</h3><p>这些步骤分为两类操作。</p>
 <p>一类是Unity外的操作，如还原，拉取代码，这个可以用Python解决。</p>
 <p>一类是Unity内的操作，切换平台，打包资源，进行发版。这些操作，外部工具不好直接介入，最好的方式是Unity提供了命令行的操作形式，搜索了下，果然是有，研究了下，找到了几个可用的参数。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">-batchmode  在批处理模式下运行，不会弹出Unity窗口</div><div class="line">-quit  其他命令执行完毕后将退出Unity编辑器</div><div class="line">-logFile &lt;pathname&gt;  指定输出Log文件</div><div class="line">-executeMethod &lt;ClassName.MethodName&gt;  在Unity启动的同时会执行指定的静态方法，注意，这个类所在文件目录，需要在Editor目录下（自己建一个Editor目录也行）</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-batchmode  在批处理模式下运行，不会弹出Unity窗口</span><br><span class="line">-quit  其他命令执行完毕后将退出Unity编辑器</span><br><span class="line">-logFile &lt;pathname&gt;  指定输出Log文件</span><br><span class="line">-executeMethod &lt;ClassName.MethodName&gt;  在Unity启动的同时会执行指定的静态方法，注意，这个类所在文件目录，需要在Editor目录下（自己建一个Editor目录也行）</span><br></pre></td></tr></table></figure>
 <p>最终调用命令如下:</p>
 <blockquote>
 <p>Unity.exe -quit -batchmode -executeMethod CMDTool.BuildWindows -logFile C:\build\log.log</p>
 </blockquote>
 <p>更多参数点击查看<a href="http://docs.unity3d.com/Manual/CommandLineArguments.html" target="_blank" rel="external">官方文档</a></p>
-<h3 id="实现过程"><a href="#实现过程" class="headerlink" title="实现过程"></a>实现过程</h3><h4 id="Unity发版的工具类"><a href="#Unity发版的工具类" class="headerlink" title="Unity发版的工具类"></a>Unity发版的工具类</h4><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">using UnityEngine;</div><div class="line">using UnityEditor;</div><div class="line">using UnityEditor.SceneManagement;</div><div class="line">using Assets.Src.Editor.Toolkit.Tools;</div><div class="line"></div><div class="line">public class CMDTool &#123;</div><div class="line"></div><div class="line">    public static void BuildWindows() &#123;</div><div class="line">        SwitchPlatform(BuildTarget.StandaloneWindows);</div><div class="line">        CheckTestManager();</div><div class="line">        SGTools.BuildAssetBundles(EditorUserBuildSettings.activeBuildTarget, true);</div><div class="line">        SGTools.Build(EditorUserBuildSettings.activeBuildTarget);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public static void SwitchPlatform(BuildTarget target) &#123;</div><div class="line">        if (EditorUserBuildSettings.activeBuildTarget != target) &#123;</div><div class="line">            EditorUserBuildSettings.SwitchActiveBuildTarget(target);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public static void CheckTestManager() &#123;</div><div class="line">        EditorSceneManager.OpenScene("Assets/Scene/Main.unity");</div><div class="line">        if (GameObject.Find("Main Camera").GetComponent&lt;TestCenter.TestManager&gt;().IsNull()) &#123;</div><div class="line">            GameObject.Find("Main Camera").AddComponent&lt;TestCenter.TestManager&gt;();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="实现过程"><a href="#实现过程" class="headerlink" title="实现过程"></a>实现过程</h3><h4 id="Unity发版的工具类"><a href="#Unity发版的工具类" class="headerlink" title="Unity发版的工具类"></a>Unity发版的工具类</h4><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">using UnityEngine;</span><br><span class="line">using UnityEditor;</span><br><span class="line">using UnityEditor.SceneManagement;</span><br><span class="line">using Assets.Src.Editor.Toolkit.Tools;</span><br><span class="line"></span><br><span class="line">public class CMDTool &#123;</span><br><span class="line"></span><br><span class="line">    public static void BuildWindows() &#123;</span><br><span class="line">        SwitchPlatform(BuildTarget.StandaloneWindows);</span><br><span class="line">        CheckTestManager();</span><br><span class="line">        SGTools.BuildAssetBundles(EditorUserBuildSettings.activeBuildTarget, true);</span><br><span class="line">        SGTools.Build(EditorUserBuildSettings.activeBuildTarget);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static void SwitchPlatform(BuildTarget target) &#123;</span><br><span class="line">        if (EditorUserBuildSettings.activeBuildTarget != target) &#123;</span><br><span class="line">            EditorUserBuildSettings.SwitchActiveBuildTarget(target);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static void CheckTestManager() &#123;</span><br><span class="line">        EditorSceneManager.OpenScene("Assets/Scene/Main.unity");</span><br><span class="line">        if (GameObject.Find("Main Camera").GetComponent&lt;TestCenter.TestManager&gt;().IsNull()) &#123;</span><br><span class="line">            GameObject.Find("Main Camera").AddComponent&lt;TestCenter.TestManager&gt;();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>SwitchPlatform 切换平台<br>CheckTestManager 加载测试模块<br>SGTools.BuildAssetBundles 开发提供的打包资源方法<br>SGTools.Build  开发提供的发版方法</p>
 <h4 id="还原，拉取项目代码"><a href="#还原，拉取项目代码" class="headerlink" title="还原，拉取项目代码"></a>还原，拉取项目代码</h4><p>为什么要还原？因为每次发版都会注入测试模块，下次发版前拉取新代码的时候，会出现冲突。</p>
 <p>可以使用Python来调用Git命令：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">update_unity_code</span><span class="params">()</span>:</span></div><div class="line">    os.chdir(<span class="string">"C:\Project\sg"</span>)</div><div class="line">    <span class="keyword">print</span> <span class="string">'start to reset'</span></div><div class="line">    os.system(<span class="string">"git reset --hard HEAD"</span>)</div><div class="line">    <span class="keyword">print</span> <span class="string">'start to pull'</span></div><div class="line">    os.system(<span class="string">"git pull"</span>)</div></pre></td></tr></table></figure>
-<h4 id="检查Unity是否已经关闭"><a href="#检查Unity是否已经关闭" class="headerlink" title="检查Unity是否已经关闭"></a>检查Unity是否已经关闭</h4><p>调用Unity命令行发版之前，需要确认Unity没有开启，否则运行会报错。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">check_unity_is_close</span><span class="params">()</span>:</span></div><div class="line">    <span class="keyword">import</span> psutil</div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> psutil.process_iter():</div><div class="line">        <span class="keyword">if</span> i.name() == <span class="string">"Unity.exe"</span>:</div><div class="line">            <span class="keyword">raise</span> Exception(<span class="string">"unity is not close"</span>)</div><div class="line">    <span class="keyword">else</span>:</div><div class="line">        <span class="keyword">print</span> <span class="string">"unity is close"</span></div></pre></td></tr></table></figure></p>
-<h4 id="检查发版的Log文件，是否有报错信息"><a href="#检查发版的Log文件，是否有报错信息" class="headerlink" title="检查发版的Log文件，是否有报错信息"></a>检查发版的Log文件，是否有报错信息</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">analyze_log</span><span class="params">()</span>:</span></div><div class="line">    <span class="keyword">print</span> <span class="string">'start to analyze log'</span></div><div class="line">    <span class="keyword">with</span> open(<span class="string">r"C:\build\log.log"</span>) <span class="keyword">as</span> f:</div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> f:</div><div class="line">            <span class="keyword">if</span> i.find(<span class="string">"error"</span>) &gt; <span class="number">-1</span>:</div><div class="line">                <span class="keyword">print</span> i</div></pre></td></tr></table></figure>
-<h4 id="发版函数"><a href="#发版函数" class="headerlink" title="发版函数"></a>发版函数</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">build_windows</span><span class="params">()</span>:</span></div><div class="line">    <span class="keyword">print</span> <span class="string">'start to build windows'</span></div><div class="line">    os.chdir(<span class="string">r"C:\Program Files\Unity\Editor"</span>)</div><div class="line">    p = subprocess.Popen(<span class="string">r"Unity.exe -quit -batchmode -executeMethod CMDTool.BuildWindows -logFile C:\build\log.log"</span>, stdout=subprocess.PIPE, stderr=subprocess.PIPE)</div><div class="line">    stdout, stderr = p.communicate()</div><div class="line">	<span class="keyword">print</span> stdout</div><div class="line">	<span class="keyword">print</span> stderr</div><div class="line">    <span class="keyword">print</span> <span class="string">"result code is &#123;&#125;"</span>.format(p.returncode)</div></pre></td></tr></table></figure>
-<h3 id="最终运行"><a href="#最终运行" class="headerlink" title="最终运行"></a>最终运行</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">    start_time = time.time()</div><div class="line">    check_unity_is_close()</div><div class="line">    update_unity_code()</div><div class="line">    build_windows()</div><div class="line">    analyze_log()</div><div class="line">    <span class="keyword">print</span> <span class="string">'finish in &#123;&#125; seconds.'</span>.format(time.time() - start_time)</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">update_unity_code</span><span class="params">()</span>:</span></span><br><span class="line">    os.chdir(<span class="string">"C:\Project\sg"</span>)</span><br><span class="line">    <span class="keyword">print</span> <span class="string">'start to reset'</span></span><br><span class="line">    os.system(<span class="string">"git reset --hard HEAD"</span>)</span><br><span class="line">    <span class="keyword">print</span> <span class="string">'start to pull'</span></span><br><span class="line">    os.system(<span class="string">"git pull"</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="检查Unity是否已经关闭"><a href="#检查Unity是否已经关闭" class="headerlink" title="检查Unity是否已经关闭"></a>检查Unity是否已经关闭</h4><p>调用Unity命令行发版之前，需要确认Unity没有开启，否则运行会报错。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">check_unity_is_close</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">import</span> psutil</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> psutil.process_iter():</span><br><span class="line">        <span class="keyword">if</span> i.name() == <span class="string">"Unity.exe"</span>:</span><br><span class="line">            <span class="keyword">raise</span> Exception(<span class="string">"unity is not close"</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">print</span> <span class="string">"unity is close"</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="检查发版的Log文件，是否有报错信息"><a href="#检查发版的Log文件，是否有报错信息" class="headerlink" title="检查发版的Log文件，是否有报错信息"></a>检查发版的Log文件，是否有报错信息</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">analyze_log</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">print</span> <span class="string">'start to analyze log'</span></span><br><span class="line">    <span class="keyword">with</span> open(<span class="string">r"C:\build\log.log"</span>) <span class="keyword">as</span> f:</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> f:</span><br><span class="line">            <span class="keyword">if</span> i.find(<span class="string">"error"</span>) &gt; <span class="number">-1</span>:</span><br><span class="line">                <span class="keyword">print</span> i</span><br></pre></td></tr></table></figure>
+<h4 id="发版函数"><a href="#发版函数" class="headerlink" title="发版函数"></a>发版函数</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">build_windows</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">print</span> <span class="string">'start to build windows'</span></span><br><span class="line">    os.chdir(<span class="string">r"C:\Program Files\Unity\Editor"</span>)</span><br><span class="line">    p = subprocess.Popen(<span class="string">r"Unity.exe -quit -batchmode -executeMethod CMDTool.BuildWindows -logFile C:\build\log.log"</span>, stdout=subprocess.PIPE, stderr=subprocess.PIPE)</span><br><span class="line">    stdout, stderr = p.communicate()</span><br><span class="line">	<span class="keyword">print</span> stdout</span><br><span class="line">	<span class="keyword">print</span> stderr</span><br><span class="line">    <span class="keyword">print</span> <span class="string">"result code is &#123;&#125;"</span>.format(p.returncode)</span><br></pre></td></tr></table></figure>
+<h3 id="最终运行"><a href="#最终运行" class="headerlink" title="最终运行"></a>最终运行</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    start_time = time.time()</span><br><span class="line">    check_unity_is_close()</span><br><span class="line">    update_unity_code()</span><br><span class="line">    build_windows()</span><br><span class="line">    analyze_log()</span><br><span class="line">    <span class="keyword">print</span> <span class="string">'finish in &#123;&#125; seconds.'</span>.format(time.time() - start_time)</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    <div>
+      
+        
       
     </div>
 
     <div>
       
         
-
-      
-    </div>
-
-    <div>
-      
-        
-
       
     </div>
 
@@ -473,7 +461,7 @@
       
 
       <section class="site-overview sidebar-panel ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.png"
                alt="煎饼" />
@@ -483,7 +471,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">29</span>
+              <span class="site-state-item-count">28</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -516,7 +504,7 @@
               <span class="links-of-author-item">
                 <a href="https://github.com/jianbing" target="_blank" title="github">
                   
-                    <i class="fa fa-fw fa-globe"></i>
+                    <i class="fa fa-globe"></i>
                   
                   github
                 </a>
@@ -532,7 +520,7 @@
         
           <div class="links-of-blogroll motion-element links-of-blogroll-inline">
             <div class="links-of-blogroll-title">
-              <i class="fa  fa-fw fa-globe"></i>
+              <i class="fa fa-globe fa-fw"></i>
               
             </div>
             <ul class="links-of-blogroll-list">
@@ -593,7 +581,7 @@
 </div>
 
 <div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
 </div>
 
 <div class="theme-info">
@@ -656,25 +644,25 @@
   
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
 
 
 
   
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
 
 
 
@@ -699,10 +687,7 @@
 
   
     
-    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
-    <script src="/js/src/hook-duoshuo.js"></script>
   
-
 
 
 
@@ -710,15 +695,11 @@
 
   
   
-
   
 
   
 
   
-
-  
-
 
 </body>
 </html>

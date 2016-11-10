@@ -27,9 +27,7 @@
 
 
 
-  
-  
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
 
 
 
@@ -61,11 +59,9 @@
 
 
 
-
-
 <link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
   <meta name="keywords" content="python," />
@@ -79,7 +75,7 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
 
 
 
@@ -98,7 +94,7 @@
 百度了下，很多解决方案都是禁用XLServicePlatform服务。
 这里分享一个用Python来自动关闭ThunderPlatform.exe的方式，需要用到一个库，叫psutil。
 1pip install psutil 安装即可">
-<meta property="og:updated_time" content="2016-10-27T08:38:25.489Z">
+<meta property="og:updated_time" content="2016-06-30T14:43:57.253Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一键关闭迅雷后台程序">
 <meta name="twitter:description" content="退出了迅雷后，有时候会发现它还是在悄悄地上传，占用着带宽，在任务管理器里边查看，是一个叫ThunderPlatform.exe的程序。
@@ -116,22 +112,16 @@
     fancybox: true,
     motion: true,
     duoshuo: {
-      userId: '0',
+      userId: 0,
       author: '博主'
     }
   };
 </script>
 
-
-
-
-  <link rel="canonical" href="http://jianbing.github.io/2016/04/21/kill_thunderPlatform/"/>
-
-
   <title> 一键关闭迅雷后台程序 | 煎饼的博客 </title>
 </head>
 
-<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
 
@@ -152,7 +142,7 @@
   <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-meta ">
   
 
@@ -184,7 +174,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
             
             首页
           </a>
@@ -194,7 +184,7 @@
         <li class="menu-item menu-item-about">
           <a href="/about" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
             
             关于
           </a>
@@ -204,7 +194,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
             
             归档
           </a>
@@ -214,7 +204,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
             
             标签
           </a>
@@ -247,7 +237,7 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
 
     
       <header class="post-header">
@@ -308,28 +298,26 @@
         <p>退出了迅雷后，有时候会发现它还是在悄悄地上传，占用着带宽，在任务管理器里边查看，是一个叫ThunderPlatform.exe的程序。</p>
 <p>百度了下，很多解决方案都是禁用XLServicePlatform服务。</p>
 <p>这里分享一个用Python来自动关闭ThunderPlatform.exe的方式，需要用到一个库，叫psutil。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip install psutil 安装即可</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install psutil 安装即可</span><br></pre></td></tr></table></figure>
 <a id="more"></a>
 <p>代码如下：</p>
 <blockquote>
 <p>开发环境：Python2.7+Win10+Pycharm</p>
 </blockquote>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#! /usr/bin/env python</span></div><div class="line"><span class="comment"># -*- coding: UTF-8 -*-</span></div><div class="line"><span class="keyword">from</span> __future__ <span class="keyword">import</span> unicode_literals</div><div class="line"><span class="keyword">import</span> psutil</div><div class="line"><span class="keyword">import</span> time</div><div class="line"></div><div class="line">num = <span class="number">1</span></div><div class="line"><span class="keyword">while</span> <span class="keyword">True</span>:</div><div class="line">    <span class="keyword">print</span> <span class="string">"checking,times:&#123;&#125;"</span>.format(num)</div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> psutil.process_iter():</div><div class="line">        <span class="keyword">if</span> i.name() == <span class="string">"ThunderPlatform.exe"</span>:</div><div class="line">            <span class="keyword">print</span> <span class="string">"find ThunderPlatform.exe,start to kill"</span></div><div class="line">            i.kill()</div><div class="line">            <span class="keyword">print</span> <span class="string">"finish kill"</span></div><div class="line">            <span class="keyword">break</span></div><div class="line">    <span class="keyword">else</span>:</div><div class="line">        <span class="keyword">print</span> <span class="string">"not found,sleep 60s"</span></div><div class="line"></div><div class="line">    time.sleep(<span class="number">60</span>)</div><div class="line">    num += <span class="number">1</span></div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#! /usr/bin/env python</span></span><br><span class="line"><span class="comment"># -*- coding: UTF-8 -*-</span></span><br><span class="line"><span class="keyword">from</span> __future__ <span class="keyword">import</span> unicode_literals</span><br><span class="line"><span class="keyword">import</span> psutil</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line">num = <span class="number">1</span></span><br><span class="line"><span class="keyword">while</span> <span class="keyword">True</span>:</span><br><span class="line">    <span class="keyword">print</span> <span class="string">"checking,times:&#123;&#125;"</span>.format(num)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> psutil.process_iter():</span><br><span class="line">        <span class="keyword">if</span> i.name() == <span class="string">"ThunderPlatform.exe"</span>:</span><br><span class="line">            <span class="keyword">print</span> <span class="string">"find ThunderPlatform.exe,start to kill"</span></span><br><span class="line">            i.kill()</span><br><span class="line">            <span class="keyword">print</span> <span class="string">"finish kill"</span></span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">print</span> <span class="string">"not found,sleep 60s"</span></span><br><span class="line"></span><br><span class="line">    time.sleep(<span class="number">60</span>)</span><br><span class="line">    num += <span class="number">1</span></span><br></pre></td></tr></table></figure>
 
+      
+    </div>
+    
+    <div>
+      
+        
       
     </div>
 
     <div>
       
         
-
-      
-    </div>
-
-    <div>
-      
-        
-
       
     </div>
 
@@ -437,7 +425,7 @@
       
 
       <section class="site-overview sidebar-panel ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.png"
                alt="煎饼" />
@@ -447,7 +435,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">29</span>
+              <span class="site-state-item-count">28</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -480,7 +468,7 @@
               <span class="links-of-author-item">
                 <a href="https://github.com/jianbing" target="_blank" title="github">
                   
-                    <i class="fa fa-fw fa-globe"></i>
+                    <i class="fa fa-globe"></i>
                   
                   github
                 </a>
@@ -496,7 +484,7 @@
         
           <div class="links-of-blogroll motion-element links-of-blogroll-inline">
             <div class="links-of-blogroll-title">
-              <i class="fa  fa-fw fa-globe"></i>
+              <i class="fa fa-globe fa-fw"></i>
               
             </div>
             <ul class="links-of-blogroll-list">
@@ -557,7 +545,7 @@
 </div>
 
 <div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
 </div>
 
 <div class="theme-info">
@@ -620,25 +608,25 @@
   
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
 
 
 
   
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
 
 
 
@@ -663,10 +651,7 @@
 
   
     
-    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
-    <script src="/js/src/hook-duoshuo.js"></script>
   
-
 
 
 
@@ -674,15 +659,11 @@
 
   
   
-
   
 
   
 
   
-
-  
-
 
 </body>
 </html>

@@ -27,9 +27,7 @@
 
 
 
-  
-  
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
 
 
 
@@ -61,14 +59,12 @@
 
 
 
-
-
 <link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="ÓÎÏ·²âÊÔ, python" />
+  <meta name="keywords" content="游戏测试, python" />
 
 
 
@@ -79,7 +75,7 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
 
 
 
@@ -106,22 +102,16 @@
     fancybox: true,
     motion: true,
     duoshuo: {
-      userId: '0',
+      userId: 0,
       author: '博主'
     }
   };
 </script>
 
-
-
-
-  <link rel="canonical" href="http://jianbing.github.io/page/3/"/>
-
-
   <title> 煎饼的博客 </title>
 </head>
 
-<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
 
@@ -144,7 +134,7 @@
  ">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-meta ">
   
 
@@ -176,7 +166,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
             
             首页
           </a>
@@ -186,7 +176,7 @@
         <li class="menu-item menu-item-about">
           <a href="/about" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
             
             关于
           </a>
@@ -196,7 +186,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
             
             归档
           </a>
@@ -206,7 +196,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
             
             标签
           </a>
@@ -239,113 +229,7 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/03/27/interface-test-tool-2/" itemprop="url">
-                  游戏测试之接口工具篇（下篇）
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-27T00:00:00+08:00" content="2016-03-27">
-              2016-03-27
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/03/27/interface-test-tool-2/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/27/interface-test-tool-2/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>上一篇分享了在做接口测试时，用到的一些工具软件，最终的感觉是，能用，但不顺手。最主要的原因是，发送请求后，没法很直观地查看服务端的返回结果，其次是使用起来，工作效率并不理想。</p>
-<p>在经历的几个项目中，最终都是使用了内部开发的接口工具，而每个项目的接口工具的原理和使用方式区别还挺大，在此分享下各个工具的设计思路。</p>
-<h3 id="项目1"><a href="#项目1" class="headerlink" title="项目1"></a>项目1</h3><p>2011年那会，刚刚从学校踏入测试坑，项目是一个SLG页游，前后端使用Socket通讯，数据交互采用Json格式，最初版本的接口测试是用WPE做的，后来服务端的主程MM在内网开了一个Web端口，可以接收Http Get请求，格式如下：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">http://192.168.22.248/sftx/gameSocket/send?u=playerId&amp;c=protocol&amp;p=port&amp;params=param1|param2|param3</div></pre></td></tr></table></figure>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/03/27/interface-test-tool-2/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
 
     
       <header class="post-header">
@@ -426,7 +310,7 @@
         
       
     </div>
-
+    
     <div>
       
     </div>
@@ -458,7 +342,7 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
 
     
       <header class="post-header">
@@ -524,7 +408,7 @@
 <p>有时候Pycharm并没有自动收集到对象可用的方法，比如这个对象的类型要运行的时候才知道，举个栗子：</p>
 <p><img src="/images/pycharm-tips/pic1.png" alt=""></p>
 <p>这个时候，我们可以用type来查看对象的类型。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">print</span> type(d)</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">print</span> type(d)</span><br></pre></td></tr></table></figure>
 <p>发现类型是：atx.device.AndroidDevice</p>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/03/17/pycharm-tips/#more" rel="contents">
@@ -534,7 +418,7 @@
         
       
     </div>
-
+    
     <div>
       
     </div>
@@ -566,7 +450,7 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
 
     
       <header class="post-header">
@@ -645,7 +529,7 @@
         
       
     </div>
-
+    
     <div>
       
     </div>
@@ -677,7 +561,7 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
 
     
       <header class="post-header">
@@ -740,7 +624,7 @@
       
         
           <p>这几天折腾博客的时候，最大的感受就是，下边这几个命令反反复复敲了好多次。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">hexo g</div><div class="line">hexo s</div><div class="line">hexo d</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br><span class="line">hexo s</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
 <p>今天重度懒人症发作，决定写个简单的命令行工具把这几句命令也省下来。</p>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/03/09/hexo-cmd-tool/#more" rel="contents">
@@ -750,7 +634,7 @@
         
       
     </div>
-
+    
     <div>
       
     </div>
@@ -782,7 +666,7 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
 
     
       <header class="post-header">
@@ -859,7 +743,7 @@
         
       
     </div>
-
+    
     <div>
       
     </div>
@@ -891,7 +775,7 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
 
     
       <header class="post-header">
@@ -967,7 +851,7 @@
         
       
     </div>
-
+    
     <div>
       
     </div>
@@ -999,7 +883,7 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
 
     
       <header class="post-header">
@@ -1061,9 +945,9 @@
 
       
         
-          <p>在界面上，有个查看执行结果的文本框，叫result，类型是TextCtrl，每次要把操作结果输出到result上边，需要调用：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">result.AppendText(your_str+<span class="string">'\n'</span>)</div></pre></td></tr></table></figure></p>
+          <p>在界面上，有个查看执行结果的文本框，叫result，类型是TextCtrl，每次要把操作结果输出到result上边，需要调用：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">result.AppendText(your_str+<span class="string">'\n'</span>)</span><br></pre></td></tr></table></figure></p>
 <p>而且，因为我把事件的绑定方法分离到另外的py模块，调用过程是这样的：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">test_func</span><span class="params">(evt)</span>:</span></div><div class="line">    evt.GetEventObject().GetParent().result.AppendText(<span class="string">"hello world\n"</span>)</div><div class="line">    <span class="comment"># do something</span></div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test_func</span><span class="params">(evt)</span>:</span></span><br><span class="line">    evt.GetEventObject().GetParent().result.AppendText(<span class="string">"hello world\n"</span>)</span><br><span class="line">    <span class="comment"># do something</span></span><br></pre></td></tr></table></figure>
 <p>需要手动换行，而且这样代码量挺多。<br>所以想了一个办法，定义了一个output方法：</p>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/03/04/wxpython-textctrl-tips/#more" rel="contents">
@@ -1073,7 +957,7 @@
         
       
     </div>
-
+    
     <div>
       
     </div>
@@ -1105,7 +989,7 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
 
     
       <header class="post-header">
@@ -1172,7 +1056,7 @@
 <li>在github的settings里边，添加SSH key。</li>
 <li>安装node.js和git，在官网下载最新的即可。</li>
 <li><p>安装Hexo，cmd下，运行：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install hexo-cli -g</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-cli -g</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>安装完成后可以运行hexo -v，查看是否安装成功，我的版本是3.2.0。</p>
 </li>
@@ -1186,7 +1070,7 @@
         
       
     </div>
-
+    
     <div>
       
     </div>
@@ -1244,7 +1128,7 @@
       
 
       <section class="site-overview sidebar-panel  sidebar-panel-active ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.png"
                alt="煎饼" />
@@ -1254,7 +1138,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">29</span>
+              <span class="site-state-item-count">28</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1287,7 +1171,7 @@
               <span class="links-of-author-item">
                 <a href="https://github.com/jianbing" target="_blank" title="github">
                   
-                    <i class="fa fa-fw fa-globe"></i>
+                    <i class="fa fa-globe"></i>
                   
                   github
                 </a>
@@ -1303,7 +1187,7 @@
         
           <div class="links-of-blogroll motion-element links-of-blogroll-inline">
             <div class="links-of-blogroll-title">
-              <i class="fa  fa-fw fa-globe"></i>
+              <i class="fa fa-globe fa-fw"></i>
               
             </div>
             <ul class="links-of-blogroll-list">
@@ -1353,7 +1237,7 @@
 </div>
 
 <div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
 </div>
 
 <div class="theme-info">
@@ -1416,21 +1300,21 @@
   
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
 
 
 
   
-  
-
   
 
   
 
+  
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
 
 
 
@@ -1455,10 +1339,7 @@
 
   
     
-    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
-    <script src="/js/src/hook-duoshuo.js"></script>
   
-
 
 
 
@@ -1466,15 +1347,11 @@
 
   
   
-
   
 
   
 
   
-
-  
-
 
 </body>
 </html>

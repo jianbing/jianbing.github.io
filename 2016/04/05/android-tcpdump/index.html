@@ -27,9 +27,7 @@
 
 
 
-  
-  
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
 
 
 
@@ -61,11 +59,9 @@
 
 
 
-
-
 <link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
   <meta name="keywords" content="游戏测试," />
@@ -79,7 +75,7 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
 
 
 
@@ -102,7 +98,7 @@ GT是腾讯出品的APP性能测试工具，已经在Github开源。
 GT是腾讯出品的APP性能测试工具，已经在Github开源。
 
 进入GT的插件页面，点击抓包，调整tcpdump参">
-<meta property="og:updated_time" content="2016-10-27T08:38:25.453Z">
+<meta property="og:updated_time" content="2016-04-09T14:14:52.152Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="安卓上使用tcpdump抓包的几种方式">
 <meta name="twitter:description" content="tcpdump是Linux上强大的网络数据采集工具，可以将网络中传送的数据包完全截获下来，在安卓手机上，也可以使用它来进行抓包，后续可以用Wireshark来进行数据包的分析。
@@ -122,22 +118,16 @@ GT是腾讯出品的APP性能测试工具，已经在Github开源。
     fancybox: true,
     motion: true,
     duoshuo: {
-      userId: '0',
+      userId: 0,
       author: '博主'
     }
   };
 </script>
 
-
-
-
-  <link rel="canonical" href="http://jianbing.github.io/2016/04/05/android-tcpdump/"/>
-
-
   <title> 安卓上使用tcpdump抓包的几种方式 | 煎饼的博客 </title>
 </head>
 
-<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
 
@@ -158,7 +148,7 @@ GT是腾讯出品的APP性能测试工具，已经在Github开源。
   <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-meta ">
   
 
@@ -190,7 +180,7 @@ GT是腾讯出品的APP性能测试工具，已经在Github开源。
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
             
             首页
           </a>
@@ -200,7 +190,7 @@ GT是腾讯出品的APP性能测试工具，已经在Github开源。
         <li class="menu-item menu-item-about">
           <a href="/about" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
             
             关于
           </a>
@@ -210,7 +200,7 @@ GT是腾讯出品的APP性能测试工具，已经在Github开源。
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
             
             归档
           </a>
@@ -220,7 +210,7 @@ GT是腾讯出品的APP性能测试工具，已经在Github开源。
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
             
             标签
           </a>
@@ -253,7 +243,7 @@ GT是腾讯出品的APP性能测试工具，已经在Github开源。
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
 
     
       <header class="post-header">
@@ -326,17 +316,17 @@ GT是腾讯出品的APP性能测试工具，已经在Github开源。
 <li>手机需要提前root</li>
 <li>在cmd命令行下，依次执行</li>
 </ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">adb shell</div><div class="line">su </div><div class="line">chmod <span class="number">777</span> /data/local</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">adb shell</span><br><span class="line">su </span><br><span class="line">chmod <span class="number">777</span> /data/local</span><br></pre></td></tr></table></figure>
 <ul>
 <li>退出shell模式，把下载的tcpdump文件push到手机</li>
 </ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">adb push E:/tcpdump /data/local</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb push E:/tcpdump /data/local</span><br></pre></td></tr></table></figure>
 <ul>
 <li>在cmd下，依次执行</li>
 </ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">adb shell</div><div class="line">su</div><div class="line">chmod <span class="number">6755</span> /data/local/tcpdump</div><div class="line">/data/local/tcpdump -p -s <span class="number">0</span> -w /sdcard/<span class="number">001.</span>pcap     开始抓包</div><div class="line"></div><div class="line">参数含义：</div><div class="line">-p 表示不使用混杂模式</div><div class="line">-s 参数用以指定数据包捕获长度，此处指定为<span class="number">0</span>，指抓取完整的数据包</div><div class="line">-w 将结果写入一个pcap文件</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">adb shell</span><br><span class="line">su</span><br><span class="line">chmod <span class="number">6755</span> /data/local/tcpdump</span><br><span class="line">/data/local/tcpdump -p -s <span class="number">0</span> -w /sdcard/<span class="number">001.</span>pcap     开始抓包</span><br><span class="line"></span><br><span class="line">参数含义：</span><br><span class="line">-p 表示不使用混杂模式</span><br><span class="line">-s 参数用以指定数据包捕获长度，此处指定为<span class="number">0</span>，指抓取完整的数据包</span><br><span class="line">-w 将结果写入一个pcap文件</span><br></pre></td></tr></table></figure>
 <ul>
-<li>按Ctrl+C停止抓包，把pcap文件pull回本地<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">adb pull /sdcard/<span class="number">001.</span>pcap E:/</div></pre></td></tr></table></figure>
+<li>按Ctrl+C停止抓包，把pcap文件pull回本地<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb pull /sdcard/<span class="number">001.</span>pcap E:/</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <h3 id="3-手机上使用终端模拟器"><a href="#3-手机上使用终端模拟器" class="headerlink" title="3.手机上使用终端模拟器"></a>3.手机上使用终端模拟器</h3><ul>
@@ -344,25 +334,23 @@ GT是腾讯出品的APP性能测试工具，已经在Github开源。
 <li>手机上安装终端模拟器</li>
 <li>运行终端模拟器，输入抓包命令</li>
 </ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/data/local/tcpdump -p -s <span class="number">0</span> -w /sdcard/<span class="number">001.</span>pcap</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/data/local/tcpdump -p -s <span class="number">0</span> -w /sdcard/<span class="number">001.</span>pcap</span><br></pre></td></tr></table></figure>
 <ul>
 <li>直接退出终端模拟器可以停止抓包，然后用adb pull导出</li>
 </ul>
 
       
     </div>
-
+    
     <div>
       
         
-
       
     </div>
 
     <div>
       
         
-
       
     </div>
 
@@ -470,7 +458,7 @@ GT是腾讯出品的APP性能测试工具，已经在Github开源。
       
 
       <section class="site-overview sidebar-panel ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.png"
                alt="煎饼" />
@@ -480,7 +468,7 @@ GT是腾讯出品的APP性能测试工具，已经在Github开源。
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">29</span>
+              <span class="site-state-item-count">28</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -513,7 +501,7 @@ GT是腾讯出品的APP性能测试工具，已经在Github开源。
               <span class="links-of-author-item">
                 <a href="https://github.com/jianbing" target="_blank" title="github">
                   
-                    <i class="fa fa-fw fa-globe"></i>
+                    <i class="fa fa-globe"></i>
                   
                   github
                 </a>
@@ -529,7 +517,7 @@ GT是腾讯出品的APP性能测试工具，已经在Github开源。
         
           <div class="links-of-blogroll motion-element links-of-blogroll-inline">
             <div class="links-of-blogroll-title">
-              <i class="fa  fa-fw fa-globe"></i>
+              <i class="fa fa-globe fa-fw"></i>
               
             </div>
             <ul class="links-of-blogroll-list">
@@ -590,7 +578,7 @@ GT是腾讯出品的APP性能测试工具，已经在Github开源。
 </div>
 
 <div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
 </div>
 
 <div class="theme-info">
@@ -653,25 +641,25 @@ GT是腾讯出品的APP性能测试工具，已经在Github开源。
   
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
 
 
 
   
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
 
 
 
@@ -696,10 +684,7 @@ GT是腾讯出品的APP性能测试工具，已经在Github开源。
 
   
     
-    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
-    <script src="/js/src/hook-duoshuo.js"></script>
   
-
 
 
 
@@ -707,15 +692,11 @@ GT是腾讯出品的APP性能测试工具，已经在Github开源。
 
   
   
-
   
 
   
 
   
-
-  
-
 
 </body>
 </html>

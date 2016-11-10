@@ -27,9 +27,7 @@
 
 
 
-  
-  
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
 
 
 
@@ -61,11 +59,9 @@
 
 
 
-
-
 <link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
   <meta name="keywords" content="测试工具," />
@@ -79,7 +75,7 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
 
 
 
@@ -102,7 +98,7 @@
 
 除了UI和接口自动化测试，我们也可以将测试工作中的重复性内容，编写成脚本或工具，可以反复使用，提升工作的效率。
 今天就来聊一聊测试辅助工具的开发吧。">
-<meta property="og:updated_time" content="2016-10-27T08:38:25.472Z">
+<meta property="og:updated_time" content="2016-06-30T13:12:51.792Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="游戏自动化测试之辅助工具篇">
 <meta name="twitter:description" content="说到游戏的自动化测试，很多人脑海中第一个浮现出来的词语，我想是UI自动化和接口自动化这两个的其中之一吧。
@@ -122,22 +118,16 @@
     fancybox: true,
     motion: true,
     duoshuo: {
-      userId: '0',
+      userId: 0,
       author: '博主'
     }
   };
 </script>
 
-
-
-
-  <link rel="canonical" href="http://jianbing.github.io/2016/06/13/game-test-automation-1/"/>
-
-
   <title> 游戏自动化测试之辅助工具篇 | 煎饼的博客 </title>
 </head>
 
-<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
 
@@ -158,7 +148,7 @@
   <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-meta ">
   
 
@@ -190,7 +180,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
             
             首页
           </a>
@@ -200,7 +190,7 @@
         <li class="menu-item menu-item-about">
           <a href="/about" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
             
             关于
           </a>
@@ -210,7 +200,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
             
             归档
           </a>
@@ -220,7 +210,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
             
             标签
           </a>
@@ -253,7 +243,7 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
 
     
       <header class="post-header">
@@ -338,11 +328,11 @@
 <p>那就得自力更生了~</p>
 <p>原始方式：使用FTP软件连入内网服务器，查看文件的更新日期，从而知道发版时间。</p>
 <p>懒人方式：那就写个脚本吧。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">sftp = SFTPClient(host=<span class="string">"192.168.1.10"</span>, port=<span class="number">22</span>, user=<span class="string">"root"</span>, pwd=<span class="string">"XXXXXX"</span>)</div><div class="line"><span class="keyword">print</span> <span class="string">"内网发版时间是：&#123;&#125;"</span>.format(sftp.get_file_update_time(path=<span class="string">'/data/www/sg/sg_dev/socket/conf/config/treasure'</span>))</div><div class="line">sftp.close()</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sftp = SFTPClient(host=<span class="string">"192.168.1.10"</span>, port=<span class="number">22</span>, user=<span class="string">"root"</span>, pwd=<span class="string">"XXXXXX"</span>)</span><br><span class="line"><span class="keyword">print</span> <span class="string">"内网发版时间是：&#123;&#125;"</span>.format(sftp.get_file_update_time(path=<span class="string">'/data/www/sg/sg_dev/socket/conf/config/treasure'</span>))</span><br><span class="line">sftp.close()</span><br></pre></td></tr></table></figure>
 <p>SFTPClient<a href="https://github.com/jianbing/utils/blob/master/tools/sftpclient.py" target="_blank" rel="external">点击查看源码</a></p>
 <h4 id="批量更新SVN目录"><a href="#批量更新SVN目录" class="headerlink" title="批量更新SVN目录"></a>批量更新SVN目录</h4><p>有2个常用的SVN目录，一个策划文档目录，一个配置表目录，每天来到公司，都需要，先Revert，再Update。</p>
 <p>懒人方式：几行代码实现批量操作。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#! /usr/bin/env python</span></div><div class="line"><span class="comment"># -*- coding: UTF-8 -*-</span></div><div class="line"><span class="keyword">from</span> __future__ <span class="keyword">import</span> unicode_literals</div><div class="line"><span class="keyword">import</span> subprocess</div><div class="line">subprocess.Popen(<span class="string">r'TortoiseProc.exe /command:revert /path:"E:\策划文档" /closeonend:0'</span>.encode(<span class="string">'gb2312'</span>))</div><div class="line">subprocess.Popen(<span class="string">r'TortoiseProc.exe /command:revert /path:"E:\配置文档" /closeonend:0'</span>.encode(<span class="string">'gb2312'</span>))</div><div class="line">subprocess.Popen(<span class="string">r'TortoiseProc.exe /command:update /path:"E:\策划文档" /closeonend:0'</span>.encode(<span class="string">'gb2312'</span>))</div><div class="line">subprocess.Popen(<span class="string">r'TortoiseProc.exe /command:update /path:"E:\配置文档" /closeonend:0'</span>.encode(<span class="string">'gb2312'</span>))</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#! /usr/bin/env python</span></span><br><span class="line"><span class="comment"># -*- coding: UTF-8 -*-</span></span><br><span class="line"><span class="keyword">from</span> __future__ <span class="keyword">import</span> unicode_literals</span><br><span class="line"><span class="keyword">import</span> subprocess</span><br><span class="line">subprocess.Popen(<span class="string">r'TortoiseProc.exe /command:revert /path:"E:\策划文档" /closeonend:0'</span>.encode(<span class="string">'gb2312'</span>))</span><br><span class="line">subprocess.Popen(<span class="string">r'TortoiseProc.exe /command:revert /path:"E:\配置文档" /closeonend:0'</span>.encode(<span class="string">'gb2312'</span>))</span><br><span class="line">subprocess.Popen(<span class="string">r'TortoiseProc.exe /command:update /path:"E:\策划文档" /closeonend:0'</span>.encode(<span class="string">'gb2312'</span>))</span><br><span class="line">subprocess.Popen(<span class="string">r'TortoiseProc.exe /command:update /path:"E:\配置文档" /closeonend:0'</span>.encode(<span class="string">'gb2312'</span>))</span><br></pre></td></tr></table></figure>
 <h4 id="之前分享的一些例子"><a href="#之前分享的一些例子" class="headerlink" title="之前分享的一些例子"></a>之前分享的一些例子</h4><ul>
 <li><p><a href="http://jianbing.github.io/2016/06/06/unity-pic-check/">Unity图片压缩设置批量检查</a></p>
 </li>
@@ -356,18 +346,16 @@
 
       
     </div>
-
+    
     <div>
       
         
-
       
     </div>
 
     <div>
       
         
-
       
     </div>
 
@@ -475,7 +463,7 @@
       
 
       <section class="site-overview sidebar-panel ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.png"
                alt="煎饼" />
@@ -485,7 +473,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">29</span>
+              <span class="site-state-item-count">28</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -518,7 +506,7 @@
               <span class="links-of-author-item">
                 <a href="https://github.com/jianbing" target="_blank" title="github">
                   
-                    <i class="fa fa-fw fa-globe"></i>
+                    <i class="fa fa-globe"></i>
                   
                   github
                 </a>
@@ -534,7 +522,7 @@
         
           <div class="links-of-blogroll motion-element links-of-blogroll-inline">
             <div class="links-of-blogroll-title">
-              <i class="fa  fa-fw fa-globe"></i>
+              <i class="fa fa-globe fa-fw"></i>
               
             </div>
             <ul class="links-of-blogroll-list">
@@ -595,7 +583,7 @@
 </div>
 
 <div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
 </div>
 
 <div class="theme-info">
@@ -658,25 +646,25 @@
   
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
 
 
 
   
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
 
 
 
@@ -701,10 +689,7 @@
 
   
     
-    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
-    <script src="/js/src/hook-duoshuo.js"></script>
   
-
 
 
 
@@ -712,15 +697,11 @@
 
   
   
-
   
 
   
 
   
-
-  
-
 
 </body>
 </html>

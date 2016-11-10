@@ -27,9 +27,7 @@
 
 
 
-  
-  
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
 
 
 
@@ -61,11 +59,9 @@
 
 
 
-
-
 <link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
   <meta name="keywords" content="python,测试工具," />
@@ -79,7 +75,7 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
 
 
 
@@ -99,7 +95,7 @@
 <meta property="og:image" content="http://jianbing.github.io/images/sikuli-tool/path.png">
 <meta property="og:image" content="http://jianbing.github.io/images/sikuli-tool/drag.gif">
 <meta property="og:image" content="http://jianbing.github.io/images/sikuli-tool/findall.gif">
-<meta property="og:updated_time" content="2016-10-27T08:38:25.522Z">
+<meta property="og:updated_time" content="2016-06-30T14:27:30.735Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在Python中使用Sikuli">
 <meta name="twitter:description" content="关于SikuliSikuli 是由 MIT 的研究团队发布的新型图形化编程技术。它以图像检索技术为基础，提供了一套基于 Jython 的脚本语言以及集成开发环境。使用者可利用屏幕截图直接引用 GUI 元素进行编程，完成交互操作。Sikuli 一词取自墨西哥 Huichol Indian 土著语，意为“上帝之眼”， Sikuli 让电脑能像人一样“看”这个“真实世界”。
@@ -116,22 +112,16 @@
     fancybox: true,
     motion: true,
     duoshuo: {
-      userId: '0',
+      userId: 0,
       author: '博主'
     }
   };
 </script>
 
-
-
-
-  <link rel="canonical" href="http://jianbing.github.io/2016/05/21/sikuli-tool/"/>
-
-
   <title> 在Python中使用Sikuli | 煎饼的博客 </title>
 </head>
 
-<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
 
@@ -152,7 +142,7 @@
   <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-meta ">
   
 
@@ -184,7 +174,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
             
             首页
           </a>
@@ -194,7 +184,7 @@
         <li class="menu-item menu-item-about">
           <a href="/about" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
             
             关于
           </a>
@@ -204,7 +194,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
             
             归档
           </a>
@@ -214,7 +204,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
             
             标签
           </a>
@@ -247,7 +237,7 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
 
     
       <header class="post-header">
@@ -318,7 +308,7 @@
 <p>也试过用Eclipse+Pydev来导入sikuli的jar包，使用jython驱动，但因为现有的代码都是在python下编写的，所以这个方式虽然可以脱离Sikuli的IDE，但是并不理想。</p>
 <h3 id="Sikuli-in-Python"><a href="#Sikuli-in-Python" class="headerlink" title="Sikuli in Python"></a>Sikuli in Python</h3><p>直到前几天逛Github，发现了<a href="https://github.com/kevlened/sikuli_cpython" target="_blank" rel="external">sikuli_cpython</a>这个项目，启发了我，原理是<a href="https://github.com/kivy/pyjnius" target="_blank" rel="external">pyjnius</a>提供了可以从Python中直接访问java类的功能，通过它，实现了对Sikuli的jar包的一层封装。</p>
 <p>先看看pyjnius的一个官方例子：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt;<span class="keyword">from</span> jnius <span class="keyword">import</span> autoclass</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>autoclass(<span class="string">'java.lang.System'</span>).out.println(<span class="string">'Hello world'</span>)</div><div class="line">Hello world</div><div class="line"></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>Stack = autoclass(<span class="string">'java.util.Stack'</span>)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>stack = Stack()</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>stack.push(<span class="string">'hello'</span>)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>stack.push(<span class="string">'world'</span>)</div><div class="line">&gt;&gt;&gt;<span class="keyword">print</span> stack.pop()</div><div class="line">world</div><div class="line">&gt;&gt;&gt;<span class="keyword">print</span> stack.pop()</div><div class="line">hello</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt;<span class="keyword">from</span> jnius <span class="keyword">import</span> autoclass</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>autoclass(<span class="string">'java.lang.System'</span>).out.println(<span class="string">'Hello world'</span>)</span><br><span class="line">Hello world</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>Stack = autoclass(<span class="string">'java.util.Stack'</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>stack = Stack()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>stack.push(<span class="string">'hello'</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>stack.push(<span class="string">'world'</span>)</span><br><span class="line">&gt;&gt;&gt;<span class="keyword">print</span> stack.pop()</span><br><span class="line">world</span><br><span class="line">&gt;&gt;&gt;<span class="keyword">print</span> stack.pop()</span><br><span class="line">hello</span><br></pre></td></tr></table></figure>
 <p>开始动手~</p>
 <blockquote>
 <p>开发环境：Python2.7+Win10+Pycharm</p>
@@ -339,29 +329,27 @@
 <h3 id="效果展示"><a href="#效果展示" class="headerlink" title="效果展示"></a>效果展示</h3><blockquote>
 <p>例子1：把图标拖动到文件夹中，最后高亮这个文件夹，并双击它。</p>
 </blockquote>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> sikulitool.sikuli <span class="keyword">import</span> *</div><div class="line"></div><div class="line">s = Screen()</div><div class="line">s.dragDrop(<span class="string">"as.png"</span>, <span class="string">"dir.png"</span>)</div><div class="line">s.sleep(<span class="number">0.5</span>)</div><div class="line">s.dragDrop(<span class="string">"qq.png"</span>, <span class="string">"dir.png"</span>)</div><div class="line">s.find(<span class="string">"dir.png"</span>).highlight().sleep(<span class="number">1</span>).doubleClick()</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sikulitool.sikuli <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">s = Screen()</span><br><span class="line">s.dragDrop(<span class="string">"as.png"</span>, <span class="string">"dir.png"</span>)</span><br><span class="line">s.sleep(<span class="number">0.5</span>)</span><br><span class="line">s.dragDrop(<span class="string">"qq.png"</span>, <span class="string">"dir.png"</span>)</span><br><span class="line">s.find(<span class="string">"dir.png"</span>).highlight().sleep(<span class="number">1</span>).doubleClick()</span><br></pre></td></tr></table></figure>
 <p><img src="/images/sikuli-tool/drag.gif" alt=""></p>
 <blockquote>
 <p>例子2：通过similar方法设置相似度，默认是0.7，在屏幕中查找多个相似度为50%的对象，并依次高亮，移动到上边。</p>
 </blockquote>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> sikulitool.sikuli <span class="keyword">import</span> *</div><div class="line"></div><div class="line">s = Screen()</div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> s.findAll(Pattern(<span class="string">'doc.png'</span>).similar(<span class="number">0.5</span>)):</div><div class="line">    i.highlight().sleep(<span class="number">1</span>).hover()</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sikulitool.sikuli <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">s = Screen()</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> s.findAll(Pattern(<span class="string">'doc.png'</span>).similar(<span class="number">0.5</span>)):</span><br><span class="line">    i.highlight().sleep(<span class="number">1</span>).hover()</span><br></pre></td></tr></table></figure>
 <p><img src="/images/sikuli-tool/findall.gif" alt=""></p>
 <p>源码已在<a href="https://github.com/jianbing/sikulitool" target="_blank" rel="external">Github</a>，欢迎围观~</p>
 
       
     </div>
-
+    
     <div>
       
         
-
       
     </div>
 
     <div>
       
         
-
       
     </div>
 
@@ -471,7 +459,7 @@
       
 
       <section class="site-overview sidebar-panel ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.png"
                alt="煎饼" />
@@ -481,7 +469,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">29</span>
+              <span class="site-state-item-count">28</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -514,7 +502,7 @@
               <span class="links-of-author-item">
                 <a href="https://github.com/jianbing" target="_blank" title="github">
                   
-                    <i class="fa fa-fw fa-globe"></i>
+                    <i class="fa fa-globe"></i>
                   
                   github
                 </a>
@@ -530,7 +518,7 @@
         
           <div class="links-of-blogroll motion-element links-of-blogroll-inline">
             <div class="links-of-blogroll-title">
-              <i class="fa  fa-fw fa-globe"></i>
+              <i class="fa fa-globe fa-fw"></i>
               
             </div>
             <ul class="links-of-blogroll-list">
@@ -591,7 +579,7 @@
 </div>
 
 <div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
 </div>
 
 <div class="theme-info">
@@ -654,25 +642,25 @@
   
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
 
 
 
   
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
 
 
 
@@ -697,10 +685,7 @@
 
   
     
-    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
-    <script src="/js/src/hook-duoshuo.js"></script>
   
-
 
 
 
@@ -708,15 +693,11 @@
 
   
   
-
   
 
   
 
   
-
-  
-
 
 </body>
 </html>

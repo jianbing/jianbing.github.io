@@ -27,9 +27,7 @@
 
 
 
-  
-  
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
 
 
 
@@ -61,11 +59,9 @@
 
 
 
-
-
 <link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
   <meta name="keywords" content="游戏测试," />
@@ -79,7 +75,7 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
 
 
 
@@ -96,7 +92,7 @@
 <meta property="og:description" content="FPS测试FPS是每秒传输帧数(Frames Per Second)，每秒钟帧数越多，则画面看起来越流畅，FPS测试也是手机游戏性能测试的一个重点专项。
 测试工具APP性能测试工具第三方的APP性能测试工具，主流代表，GT，Wetest，Emmagee等。
 使用方式：各APP的帮助文件已经详细说明了~不再重复~">
-<meta property="og:updated_time" content="2016-10-27T08:38:25.531Z">
+<meta property="og:updated_time" content="2016-07-08T12:15:27.227Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="安卓性能专项之FPS测试篇">
 <meta name="twitter:description" content="FPS测试FPS是每秒传输帧数(Frames Per Second)，每秒钟帧数越多，则画面看起来越流畅，FPS测试也是手机游戏性能测试的一个重点专项。
@@ -113,22 +109,16 @@
     fancybox: true,
     motion: true,
     duoshuo: {
-      userId: '0',
+      userId: 0,
       author: '博主'
     }
   };
 </script>
 
-
-
-
-  <link rel="canonical" href="http://jianbing.github.io/2016/04/13/unity-fps-tool/"/>
-
-
   <title> 安卓性能专项之FPS测试篇 | 煎饼的博客 </title>
 </head>
 
-<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
 
@@ -149,7 +139,7 @@
   <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-meta ">
   
 
@@ -181,7 +171,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
             
             首页
           </a>
@@ -191,7 +181,7 @@
         <li class="menu-item menu-item-about">
           <a href="/about" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
             
             关于
           </a>
@@ -201,7 +191,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
             
             归档
           </a>
@@ -211,7 +201,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
             
             标签
           </a>
@@ -244,7 +234,7 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
 
     
       <header class="post-header">
@@ -307,7 +297,7 @@
 <p>使用方式：各APP的帮助文件已经详细说明了~不再重复~</p>
 <a id="more"></a>
 <h3 id="adb方式"><a href="#adb方式" class="headerlink" title="adb方式"></a>adb方式</h3><p>开发者选项–&gt;GPU呈现模式分析–&gt;使用adb shell dumpsys gfxinfo</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">adb shell dumpsys gfxinfo <span class="string">"your app package name"</span> &gt;fps.txt</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell dumpsys gfxinfo <span class="string">"your app package name"</span> &gt;fps.txt</span><br></pre></td></tr></table></figure>
 <p>查看fps.txt，在Profile data in ms下方，查看刷新时间。</p>
 <blockquote>
 <p>Unity手游并不适用这个方式</p>
@@ -317,22 +307,20 @@
 <p>工具原理：</p>
 <p>OnGUI方法是每帧调用的，使用一个变量，在每帧调用的时候自增，每隔一定时间统计帧数总量，总量除以累计的时间，就为每秒传输帧数FPS了，在Unity官网就有实例代码。</p>
 <p>使用方式：保存为ShowFPS.cs，直接挂在主场景的Main Camera即可。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div></pre></td><td class="code"><pre><div class="line">using UnityEngine;</div><div class="line">using System.Collections;</div><div class="line"></div><div class="line">public class ShowFPS : MonoBehaviour &#123;</div><div class="line"></div><div class="line">    public GUIStyle FPSStyle;</div><div class="line"></div><div class="line">    public float updateInterval = 0.5F;  //统计间隔</div><div class="line"></div><div class="line">    private float lastInterval;</div><div class="line"></div><div class="line">    private int frames = 0;</div><div class="line"></div><div class="line">    private float fps;</div><div class="line"></div><div class="line">    private int warnFPS = 40;   //FPS警告临界值</div><div class="line"></div><div class="line">    void Start() &#123;</div><div class="line"></div><div class="line">        lastInterval = Time.realtimeSinceStartup;</div><div class="line"></div><div class="line">        frames = 0;</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    void OnGUI() &#123;</div><div class="line"></div><div class="line">        if (fps &lt; warnFPS) &#123;</div><div class="line">            FPSStyle.normal.textColor = Color.red;</div><div class="line">        &#125; else &#123;</div><div class="line">            FPSStyle.normal.textColor = Color.white;               </div><div class="line">        &#125;</div><div class="line"></div><div class="line">        GUI.Label(new Rect(5, 200, 80, 30), &quot;FPS:&quot; + fps.ToString(&quot;f2&quot;), FPSStyle);</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    void Update() &#123;</div><div class="line"></div><div class="line">        ++frames;</div><div class="line"></div><div class="line">        if (Time.realtimeSinceStartup &gt; lastInterval + updateInterval) &#123;</div><div class="line">            fps = frames / (Time.realtimeSinceStartup - lastInterval);</div><div class="line">            frames = 0;</div><div class="line">            lastInterval = Time.realtimeSinceStartup;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">using UnityEngine;</span><br><span class="line">using System.Collections;</span><br><span class="line"></span><br><span class="line">public class ShowFPS : MonoBehaviour &#123;</span><br><span class="line"></span><br><span class="line">    public GUIStyle FPSStyle;</span><br><span class="line"></span><br><span class="line">    public float updateInterval = 0.5F;  //统计间隔</span><br><span class="line"></span><br><span class="line">    private float lastInterval;</span><br><span class="line"></span><br><span class="line">    private int frames = 0;</span><br><span class="line"></span><br><span class="line">    private float fps;</span><br><span class="line"></span><br><span class="line">    private int warnFPS = 40;   //FPS警告临界值</span><br><span class="line"></span><br><span class="line">    void Start() &#123;</span><br><span class="line"></span><br><span class="line">        lastInterval = Time.realtimeSinceStartup;</span><br><span class="line"></span><br><span class="line">        frames = 0;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    void OnGUI() &#123;</span><br><span class="line"></span><br><span class="line">        if (fps &lt; warnFPS) &#123;</span><br><span class="line">            FPSStyle.normal.textColor = Color.red;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            FPSStyle.normal.textColor = Color.white;               </span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        GUI.Label(new Rect(5, 200, 80, 30), &quot;FPS:&quot; + fps.ToString(&quot;f2&quot;), FPSStyle);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    void Update() &#123;</span><br><span class="line"></span><br><span class="line">        ++frames;</span><br><span class="line"></span><br><span class="line">        if (Time.realtimeSinceStartup &gt; lastInterval + updateInterval) &#123;</span><br><span class="line">            fps = frames / (Time.realtimeSinceStartup - lastInterval);</span><br><span class="line">            frames = 0;</span><br><span class="line">            lastInterval = Time.realtimeSinceStartup;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+      
+    </div>
+    
+    <div>
+      
+        
       
     </div>
 
     <div>
       
         
-
-      
-    </div>
-
-    <div>
-      
-        
-
       
     </div>
 
@@ -440,7 +428,7 @@
       
 
       <section class="site-overview sidebar-panel ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.png"
                alt="煎饼" />
@@ -450,7 +438,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">29</span>
+              <span class="site-state-item-count">28</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -483,7 +471,7 @@
               <span class="links-of-author-item">
                 <a href="https://github.com/jianbing" target="_blank" title="github">
                   
-                    <i class="fa fa-fw fa-globe"></i>
+                    <i class="fa fa-globe"></i>
                   
                   github
                 </a>
@@ -499,7 +487,7 @@
         
           <div class="links-of-blogroll motion-element links-of-blogroll-inline">
             <div class="links-of-blogroll-title">
-              <i class="fa  fa-fw fa-globe"></i>
+              <i class="fa fa-globe fa-fw"></i>
               
             </div>
             <ul class="links-of-blogroll-list">
@@ -560,7 +548,7 @@
 </div>
 
 <div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
 </div>
 
 <div class="theme-info">
@@ -623,25 +611,25 @@
   
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
 
 
 
   
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
 
 
 
@@ -666,10 +654,7 @@
 
   
     
-    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
-    <script src="/js/src/hook-duoshuo.js"></script>
   
-
 
 
 
@@ -677,15 +662,11 @@
 
   
   
-
   
 
   
 
   
-
-  
-
 
 </body>
 </html>
