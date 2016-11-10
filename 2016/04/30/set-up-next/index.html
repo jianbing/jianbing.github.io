@@ -1,0 +1,690 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="杂," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="煎饼的博客" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="昨天晚上睡前，打算把博客的主题，替换成Next，Next的Github地址。
+对着Next的使用文档就开始进行配置，到了最终执行Hexo g来生成博客文章的时候，报错了！！">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用Next主题遇到的一个坑">
+<meta property="og:url" content="http://jianbing.github.io/2016/04/30/set-up-next/index.html">
+<meta property="og:site_name" content="煎饼的博客">
+<meta property="og:description" content="昨天晚上睡前，打算把博客的主题，替换成Next，Next的Github地址。
+对着Next的使用文档就开始进行配置，到了最终执行Hexo g来生成博客文章的时候，报错了！！">
+<meta property="og:updated_time" content="2016-10-27T08:38:25.516Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用Next主题遇到的一个坑">
+<meta name="twitter:description" content="昨天晚上睡前，打算把博客的主题，替换成Next，Next的Github地址。
+对着Next的使用文档就开始进行配置，到了最终执行Hexo g来生成博客文章的时候，报错了！！">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://jianbing.github.io/2016/04/30/set-up-next/"/>
+
+
+  <title> 使用Next主题遇到的一个坑 | 煎饼的博客 </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">煎饼的博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                使用Next主题遇到的一个坑
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-04-30T00:00:00+08:00" content="2016-04-30">
+              2016-04-30
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/04/30/set-up-next/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/30/set-up-next/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>昨天晚上睡前，打算把博客的主题，替换成Next，<a href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="external">Next的Github地址</a>。</p>
+<p>对着Next的使用文档就开始进行配置，到了最终执行Hexo g来生成博客文章的时候，报错了！！</p>
+<a id="more"></a>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">Unhandled rejection Error: ENOENT: no such file <span class="keyword">or</span> directory, open <span class="string">'C:\github\blog\themes\next\layout\_scripts\schemes\.swig'</span></div><div class="line">    at Error (native)</div><div class="line">    at Object.fs.openSync (fs.js:<span class="number">584</span>:<span class="number">18</span>)</div><div class="line">    at Object.fs.readFileSync (fs.js:<span class="number">431</span>:<span class="number">33</span>)</div><div class="line">    at Object.ret.load (C:\github\blog\node_modules\swig\lib\loaders\filesystem.js:<span class="number">55</span>:<span class="number">15</span>)</div><div class="line">    at compileFile (C:\github\blog\node_modules\swig\lib\swig.js:<span class="number">695</span>:<span class="number">31</span>)</div><div class="line">    at Object.eval [<span class="keyword">as</span> tpl] (eval at &lt;anonymous&gt; (C:\github\blog\node_modules\swig\lib\swig.js:<span class="number">498</span>:<span class="number">13</span>), &lt;anonymous&gt;:<span class="number">293</span>:<span class="number">18</span>)</div><div class="line">    at compiled [<span class="keyword">as</span> _compiledSync] (C:\github\blog\node_modules\swig\lib\swig.js:<span class="number">619</span>:<span class="number">18</span>)</div><div class="line">    at tryCatcher (C:\github\blog\node_modules\bluebird\js\release\util.js:<span class="number">16</span>:<span class="number">23</span>)</div><div class="line">    at null._compiled (C:\github\blog\node_modules\bluebird\js\release\method.js:<span class="number">15</span>:<span class="number">34</span>)</div><div class="line">    at View.render (C:\github\blog\node_modules\hexo\lib\theme\view.js:<span class="number">29</span>:<span class="number">15</span>)</div><div class="line">    at C:\github\blog\node_modules\hexo\lib\hexo\index.js:<span class="number">387</span>:<span class="number">25</span></div><div class="line">    at tryCatcher (C:\github\blog\node_modules\bluebird\js\release\util.js:<span class="number">16</span>:<span class="number">23</span>)</div><div class="line">    at C:\github\blog\node_modules\bluebird\js\release\method.js:<span class="number">15</span>:<span class="number">34</span></div><div class="line">    at RouteStream._read (C:\github\blog\node_modules\hexo\lib\hexo\router.js:<span class="number">134</span>:<span class="number">3</span>)</div><div class="line">    at RouteStream.Readable.read (_stream_readable.js:<span class="number">336</span>:<span class="number">10</span>)</div><div class="line">    at resume_ (_stream_readable.js:<span class="number">726</span>:<span class="number">12</span>)</div><div class="line">    at _combinedTickCallback (node.js:<span class="number">383</span>:<span class="number">13</span>)</div><div class="line">    at process._tickCallback (node.js:<span class="number">407</span>:<span class="number">11</span>)</div></pre></td></tr></table></figure>
+<p>no such file or directory？？</p>
+<p>好吧，谷歌大法出动，一番搜索下来，找到了<a href="https://github.com/iissnan/hexo-theme-next/issues/737" target="_blank" rel="external">这个帖子</a>。</p>
+<p>里边说到：</p>
+<blockquote>
+<p>有碰到 YAMLException: bad indentation of a mapping entry 这种提示的，最好找个 YAML Lint 验证下 _config.yml 是否有问题。</p>
+</blockquote>
+<p>往回翻看报错信息，还真有这个报错，那有可能是配置格式出错了。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">YAMLException: can <span class="keyword">not</span> read a block mapping entry; a multiline key may <span class="keyword">not</span> be an implicit key at line <span class="number">144</span>, column <span class="number">1</span>:</div><div class="line">    <span class="comment"># Table Of Contents in the Sidebar</span></div></pre></td></tr></table></figure>
+<p>回到配置文件，在144行的上边，发现是少了一个空格。。</p>
+<p>这个是错误的版本：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">avatar:/images/avatar.png</div></pre></td></tr></table></figure>
+<p>这个是正确的版本：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">avatar: /images/avatar.png</div></pre></td></tr></table></figure>
+<p>问题解决，PS：Next主题的效果很合胃口啊~哈哈。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/杂/" rel="tag">#杂</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/04/27/adb-tool/" rel="next" title="ADB工具类分享">
+                <i class="fa fa-chevron-left"></i> ADB工具类分享
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/05/07/unity-show-error-tool/" rel="prev" title="Unity游戏内显示报错信息">
+                Unity游戏内显示报错信息 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/04/30/set-up-next/"
+     data-title="使用Next主题遇到的一个坑"
+     data-content=""
+     data-url="http://jianbing.github.io/2016/04/30/set-up-next/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/04/30/set-up-next/"
+           data-title="使用Next主题遇到的一个坑" data-url="http://jianbing.github.io/2016/04/30/set-up-next/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="煎饼" />
+          <p class="site-author-name" itemprop="name">煎饼</p>
+          <p class="site-description motion-element" itemprop="description">爱折腾的游戏测试一枚，Py大法受益者</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">29</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/jianbing" target="_blank" title="github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  github
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://testerhome.com/" title="TesterHome" target="_blank">TesterHome</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://xuxu1988.com/" title="xuxu" target="_blank">xuxu</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://darker50.github.io/" title="幸福" target="_blank">幸福</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://testerlife.com/" title="在路上" target="_blank">在路上</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">煎饼</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"jianbing"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

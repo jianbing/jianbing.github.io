@@ -1,0 +1,697 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="python,测试工具," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="煎饼的博客" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="工具起源有时候在群里看到一个新鲜的名词，想要搜索一下是个什么东东，一般流程是：复制文本，打开浏览器，粘贴到搜索框，回车。
+有时候看到一个电影名称，想快速在豆瓣电影看下评分，一般流程是：复制文本，打开豆瓣电影，粘贴，点击搜索。
+在记录bug的时候，需要把截图拖动到上传控件上，经常需要在屏幕下方一堆已经打开的文件夹中，找到截图的文件夹。
+如果这些事情，可以用快捷键来快速完成就好了。于是开始查找资料~">
+<meta property="og:type" content="article">
+<meta property="og:title" content="用Python制作一个迷你快捷键工具">
+<meta property="og:url" content="http://jianbing.github.io/2016/05/13/mini-hotkey-tool/index.html">
+<meta property="og:site_name" content="煎饼的博客">
+<meta property="og:description" content="工具起源有时候在群里看到一个新鲜的名词，想要搜索一下是个什么东东，一般流程是：复制文本，打开浏览器，粘贴到搜索框，回车。
+有时候看到一个电影名称，想快速在豆瓣电影看下评分，一般流程是：复制文本，打开豆瓣电影，粘贴，点击搜索。
+在记录bug的时候，需要把截图拖动到上传控件上，经常需要在屏幕下方一堆已经打开的文件夹中，找到截图的文件夹。
+如果这些事情，可以用快捷键来快速完成就好了。于是开始查找资料~">
+<meta property="og:updated_time" content="2016-10-27T08:38:25.492Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="用Python制作一个迷你快捷键工具">
+<meta name="twitter:description" content="工具起源有时候在群里看到一个新鲜的名词，想要搜索一下是个什么东东，一般流程是：复制文本，打开浏览器，粘贴到搜索框，回车。
+有时候看到一个电影名称，想快速在豆瓣电影看下评分，一般流程是：复制文本，打开豆瓣电影，粘贴，点击搜索。
+在记录bug的时候，需要把截图拖动到上传控件上，经常需要在屏幕下方一堆已经打开的文件夹中，找到截图的文件夹。
+如果这些事情，可以用快捷键来快速完成就好了。于是开始查找资料~">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://jianbing.github.io/2016/05/13/mini-hotkey-tool/"/>
+
+
+  <title> 用Python制作一个迷你快捷键工具 | 煎饼的博客 </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">煎饼的博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                用Python制作一个迷你快捷键工具
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-13T00:00:00+08:00" content="2016-05-13">
+              2016-05-13
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/13/mini-hotkey-tool/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/13/mini-hotkey-tool/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="工具起源"><a href="#工具起源" class="headerlink" title="工具起源"></a>工具起源</h3><p>有时候在群里看到一个新鲜的名词，想要搜索一下是个什么东东，一般流程是：复制文本，打开浏览器，粘贴到搜索框，回车。</p>
+<p>有时候看到一个电影名称，想快速在豆瓣电影看下评分，一般流程是：复制文本，打开豆瓣电影，粘贴，点击搜索。</p>
+<p>在记录bug的时候，需要把截图拖动到上传控件上，经常需要在屏幕下方一堆已经打开的文件夹中，找到截图的文件夹。</p>
+<p>如果这些事情，可以用快捷键来快速完成就好了。于是开始查找资料~</p>
+<a id="more"></a>
+<h3 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h3><p>通过对鼠标和键盘事件的监控，如果按下的组合键满足已经设置的快捷键组合，就执行指定的函数代码。</p>
+<h3 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h3><p>需要安装以下的库：</p>
+<ul>
+<li><a href="https://sourceforge.net/projects/pywin32/files/pywin32/" target="_blank" rel="external">pywin32</a></li>
+<li><a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#pyhook" target="_blank" rel="external">pyhook</a></li>
+<li><a href="https://github.com/schurpf/pyhk" target="_blank" rel="external">pyhk</a></li>
+<li>pyperclip，查看剪贴板数据，通过pip安装即可</li>
+</ul>
+<h3 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h3><blockquote>
+<p>开发环境：Python2.7+Win10+Pycharm</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#! /usr/bin/env python</span></div><div class="line"><span class="comment"># -*- coding: UTF-8 -*-</span></div><div class="line"><span class="keyword">from</span> pyhk <span class="keyword">import</span> pyhk</div><div class="line"><span class="keyword">import</span> os</div><div class="line"><span class="keyword">import</span> subprocess</div><div class="line"><span class="keyword">import</span> pyperclip</div><div class="line"></div><div class="line">CONST_LIEBAO_DIR = <span class="string">r"C:\Users\Bing\AppData\Local\liebao\liebao.exe"</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">open_shot_dir</span><span class="params">()</span>:</span></div><div class="line">    os.system(<span class="string">r"start  C:\Users\Bing\Desktop\shot"</span>)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">search_douban_movie</span><span class="params">()</span>:</span></div><div class="line">    copy_str = pyperclip.paste().strip()</div><div class="line">    subprocess.Popen((<span class="string">'&#123;0&#125; https://movie.douban.com/subject_search?search_text=&#123;1&#125;'</span>.format(CONST_LIEBAO_DIR, copy_str.encode(<span class="string">'gb2312'</span>))))</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">search_baidu</span><span class="params">()</span>:</span></div><div class="line">    copy_str = pyperclip.paste().strip()</div><div class="line">    subprocess.Popen((<span class="string">'&#123;0&#125; https://www.baidu.com/s?wd=&#123;1&#125;'</span>.format(CONST_LIEBAO_DIR, copy_str.encode(<span class="string">'gb2312'</span>))))</div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">    <span class="keyword">print</span> <span class="string">"start working"</span></div><div class="line">    hot = pyhk()</div><div class="line">    hot.addHotkey([<span class="string">'mouse left'</span>, <span class="string">'S'</span>], open_shot_dir)</div><div class="line">    hot.addHotkey([<span class="string">'mouse left'</span>, <span class="string">'D'</span>], search_douban_movie)</div><div class="line">    hot.addHotkey([<span class="string">'mouse left'</span>, <span class="string">'B'</span>], search_baidu)</div><div class="line">    hot.start()</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag">#python</a>
+          
+            <a href="/tags/测试工具/" rel="tag">#测试工具</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/05/07/unity-show-error-tool/" rel="next" title="Unity游戏内显示报错信息">
+                <i class="fa fa-chevron-left"></i> Unity游戏内显示报错信息
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/05/21/sikuli-tool/" rel="prev" title="在Python中使用Sikuli">
+                在Python中使用Sikuli <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/05/13/mini-hotkey-tool/"
+     data-title="用Python制作一个迷你快捷键工具"
+     data-content=""
+     data-url="http://jianbing.github.io/2016/05/13/mini-hotkey-tool/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/05/13/mini-hotkey-tool/"
+           data-title="用Python制作一个迷你快捷键工具" data-url="http://jianbing.github.io/2016/05/13/mini-hotkey-tool/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="煎饼" />
+          <p class="site-author-name" itemprop="name">煎饼</p>
+          <p class="site-description motion-element" itemprop="description">爱折腾的游戏测试一枚，Py大法受益者</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">29</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/jianbing" target="_blank" title="github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  github
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://testerhome.com/" title="TesterHome" target="_blank">TesterHome</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://xuxu1988.com/" title="xuxu" target="_blank">xuxu</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://darker50.github.io/" title="幸福" target="_blank">幸福</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://testerlife.com/" title="在路上" target="_blank">在路上</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#工具起源"><span class="nav-number">1.</span> <span class="nav-text">工具起源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现原理"><span class="nav-number">2.</span> <span class="nav-text">实现原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#环境搭建"><span class="nav-number">3.</span> <span class="nav-text">环境搭建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#源码"><span class="nav-number">4.</span> <span class="nav-text">源码</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">煎饼</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"jianbing"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

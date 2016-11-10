@@ -1,0 +1,708 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="python," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="煎饼的博客" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="关于PEP 8PEP 8，Style Guide for Python Code，是Python官方推出的Python编码风格的约定，虽然这不是硬性的规定，但是如果Python程序员都尽量遵循这个文档，那么编码风格的统一会让代码的可读性大大提升。
+在Pycharm里边默认也是有进行PEP8的检测，强迫症的人表示，看到代码中有黄色波浪线，就一定得先改好它。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在Pycharm中配置autopep8">
+<meta property="og:url" content="http://jianbing.github.io/2016/06/29/pycharm-autopep8/index.html">
+<meta property="og:site_name" content="煎饼的博客">
+<meta property="og:description" content="关于PEP 8PEP 8，Style Guide for Python Code，是Python官方推出的Python编码风格的约定，虽然这不是硬性的规定，但是如果Python程序员都尽量遵循这个文档，那么编码风格的统一会让代码的可读性大大提升。
+在Pycharm里边默认也是有进行PEP8的检测，强迫症的人表示，看到代码中有黄色波浪线，就一定得先改好它。">
+<meta property="og:updated_time" content="2016-10-27T08:38:25.501Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="在Pycharm中配置autopep8">
+<meta name="twitter:description" content="关于PEP 8PEP 8，Style Guide for Python Code，是Python官方推出的Python编码风格的约定，虽然这不是硬性的规定，但是如果Python程序员都尽量遵循这个文档，那么编码风格的统一会让代码的可读性大大提升。
+在Pycharm里边默认也是有进行PEP8的检测，强迫症的人表示，看到代码中有黄色波浪线，就一定得先改好它。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://jianbing.github.io/2016/06/29/pycharm-autopep8/"/>
+
+
+  <title> 在Pycharm中配置autopep8 | 煎饼的博客 </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">煎饼的博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                在Pycharm中配置autopep8
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-06-29T00:00:00+08:00" content="2016-06-29">
+              2016-06-29
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/06/29/pycharm-autopep8/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/29/pycharm-autopep8/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="关于PEP-8"><a href="#关于PEP-8" class="headerlink" title="关于PEP 8"></a>关于PEP 8</h3><p><a href="https://www.python.org/dev/peps/pep-0008/" target="_blank" rel="external">PEP 8</a>，Style Guide for Python Code，是Python官方推出的Python编码风格的约定，虽然这不是硬性的规定，但是如果Python程序员都尽量遵循这个文档，那么编码风格的统一会让代码的可读性大大提升。</p>
+<p>在Pycharm里边默认也是有进行PEP8的检测，强迫症的人表示，看到代码中有黄色波浪线，就一定得先改好它。</p>
+<a id="more"></a>
+<h3 id="关于autopep8"><a href="#关于autopep8" class="headerlink" title="关于autopep8"></a>关于autopep8</h3><p>官网的描述是：</p>
+<blockquote>
+<p>autopep8 automatically formats Python code to conform to the PEP 8 style guide. It uses the pep8 utility to determine what parts of the code needs to be formatted. autopep8 is capable of fixing most of the formatting issues that can be reported by pep8.</p>
+</blockquote>
+<p>通过它，可以修复大部分PEP8工具中报告的代码排版问题。举个官网的例子：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">example1</span><span class="params">()</span>:</span></div><div class="line">    <span class="comment">####This is a long comment. This should be wrapped to fit within 72 characters.</span></div><div class="line">    some_tuple=(   <span class="number">1</span>,<span class="number">2</span>, <span class="number">3</span>,<span class="string">'a'</span>  );</div><div class="line">    some_variable=&#123;<span class="string">'long'</span>:<span class="string">'Long code lines should be wrapped within 79 characters.'</span>,</div><div class="line">    <span class="string">'other'</span>:[math.pi, <span class="number">100</span>,<span class="number">200</span>,<span class="number">300</span>,<span class="number">9876543210</span>,<span class="string">'This is a long string that goes on'</span>],</div><div class="line">    <span class="string">'more'</span>:&#123;<span class="string">'inner'</span>:<span class="string">'This whole logical line should be wrapped.'</span>,some_tuple:[<span class="number">1</span>,</div><div class="line">    <span class="number">20</span>,<span class="number">300</span>,<span class="number">40000</span>,<span class="number">500000000</span>,<span class="number">60000000000000000</span>]&#125;&#125;</div><div class="line">    <span class="keyword">return</span> (some_tuple, some_variable)</div></pre></td></tr></table></figure>
+<p>这是一个比较极端情况的例子，在使用了autopep8自动修复后：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">example1</span><span class="params">()</span>:</span></div><div class="line">    <span class="comment"># This is a long comment. This should be wrapped to fit within 72 characters.</span></div><div class="line">    some_tuple = (<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="string">'a'</span>)</div><div class="line">    some_variable = &#123;<span class="string">'long'</span>: <span class="string">'Long code lines should be wrapped within 79 characters.'</span>,</div><div class="line">                     <span class="string">'other'</span>: [math.pi, <span class="number">100</span>, <span class="number">200</span>, <span class="number">300</span>, <span class="number">9876543210</span>, <span class="string">'This is a long string that goes on'</span>],</div><div class="line">                     <span class="string">'more'</span>: &#123;<span class="string">'inner'</span>: <span class="string">'This whole logical line should be wrapped.'</span>, some_tuple: [<span class="number">1</span>,</div><div class="line">                                                                                                  <span class="number">20</span>, <span class="number">300</span>, <span class="number">40000</span>, <span class="number">500000000</span>, <span class="number">60000000000000000</span>]&#125;&#125;</div><div class="line">    <span class="keyword">return</span> (some_tuple, some_variable)</div></pre></td></tr></table></figure>
+<p>是不是看起来焕然一新了？</p>
+<h3 id="Pycharm中使用autopep8作为扩展工具"><a href="#Pycharm中使用autopep8作为扩展工具" class="headerlink" title="Pycharm中使用autopep8作为扩展工具"></a>Pycharm中使用autopep8作为扩展工具</h3><h4 id="安装autopep8"><a href="#安装autopep8" class="headerlink" title="安装autopep8"></a>安装autopep8</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip install autopep8</div></pre></td></tr></table></figure>
+<h4 id="Pycharm进行设置"><a href="#Pycharm进行设置" class="headerlink" title="Pycharm进行设置"></a>Pycharm进行设置</h4><ul>
+<li>Settings–&gt;Tools–&gt;External Tools 点击添加按钮<ul>
+<li>Name：autopep8（可以自定义）</li>
+<li>Tools settings:</li>
+<li>Programs：autopep8（不能修改）</li>
+<li>Parameters：--in-place --aggressive --aggressive $FilePath$</li>
+<li>Working directory：$ProjectFileDir$</li>
+</ul>
+</li>
+<li>点击Output Files<ul>
+<li>点击添加，名称可以任意填写</li>
+<li>Regular expression to match output：$FILE_PATH$\:$LINE$\:$COLUMN$\:.*</li>
+</ul>
+</li>
+</ul>
+<h4 id="实际使用"><a href="#实际使用" class="headerlink" title="实际使用"></a>实际使用</h4><p>在右击上代码–&gt;External Tool–&gt;autopep8</p>
+<p>Pycharm自动调用了autopep8对当前文件进行PEP8优化。</p>
+<h3 id="autopep8的一些设置点"><a href="#autopep8的一些设置点" class="headerlink" title="autopep8的一些设置点"></a>autopep8的一些设置点</h3><p>在上边说到，在Parameters的设置是:--in-place --aggressive --aggressive $FilePath$</p>
+<p>–in-place 代表会直接修改源文件</p>
+<p>–aggressive autopep8默认只修复空白，对齐相关的PEP8问题，加入--aggressive设置，会增加修复如 x == None 修复为 x is None，{“a”: 1, “b”: 2}.has_key(‘a’) 修复为’a’ in {“a”: 1, “b”: 2}</p>
+<p>–ignore  忽略PEP8检查项</p>
+<p>因为我只打算用autopep8来修复空格，空行这一类的排版问题，同时要忽略每一行长度过长的检测（E501 - Try to make lines fit within –max-line-length characters.），所以最终设置是：</p>
+<p>--in-place   --ignore=E501  $FilePath$ </p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag">#python</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/06/13/game-test-automation-1/" rel="next" title="游戏自动化测试之辅助工具篇">
+                <i class="fa fa-chevron-left"></i> 游戏自动化测试之辅助工具篇
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/07/08/unity-auto-build-windows/" rel="prev" title="Unity一键发版脚本折腾记（Windows版）">
+                Unity一键发版脚本折腾记（Windows版） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/06/29/pycharm-autopep8/"
+     data-title="在Pycharm中配置autopep8"
+     data-content=""
+     data-url="http://jianbing.github.io/2016/06/29/pycharm-autopep8/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/06/29/pycharm-autopep8/"
+           data-title="在Pycharm中配置autopep8" data-url="http://jianbing.github.io/2016/06/29/pycharm-autopep8/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="煎饼" />
+          <p class="site-author-name" itemprop="name">煎饼</p>
+          <p class="site-description motion-element" itemprop="description">爱折腾的游戏测试一枚，Py大法受益者</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">29</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/jianbing" target="_blank" title="github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  github
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://testerhome.com/" title="TesterHome" target="_blank">TesterHome</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://xuxu1988.com/" title="xuxu" target="_blank">xuxu</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://darker50.github.io/" title="幸福" target="_blank">幸福</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://testerlife.com/" title="在路上" target="_blank">在路上</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#关于PEP-8"><span class="nav-number">1.</span> <span class="nav-text">关于PEP 8</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关于autopep8"><span class="nav-number">2.</span> <span class="nav-text">关于autopep8</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Pycharm中使用autopep8作为扩展工具"><span class="nav-number">3.</span> <span class="nav-text">Pycharm中使用autopep8作为扩展工具</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#安装autopep8"><span class="nav-number">3.1.</span> <span class="nav-text">安装autopep8</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Pycharm进行设置"><span class="nav-number">3.2.</span> <span class="nav-text">Pycharm进行设置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实际使用"><span class="nav-number">3.3.</span> <span class="nav-text">实际使用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#autopep8的一些设置点"><span class="nav-number">4.</span> <span class="nav-text">autopep8的一些设置点</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">煎饼</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"jianbing"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

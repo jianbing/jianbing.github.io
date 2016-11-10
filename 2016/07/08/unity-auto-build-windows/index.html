@@ -1,0 +1,724 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="测试工具," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="煎饼的博客" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="脚本起源策划：煎饼啊，给我一个最新的电脑版~煎饼：好~
+于是，开始手动发版，操作步骤如下：
+
+运行Unity，把平台切换到Windows
+去到项目代码文件夹里边，先还原代码，再拉取最新代码
+手动把测试模块拖动到主场景的Main Camera上
+在工具面板点击打包资源按钮（开发提供）
+在工具面板点击发版按钮（开发提供）
+
+偶尔会忘记拉取最新代码，偶尔会忘记打包资源，最重要的是，这发版步骤还是略繁琐，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Unity一键发版脚本折腾记（Windows版）">
+<meta property="og:url" content="http://jianbing.github.io/2016/07/08/unity-auto-build-windows/index.html">
+<meta property="og:site_name" content="煎饼的博客">
+<meta property="og:description" content="脚本起源策划：煎饼啊，给我一个最新的电脑版~煎饼：好~
+于是，开始手动发版，操作步骤如下：
+
+运行Unity，把平台切换到Windows
+去到项目代码文件夹里边，先还原代码，再拉取最新代码
+手动把测试模块拖动到主场景的Main Camera上
+在工具面板点击打包资源按钮（开发提供）
+在工具面板点击发版按钮（开发提供）
+
+偶尔会忘记拉取最新代码，偶尔会忘记打包资源，最重要的是，这发版步骤还是略繁琐，">
+<meta property="og:updated_time" content="2016-10-27T08:38:25.529Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Unity一键发版脚本折腾记（Windows版）">
+<meta name="twitter:description" content="脚本起源策划：煎饼啊，给我一个最新的电脑版~煎饼：好~
+于是，开始手动发版，操作步骤如下：
+
+运行Unity，把平台切换到Windows
+去到项目代码文件夹里边，先还原代码，再拉取最新代码
+手动把测试模块拖动到主场景的Main Camera上
+在工具面板点击打包资源按钮（开发提供）
+在工具面板点击发版按钮（开发提供）
+
+偶尔会忘记拉取最新代码，偶尔会忘记打包资源，最重要的是，这发版步骤还是略繁琐，">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://jianbing.github.io/2016/07/08/unity-auto-build-windows/"/>
+
+
+  <title> Unity一键发版脚本折腾记（Windows版） | 煎饼的博客 </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">煎饼的博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Unity一键发版脚本折腾记（Windows版）
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-08T00:00:00+08:00" content="2016-07-08">
+              2016-07-08
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/07/08/unity-auto-build-windows/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/08/unity-auto-build-windows/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="脚本起源"><a href="#脚本起源" class="headerlink" title="脚本起源"></a>脚本起源</h3><p>策划：煎饼啊，给我一个最新的电脑版~<br>煎饼：好~</p>
+<p>于是，开始手动发版，操作步骤如下：</p>
+<ul>
+<li>运行Unity，把平台切换到Windows</li>
+<li>去到项目代码文件夹里边，先还原代码，再拉取最新代码</li>
+<li>手动把测试模块拖动到主场景的Main Camera上</li>
+<li>在工具面板点击打包资源按钮（开发提供）</li>
+<li>在工具面板点击发版按钮（开发提供）</li>
+</ul>
+<p>偶尔会忘记拉取最新代码，偶尔会忘记打包资源，最重要的是，这发版步骤还是略繁琐，于是懒人症发作，开始探索如何脚本化这个过程。</p>
+<a id="more"></a>
+<h3 id="探索过程"><a href="#探索过程" class="headerlink" title="探索过程"></a>探索过程</h3><p>这些步骤分为两类操作。</p>
+<p>一类是Unity外的操作，如还原，拉取代码，这个可以用Python解决。</p>
+<p>一类是Unity内的操作，切换平台，打包资源，进行发版。这些操作，外部工具不好直接介入，最好的方式是Unity提供了命令行的操作形式，搜索了下，果然是有，研究了下，找到了几个可用的参数。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">-batchmode  在批处理模式下运行，不会弹出Unity窗口</div><div class="line">-quit  其他命令执行完毕后将退出Unity编辑器</div><div class="line">-logFile &lt;pathname&gt;  指定输出Log文件</div><div class="line">-executeMethod &lt;ClassName.MethodName&gt;  在Unity启动的同时会执行指定的静态方法，注意，这个类所在文件目录，需要在Editor目录下（自己建一个Editor目录也行）</div></pre></td></tr></table></figure>
+<p>最终调用命令如下:</p>
+<blockquote>
+<p>Unity.exe -quit -batchmode -executeMethod CMDTool.BuildWindows -logFile C:\build\log.log</p>
+</blockquote>
+<p>更多参数点击查看<a href="http://docs.unity3d.com/Manual/CommandLineArguments.html" target="_blank" rel="external">官方文档</a></p>
+<h3 id="实现过程"><a href="#实现过程" class="headerlink" title="实现过程"></a>实现过程</h3><h4 id="Unity发版的工具类"><a href="#Unity发版的工具类" class="headerlink" title="Unity发版的工具类"></a>Unity发版的工具类</h4><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">using UnityEngine;</div><div class="line">using UnityEditor;</div><div class="line">using UnityEditor.SceneManagement;</div><div class="line">using Assets.Src.Editor.Toolkit.Tools;</div><div class="line"></div><div class="line">public class CMDTool &#123;</div><div class="line"></div><div class="line">    public static void BuildWindows() &#123;</div><div class="line">        SwitchPlatform(BuildTarget.StandaloneWindows);</div><div class="line">        CheckTestManager();</div><div class="line">        SGTools.BuildAssetBundles(EditorUserBuildSettings.activeBuildTarget, true);</div><div class="line">        SGTools.Build(EditorUserBuildSettings.activeBuildTarget);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public static void SwitchPlatform(BuildTarget target) &#123;</div><div class="line">        if (EditorUserBuildSettings.activeBuildTarget != target) &#123;</div><div class="line">            EditorUserBuildSettings.SwitchActiveBuildTarget(target);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public static void CheckTestManager() &#123;</div><div class="line">        EditorSceneManager.OpenScene("Assets/Scene/Main.unity");</div><div class="line">        if (GameObject.Find("Main Camera").GetComponent&lt;TestCenter.TestManager&gt;().IsNull()) &#123;</div><div class="line">            GameObject.Find("Main Camera").AddComponent&lt;TestCenter.TestManager&gt;();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>SwitchPlatform 切换平台<br>CheckTestManager 加载测试模块<br>SGTools.BuildAssetBundles 开发提供的打包资源方法<br>SGTools.Build  开发提供的发版方法</p>
+<h4 id="还原，拉取项目代码"><a href="#还原，拉取项目代码" class="headerlink" title="还原，拉取项目代码"></a>还原，拉取项目代码</h4><p>为什么要还原？因为每次发版都会注入测试模块，下次发版前拉取新代码的时候，会出现冲突。</p>
+<p>可以使用Python来调用Git命令：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">update_unity_code</span><span class="params">()</span>:</span></div><div class="line">    os.chdir(<span class="string">"C:\Project\sg"</span>)</div><div class="line">    <span class="keyword">print</span> <span class="string">'start to reset'</span></div><div class="line">    os.system(<span class="string">"git reset --hard HEAD"</span>)</div><div class="line">    <span class="keyword">print</span> <span class="string">'start to pull'</span></div><div class="line">    os.system(<span class="string">"git pull"</span>)</div></pre></td></tr></table></figure>
+<h4 id="检查Unity是否已经关闭"><a href="#检查Unity是否已经关闭" class="headerlink" title="检查Unity是否已经关闭"></a>检查Unity是否已经关闭</h4><p>调用Unity命令行发版之前，需要确认Unity没有开启，否则运行会报错。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">check_unity_is_close</span><span class="params">()</span>:</span></div><div class="line">    <span class="keyword">import</span> psutil</div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> psutil.process_iter():</div><div class="line">        <span class="keyword">if</span> i.name() == <span class="string">"Unity.exe"</span>:</div><div class="line">            <span class="keyword">raise</span> Exception(<span class="string">"unity is not close"</span>)</div><div class="line">    <span class="keyword">else</span>:</div><div class="line">        <span class="keyword">print</span> <span class="string">"unity is close"</span></div></pre></td></tr></table></figure></p>
+<h4 id="检查发版的Log文件，是否有报错信息"><a href="#检查发版的Log文件，是否有报错信息" class="headerlink" title="检查发版的Log文件，是否有报错信息"></a>检查发版的Log文件，是否有报错信息</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">analyze_log</span><span class="params">()</span>:</span></div><div class="line">    <span class="keyword">print</span> <span class="string">'start to analyze log'</span></div><div class="line">    <span class="keyword">with</span> open(<span class="string">r"C:\build\log.log"</span>) <span class="keyword">as</span> f:</div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> f:</div><div class="line">            <span class="keyword">if</span> i.find(<span class="string">"error"</span>) &gt; <span class="number">-1</span>:</div><div class="line">                <span class="keyword">print</span> i</div></pre></td></tr></table></figure>
+<h4 id="发版函数"><a href="#发版函数" class="headerlink" title="发版函数"></a>发版函数</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">build_windows</span><span class="params">()</span>:</span></div><div class="line">    <span class="keyword">print</span> <span class="string">'start to build windows'</span></div><div class="line">    os.chdir(<span class="string">r"C:\Program Files\Unity\Editor"</span>)</div><div class="line">    p = subprocess.Popen(<span class="string">r"Unity.exe -quit -batchmode -executeMethod CMDTool.BuildWindows -logFile C:\build\log.log"</span>, stdout=subprocess.PIPE, stderr=subprocess.PIPE)</div><div class="line">    stdout, stderr = p.communicate()</div><div class="line">	<span class="keyword">print</span> stdout</div><div class="line">	<span class="keyword">print</span> stderr</div><div class="line">    <span class="keyword">print</span> <span class="string">"result code is &#123;&#125;"</span>.format(p.returncode)</div></pre></td></tr></table></figure>
+<h3 id="最终运行"><a href="#最终运行" class="headerlink" title="最终运行"></a>最终运行</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">    start_time = time.time()</div><div class="line">    check_unity_is_close()</div><div class="line">    update_unity_code()</div><div class="line">    build_windows()</div><div class="line">    analyze_log()</div><div class="line">    <span class="keyword">print</span> <span class="string">'finish in &#123;&#125; seconds.'</span>.format(time.time() - start_time)</div></pre></td></tr></table></figure>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/测试工具/" rel="tag">#测试工具</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/06/29/pycharm-autopep8/" rel="next" title="在Pycharm中配置autopep8">
+                <i class="fa fa-chevron-left"></i> 在Pycharm中配置autopep8
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/07/11/cmd-tool/" rel="prev" title="命令行工具2.0版">
+                命令行工具2.0版 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/07/08/unity-auto-build-windows/"
+     data-title="Unity一键发版脚本折腾记（Windows版）"
+     data-content=""
+     data-url="http://jianbing.github.io/2016/07/08/unity-auto-build-windows/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/07/08/unity-auto-build-windows/"
+           data-title="Unity一键发版脚本折腾记（Windows版）" data-url="http://jianbing.github.io/2016/07/08/unity-auto-build-windows/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="煎饼" />
+          <p class="site-author-name" itemprop="name">煎饼</p>
+          <p class="site-description motion-element" itemprop="description">爱折腾的游戏测试一枚，Py大法受益者</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">29</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/jianbing" target="_blank" title="github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  github
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://testerhome.com/" title="TesterHome" target="_blank">TesterHome</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://xuxu1988.com/" title="xuxu" target="_blank">xuxu</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://darker50.github.io/" title="幸福" target="_blank">幸福</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://testerlife.com/" title="在路上" target="_blank">在路上</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#脚本起源"><span class="nav-number">1.</span> <span class="nav-text">脚本起源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#探索过程"><span class="nav-number">2.</span> <span class="nav-text">探索过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现过程"><span class="nav-number">3.</span> <span class="nav-text">实现过程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Unity发版的工具类"><span class="nav-number">3.1.</span> <span class="nav-text">Unity发版的工具类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#还原，拉取项目代码"><span class="nav-number">3.2.</span> <span class="nav-text">还原，拉取项目代码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#检查Unity是否已经关闭"><span class="nav-number">3.3.</span> <span class="nav-text">检查Unity是否已经关闭</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#检查发版的Log文件，是否有报错信息"><span class="nav-number">3.4.</span> <span class="nav-text">检查发版的Log文件，是否有报错信息</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#发版函数"><span class="nav-number">3.5.</span> <span class="nav-text">发版函数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最终运行"><span class="nav-number">4.</span> <span class="nav-text">最终运行</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">煎饼</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"jianbing"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

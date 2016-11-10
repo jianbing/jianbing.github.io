@@ -1,0 +1,721 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="python," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="煎饼的博客" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="Py2的编码问题真是历史悠久，下边这个报错更是经常见到。1UnicodeDecodeError: &apos;ascii&apos; codec can&apos;t decode byte 0xe9 in position 2: ordinal not in range(128)
+在避开Py2的编码坑之前，我们需要了解一下一些常见的编码。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="聊一聊Python2的编码坑">
+<meta property="og:url" content="http://jianbing.github.io/2016/11/10/python-str-unicode/index.html">
+<meta property="og:site_name" content="煎饼的博客">
+<meta property="og:description" content="Py2的编码问题真是历史悠久，下边这个报错更是经常见到。1UnicodeDecodeError: &apos;ascii&apos; codec can&apos;t decode byte 0xe9 in position 2: ordinal not in range(128)
+在避开Py2的编码坑之前，我们需要了解一下一些常见的编码。">
+<meta property="og:updated_time" content="2016-11-10T08:18:00.270Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="聊一聊Python2的编码坑">
+<meta name="twitter:description" content="Py2的编码问题真是历史悠久，下边这个报错更是经常见到。1UnicodeDecodeError: &apos;ascii&apos; codec can&apos;t decode byte 0xe9 in position 2: ordinal not in range(128)
+在避开Py2的编码坑之前，我们需要了解一下一些常见的编码。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://jianbing.github.io/2016/11/10/python-str-unicode/"/>
+
+
+  <title> 聊一聊Python2的编码坑 | 煎饼的博客 </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">煎饼的博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                聊一聊Python2的编码坑
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-10T00:00:00+08:00" content="2016-11-10">
+              2016-11-10
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/11/10/python-str-unicode/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/10/python-str-unicode/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Py2的编码问题真是历史悠久，下边这个报错更是经常见到。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">UnicodeDecodeError: <span class="string">'ascii'</span> codec can<span class="string">'t decode byte 0xe9 in position 2: ordinal not in range(128)</span></div></pre></td></tr></table></figure></p>
+<p>在避开Py2的编码坑之前，我们需要了解一下一些常见的编码。</p>
+<a id="more"></a>
+<h3 id="常见编码"><a href="#常见编码" class="headerlink" title="常见编码"></a>常见编码</h3><h4 id="ASCII"><a href="#ASCII" class="headerlink" title="ASCII"></a>ASCII</h4><p>ASCII（American Standard Code for Information Interchange，美国信息交换标准代码）是基于拉丁字母的一套电脑编码系统，主要用于显示现代英语和其他西欧语言。它是现今最通用的单字节编码系统。</p>
+<h4 id="Unicode"><a href="#Unicode" class="headerlink" title="Unicode"></a>Unicode</h4><p>Unicode（统一码、万国码、单一码）是计算机科学领域里的一项业界标准,包括字符集、编码方案等。Unicode 是为了解决传统的字符编码方案的局限而产生的，它为每种语言中的每个字符设定了统一并且唯一的二进制编码，以满足跨语言、跨平台进行文本转换、处理的要求。</p>
+<h4 id="UTF-8"><a href="#UTF-8" class="headerlink" title="UTF-8"></a>UTF-8</h4><p>UTF-8（8-bit Unicode Transformation Format）是一种针对Unicode的可变长度字符编码，又称万国码。由Ken Thompson于1992年创建。现在已经标准化为RFC 3629。UTF-8用1到4个字节编码Unicode字符。用在网页上可以统一页面显示中文简体繁体及其它语言（如英文，日文，韩文）。</p>
+<h4 id="GB2312"><a href="#GB2312" class="headerlink" title="GB2312"></a>GB2312</h4><p>GB2312编码由中国国家标准总局1980年发布，1981年5月1日开始实施的一套国家标准，适用于汉字处理、汉字通信等系统之间的信息交换，通行于中国大陆；新加坡等地也采用此编码。中国大陆几乎所有的中文系统和国际化的软件都支持GB2312。基本集共收入汉字6763个和非汉字图形字符682个。</p>
+<h4 id="GBK"><a href="#GBK" class="headerlink" title="GBK"></a>GBK</h4><p>GB2312的出现，基本满足了汉字的计算机处理需要，它所收录的汉字已经覆盖中国大陆99.75%的使用频率，不过 GB2312 还是不能100%满足中国汉字的需求，对一些罕见的字和繁体字 GB2312 没法处理，后来就在GB2312的基础上创建了一种叫GBK 的编码，GBK不仅收录了27484个汉字，同时还收录了藏文、蒙文、维吾尔文等主要的少数民族文字。</p>
+<h3 id="编码问题"><a href="#编码问题" class="headerlink" title="编码问题"></a>编码问题</h3><p>背景介绍完毕。回到Python2当中，Python2默认编码是ASCII。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> sys</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>sys.getdefaultencoding()</div><div class="line"><span class="string">'ascii'</span></div></pre></td></tr></table></figure>
+<p>如果.py文件中包含中文字符（严格的说是含有非anscii字符），则需要在第一行或第二行指定编码声明：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># -*- coding: UTF-8 -*-</span></div></pre></td></tr></table></figure></p>
+<p>否认将会看到这样的报错</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">SyntaxError: Non-ASCII character <span class="string">'\xe4'</span> <span class="keyword">in</span> file C:/github/sgauto/test.py on line <span class="number">4</span>, but no encoding declared; see http://python.org/dev/peps/pep<span class="number">-0263</span>/ <span class="keyword">for</span> details</div></pre></td></tr></table></figure>
+<p>在Python2中有两种字符串类型，分别是str和unicode，他们都是basestring的派生类。</p>
+<p>对unicode进行指定格式的编码后，就是str。<br>对str进行指定格式的解码后，就是unicode。</p>
+<p>举个例子：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># -*- coding: UTF-8 -*-</span></div><div class="line">hi = <span class="string">'今天天气不错'</span></div><div class="line"><span class="keyword">print</span> type(hi)</div><div class="line"><span class="keyword">print</span> type(hi.decode(<span class="string">'utf-8'</span>))</div><div class="line"><span class="keyword">print</span> <span class="string">"-"</span>*<span class="number">50</span></div><div class="line">hello = <span class="string">u'今天天气不错'</span></div><div class="line"><span class="keyword">print</span> type(hello)</div><div class="line"><span class="keyword">print</span> type(hello.encode(<span class="string">'utf-8'</span>))</div><div class="line"></div><div class="line">output:</div><div class="line">&lt;type <span class="string">'str'</span>&gt;</div><div class="line">&lt;type <span class="string">'unicode'</span>&gt;</div><div class="line">--------------------------------------------------</div><div class="line">&lt;type <span class="string">'unicode'</span>&gt;</div><div class="line">&lt;type <span class="string">'str'</span>&gt;</div></pre></td></tr></table></figure>
+<p>也就是说，utf-8，gb2312，gbk编码的字符串，都可以通过decode函数，转换为unicode，而unicode字符串，可以通过encode函数指定编码，转换为utf-8，gb2312，gbk等任意编码的字符串。</p>
+<p>unicode就是一个编码转换的中间人。</p>
+<p>避开编码坑，最重要的就是清楚源字符串的编码和输出环境的编码。最好是在Python处理过程中，都先转换为unicode，在最后输出的时候，再进行编码。</p>
+<p>举个乱码的例子。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># -*- coding: UTF-8 -*-</span></div><div class="line"></div><div class="line"><span class="keyword">print</span> <span class="string">'今天天气不错'</span></div></pre></td></tr></table></figure>
+<p>在IDE里边，一切正常，可是当你在Windows的CMD下运行的时候，乱码鸟</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">浠婂ぉ澶╂皵涓嶉敊</div></pre></td></tr></table></figure>
+<p>这是为什么呢？CMD的默认输出编码是GB2312，而我们提供的是UTF-8编码的字符串，于是解析的时候，出现了乱码。</p>
+<p>解决方案一：</p>
+<p>修改CMD的默认编码为UTF-8，在CMD里边输入 CHCP 65001即可。</p>
+<p>解决方案二：<br>在Py文件里边，将字符串的编码转换成Unicode，这样可以有几种写法。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># -*- coding: UTF-8 -*-</span></div><div class="line"></div><div class="line"><span class="keyword">print</span> <span class="string">'今天天气不错'</span>.decode(<span class="string">'utf-8'</span>)</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># -*- coding: UTF-8 -*-</span></div><div class="line"></div><div class="line"><span class="keyword">print</span> <span class="string">u'今天天气不错'</span></div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># -*- coding: UTF-8 -*-</span></div><div class="line"><span class="keyword">from</span> __future__ <span class="keyword">import</span> unicode_literals</div><div class="line"></div><div class="line"><span class="keyword">print</span> <span class="string">'今天天气不错'</span></div></pre></td></tr></table></figure>
+<p>最推荐的方式是第三种，通过__future__模块引入Py3的一个新特性，字符串默认使用unicode编码。</p>
+<p>而在文章最开始列出来的报错，有两种常见情况。</p>
+<p>一是unicode和str混用，进行了运算<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># -*- coding: UTF-8 -*-</span></div><div class="line">hi = <span class="string">u"今天"</span> + <span class="string">"天气真好"</span></div><div class="line"></div><div class="line">output:</div><div class="line">Traceback (most recent call last):</div><div class="line">  File <span class="string">"C:/github/sgauto/test.py"</span>, line <span class="number">5</span>, <span class="keyword">in</span> &lt;module&gt;</div><div class="line">    hi = <span class="string">u"今天"</span> + <span class="string">"天气真好"</span></div><div class="line">UnicodeDecodeError: <span class="string">'ascii'</span> codec can<span class="string">'t decode byte 0xe5 in position 0: ordinal not in range(128)</span></div></pre></td></tr></table></figure></p>
+<p>二是对字符串进行编码解码的时候，指定了错了编码类型。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># -*- coding: UTF-8 -*-</span></div><div class="line"><span class="keyword">print</span> <span class="string">"今天天气真好"</span>.encode(<span class="string">'gb2312'</span>)</div><div class="line"></div><div class="line">output:</div><div class="line">Traceback (most recent call last):</div><div class="line">  File <span class="string">"C:/github/sgauto/test.py"</span>, line <span class="number">5</span>, <span class="keyword">in</span> &lt;module&gt;</div><div class="line">    <span class="keyword">print</span> <span class="string">"今天天气真好"</span>.encode(<span class="string">'gb2312'</span>)</div><div class="line">UnicodeDecodeError: <span class="string">'ascii'</span> codec can<span class="string">'t decode byte 0xe4 in position 0: ordinal not in range(128)</span></div></pre></td></tr></table></figure></p>
+<h3 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h3><p>在Python2中，进行编码转化时候，需要先转为unicode编码，再进行下一步的转化。如：utf-8—&gt;unicode—&gt;gb2312</p>
+<h3 id="推荐实践"><a href="#推荐实践" class="headerlink" title="推荐实践"></a>推荐实践</h3><ul>
+<li><p>从__future__模块引入unicode_literals</p>
+</li>
+<li><p>使用chardet检测编码格式，chardet是一个检测字符串编码的第三方库，必备神器，通过 pip install chardet 安装。</p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># -*- coding: UTF-8 -*-</span></div><div class="line"><span class="keyword">import</span> chardet</div><div class="line">hi = <span class="string">'今天天气不错'</span></div><div class="line"><span class="keyword">print</span> chardet.detect(hi)</div><div class="line"></div><div class="line">output:</div><div class="line">&#123;<span class="string">'confidence'</span>: <span class="number">0.99</span>, <span class="string">'encoding'</span>: <span class="string">'utf-8'</span>&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>使用codecs打开文件</li>
+</ul>
+<p>上文提到，推荐在Py内处理文本之前，都先转为unicode编码，自带的open函数，并不具备这个功能，推荐使用codecs模块的open函数来打开文件，同时指定文件编码，将读取的文本转化为unicode编码。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> codecs</div><div class="line"></div><div class="line"><span class="keyword">with</span> codecs.open(<span class="string">"a.txt"</span>,<span class="string">'r'</span>,encoding=<span class="string">'utf-8'</span>) <span class="keyword">as</span> f:</div><div class="line">    <span class="keyword">print</span> f.read()</div></pre></td></tr></table></figure>
+<hr>
+<h3 id="说点别的"><a href="#说点别的" class="headerlink" title="说点别的"></a>说点别的</h3><p>经常会看到有人问这样一个问题：打印字典和列表的时候，怎么显示成中文？</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># -*- coding: UTF-8 -*-</span></div><div class="line"></div><div class="line">hello = &#123;<span class="string">'hi'</span>: <span class="string">"今天天气真好"</span>&#125;</div><div class="line"><span class="keyword">print</span> hello</div><div class="line"></div><div class="line">output:</div><div class="line">&#123;<span class="string">'hi'</span>: <span class="string">'\xe4\xbb\x8a\xe5\xa4\xa9\xe5\xa4\xa9\xe6\xb0\x94\xe7\x9c\x9f\xe5\xa5\xbd'</span>&#125;</div></pre></td></tr></table></figure>
+<p>解决方法是：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># -*- coding: UTF-8 -*-</span></div><div class="line"><span class="keyword">import</span> json</div><div class="line"></div><div class="line">hello = &#123;<span class="string">'hi'</span>: <span class="string">"今天天气真好"</span>&#125;</div><div class="line"><span class="keyword">print</span> json.dumps(hello,ensure_ascii=<span class="keyword">False</span>)</div><div class="line"></div><div class="line">output:</div><div class="line">&#123;<span class="string">"hi"</span>: <span class="string">"今天天气真好"</span>&#125;</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag">#python</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/11/cmd-tool/" rel="next" title="命令行工具2.0版">
+                <i class="fa fa-chevron-left"></i> 命令行工具2.0版
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/11/10/python-str-unicode/"
+     data-title="聊一聊Python2的编码坑"
+     data-content=""
+     data-url="http://jianbing.github.io/2016/11/10/python-str-unicode/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/11/10/python-str-unicode/"
+           data-title="聊一聊Python2的编码坑" data-url="http://jianbing.github.io/2016/11/10/python-str-unicode/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="煎饼" />
+          <p class="site-author-name" itemprop="name">煎饼</p>
+          <p class="site-description motion-element" itemprop="description">爱折腾的游戏测试一枚，Py大法受益者</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">29</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/jianbing" target="_blank" title="github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  github
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://testerhome.com/" title="TesterHome" target="_blank">TesterHome</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://xuxu1988.com/" title="xuxu" target="_blank">xuxu</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://darker50.github.io/" title="幸福" target="_blank">幸福</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://testerlife.com/" title="在路上" target="_blank">在路上</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#常见编码"><span class="nav-number">1.</span> <span class="nav-text">常见编码</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ASCII"><span class="nav-number">1.1.</span> <span class="nav-text">ASCII</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Unicode"><span class="nav-number">1.2.</span> <span class="nav-text">Unicode</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#UTF-8"><span class="nav-number">1.3.</span> <span class="nav-text">UTF-8</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GB2312"><span class="nav-number">1.4.</span> <span class="nav-text">GB2312</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GBK"><span class="nav-number">1.5.</span> <span class="nav-text">GBK</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编码问题"><span class="nav-number">2.</span> <span class="nav-text">编码问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结论"><span class="nav-number">3.</span> <span class="nav-text">结论</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#推荐实践"><span class="nav-number">4.</span> <span class="nav-text">推荐实践</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#说点别的"><span class="nav-number">5.</span> <span class="nav-text">说点别的</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">煎饼</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"jianbing"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
