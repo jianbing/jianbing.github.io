@@ -27,7 +27,9 @@
 
 
 
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -59,9 +61,11 @@
 
 
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
   <meta name="keywords" content="python,小工具," />
@@ -75,7 +79,7 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
 
 
 
@@ -92,7 +96,7 @@
 <meta property="og:description" content="这几天折腾博客的时候，最大的感受就是，下边这几个命令反反复复敲了好多次。
 123hexo ghexo shexo d
 今天重度懒人症发作，决定写个简单的命令行工具把这几句命令也省下来。">
-<meta property="og:updated_time" content="2016-04-09T14:14:52.154Z">
+<meta property="og:updated_time" content="2016-10-27T08:38:25.474Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo命令行工具">
 <meta name="twitter:description" content="这几天折腾博客的时候，最大的感受就是，下边这几个命令反反复复敲了好多次。
@@ -109,16 +113,22 @@
     fancybox: true,
     motion: true,
     duoshuo: {
-      userId: 0,
+      userId: '0',
       author: '博主'
     }
   };
 </script>
 
+
+
+
+  <link rel="canonical" href="http://jianbing.github.io/2016/03/09/hexo-cmd-tool/"/>
+
+
   <title> Hexo命令行工具 | 煎饼的博客 </title>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
 
   
 
@@ -139,7 +149,7 @@
   <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
       <div class="header-inner"><div class="site-meta ">
   
 
@@ -171,7 +181,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
           </a>
@@ -181,7 +191,7 @@
         <li class="menu-item menu-item-about">
           <a href="/about" rel="section">
             
-              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
             关于
           </a>
@@ -191,7 +201,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             归档
           </a>
@@ -201,7 +211,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
             标签
           </a>
@@ -234,7 +244,7 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
 
     
       <header class="post-header">
@@ -293,25 +303,27 @@
 
       
         <p>这几天折腾博客的时候，最大的感受就是，下边这几个命令反反复复敲了好多次。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br><span class="line">hexo s</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">hexo g</div><div class="line">hexo s</div><div class="line">hexo d</div></pre></td></tr></table></figure>
 <p>今天重度懒人症发作，决定写个简单的命令行工具把这几句命令也省下来。</p>
 <a id="more"></a>
 <p>最终成品出来了，支持自定义热键，随时调整指令顺序，运行效果如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">------------------------------------------------------------------------------------------</span><br><span class="line">请选择指令</span><br><span class="line"></span><br><span class="line">1，hexo generate</span><br><span class="line">2，hexo server</span><br><span class="line">3，hexo version</span><br><span class="line">4，hexo deploy</span><br><span class="line">请选择</span><br><span class="line">1</span><br><span class="line"></span><br><span class="line">INFO  Start processing</span><br><span class="line">INFO  Files loaded in 417 ms</span><br><span class="line">INFO  Generated: 2016/03/09/hexo-cmd-tool/index.html</span><br><span class="line">INFO  Generated: atom.xml</span><br><span class="line">INFO  Generated: sitemap.xml</span><br><span class="line">INFO  3 files generated in 261 ms</span><br><span class="line"></span><br><span class="line">执行完成</span><br><span class="line"></span><br><span class="line">------------------------------------------------------------------------------------------</span><br><span class="line">请选择指令</span><br><span class="line"></span><br><span class="line">1，hexo generate</span><br><span class="line">2，hexo server</span><br><span class="line">3，hexo version</span><br><span class="line">4，hexo deploy</span><br><span class="line">请选择</span><br><span class="line">s</span><br><span class="line"></span><br><span class="line">INFO  Start processing</span><br><span class="line">INFO  Hexo is running at http://localhost:4000/. Press Ctrl+C to stop.</span><br><span class="line">INFO  Good bye</span><br><span class="line">终止批处理操作吗(Y/N)? y</span><br><span class="line">手动退出</span><br><span class="line">------------------------------------------------------------------------------------------</span><br><span class="line">请选择指令</span><br><span class="line"></span><br><span class="line">1，hexo generate</span><br><span class="line">2，hexo server</span><br><span class="line">3，hexo version</span><br><span class="line">4，hexo deploy</span><br><span class="line">请选择</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line">------------------------------------------------------------------------------------------</div><div class="line">请选择指令</div><div class="line"></div><div class="line">1，hexo generate</div><div class="line">2，hexo server</div><div class="line">3，hexo version</div><div class="line">4，hexo deploy</div><div class="line">请选择</div><div class="line">1</div><div class="line"></div><div class="line">INFO  Start processing</div><div class="line">INFO  Files loaded in 417 ms</div><div class="line">INFO  Generated: 2016/03/09/hexo-cmd-tool/index.html</div><div class="line">INFO  Generated: atom.xml</div><div class="line">INFO  Generated: sitemap.xml</div><div class="line">INFO  3 files generated in 261 ms</div><div class="line"></div><div class="line">执行完成</div><div class="line"></div><div class="line">------------------------------------------------------------------------------------------</div><div class="line">请选择指令</div><div class="line"></div><div class="line">1，hexo generate</div><div class="line">2，hexo server</div><div class="line">3，hexo version</div><div class="line">4，hexo deploy</div><div class="line">请选择</div><div class="line">s</div><div class="line"></div><div class="line">INFO  Start processing</div><div class="line">INFO  Hexo is running at http://localhost:4000/. Press Ctrl+C to stop.</div><div class="line">INFO  Good bye</div><div class="line">终止批处理操作吗(Y/N)? y</div><div class="line">手动退出</div><div class="line">------------------------------------------------------------------------------------------</div><div class="line">请选择指令</div><div class="line"></div><div class="line">1，hexo generate</div><div class="line">2，hexo server</div><div class="line">3，hexo version</div><div class="line">4，hexo deploy</div><div class="line">请选择</div></pre></td></tr></table></figure>
 <p>源码已在<a href="https://github.com/jianbing/hexo-cmd-tool" target="_blank" rel="external">github</a>。</p>
 
       
     </div>
-    
+
     <div>
       
         
+
       
     </div>
 
     <div>
       
         
+
       
     </div>
 
@@ -421,7 +433,7 @@
       
 
       <section class="site-overview sidebar-panel ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.png"
                alt="煎饼" />
@@ -431,7 +443,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">28</span>
+              <span class="site-state-item-count">29</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -464,7 +476,7 @@
               <span class="links-of-author-item">
                 <a href="https://github.com/jianbing" target="_blank" title="github">
                   
-                    <i class="fa fa-globe"></i>
+                    <i class="fa fa-fw fa-globe"></i>
                   
                   github
                 </a>
@@ -480,7 +492,7 @@
         
           <div class="links-of-blogroll motion-element links-of-blogroll-inline">
             <div class="links-of-blogroll-title">
-              <i class="fa fa-globe fa-fw"></i>
+              <i class="fa  fa-fw fa-globe"></i>
               
             </div>
             <ul class="links-of-blogroll-list">
@@ -541,7 +553,7 @@
 </div>
 
 <div class="powered-by">
-  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
 </div>
 
 <div class="theme-info">
@@ -583,46 +595,46 @@
 
 
   
-  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
 
   
-  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
 
   
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
-  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
 
   
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
   
-  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
-
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
 
 
 
@@ -647,19 +659,26 @@
 
   
     
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
   
 
 
 
 
 
-  
+
   
   
 
   
 
   
+
+  
+
+  
+
 
 </body>
 </html>

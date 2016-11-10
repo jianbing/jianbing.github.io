@@ -27,7 +27,9 @@
 
 
 
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -59,9 +61,11 @@
 
 
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
   <meta name="keywords" content="python," />
@@ -75,7 +79,7 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
 
 
 
@@ -90,7 +94,7 @@
 <meta property="og:site_name" content="煎饼的博客">
 <meta property="og:description" content="关于PEP 8PEP 8，Style Guide for Python Code，是Python官方推出的Python编码风格的约定，虽然这不是硬性的规定，但是如果Python程序员都尽量遵循这个文档，那么编码风格的统一会让代码的可读性大大提升。
 在Pycharm里边默认也是有进行PEP8的检测，强迫症的人表示，看到代码中有黄色波浪线，就一定得先改好它。">
-<meta property="og:updated_time" content="2016-07-09T16:24:42.932Z">
+<meta property="og:updated_time" content="2016-10-27T08:38:25.501Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在Pycharm中配置autopep8">
 <meta name="twitter:description" content="关于PEP 8PEP 8，Style Guide for Python Code，是Python官方推出的Python编码风格的约定，虽然这不是硬性的规定，但是如果Python程序员都尽量遵循这个文档，那么编码风格的统一会让代码的可读性大大提升。
@@ -106,16 +110,22 @@
     fancybox: true,
     motion: true,
     duoshuo: {
-      userId: 0,
+      userId: '0',
       author: '博主'
     }
   };
 </script>
 
+
+
+
+  <link rel="canonical" href="http://jianbing.github.io/2016/06/29/pycharm-autopep8/"/>
+
+
   <title> 在Pycharm中配置autopep8 | 煎饼的博客 </title>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
 
   
 
@@ -136,7 +146,7 @@
   <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
       <div class="header-inner"><div class="site-meta ">
   
 
@@ -168,7 +178,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
           </a>
@@ -178,7 +188,7 @@
         <li class="menu-item menu-item-about">
           <a href="/about" rel="section">
             
-              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
             关于
           </a>
@@ -188,7 +198,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             归档
           </a>
@@ -198,7 +208,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
             标签
           </a>
@@ -231,7 +241,7 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
 
     
       <header class="post-header">
@@ -297,11 +307,11 @@
 <p>autopep8 automatically formats Python code to conform to the PEP 8 style guide. It uses the pep8 utility to determine what parts of the code needs to be formatted. autopep8 is capable of fixing most of the formatting issues that can be reported by pep8.</p>
 </blockquote>
 <p>通过它，可以修复大部分PEP8工具中报告的代码排版问题。举个官网的例子：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">example1</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="comment">####This is a long comment. This should be wrapped to fit within 72 characters.</span></span><br><span class="line">    some_tuple=(   <span class="number">1</span>,<span class="number">2</span>, <span class="number">3</span>,<span class="string">'a'</span>  );</span><br><span class="line">    some_variable=&#123;<span class="string">'long'</span>:<span class="string">'Long code lines should be wrapped within 79 characters.'</span>,</span><br><span class="line">    <span class="string">'other'</span>:[math.pi, <span class="number">100</span>,<span class="number">200</span>,<span class="number">300</span>,<span class="number">9876543210</span>,<span class="string">'This is a long string that goes on'</span>],</span><br><span class="line">    <span class="string">'more'</span>:&#123;<span class="string">'inner'</span>:<span class="string">'This whole logical line should be wrapped.'</span>,some_tuple:[<span class="number">1</span>,</span><br><span class="line">    <span class="number">20</span>,<span class="number">300</span>,<span class="number">40000</span>,<span class="number">500000000</span>,<span class="number">60000000000000000</span>]&#125;&#125;</span><br><span class="line">    <span class="keyword">return</span> (some_tuple, some_variable)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">example1</span><span class="params">()</span>:</span></div><div class="line">    <span class="comment">####This is a long comment. This should be wrapped to fit within 72 characters.</span></div><div class="line">    some_tuple=(   <span class="number">1</span>,<span class="number">2</span>, <span class="number">3</span>,<span class="string">'a'</span>  );</div><div class="line">    some_variable=&#123;<span class="string">'long'</span>:<span class="string">'Long code lines should be wrapped within 79 characters.'</span>,</div><div class="line">    <span class="string">'other'</span>:[math.pi, <span class="number">100</span>,<span class="number">200</span>,<span class="number">300</span>,<span class="number">9876543210</span>,<span class="string">'This is a long string that goes on'</span>],</div><div class="line">    <span class="string">'more'</span>:&#123;<span class="string">'inner'</span>:<span class="string">'This whole logical line should be wrapped.'</span>,some_tuple:[<span class="number">1</span>,</div><div class="line">    <span class="number">20</span>,<span class="number">300</span>,<span class="number">40000</span>,<span class="number">500000000</span>,<span class="number">60000000000000000</span>]&#125;&#125;</div><div class="line">    <span class="keyword">return</span> (some_tuple, some_variable)</div></pre></td></tr></table></figure>
 <p>这是一个比较极端情况的例子，在使用了autopep8自动修复后：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">example1</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="comment"># This is a long comment. This should be wrapped to fit within 72 characters.</span></span><br><span class="line">    some_tuple = (<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="string">'a'</span>)</span><br><span class="line">    some_variable = &#123;<span class="string">'long'</span>: <span class="string">'Long code lines should be wrapped within 79 characters.'</span>,</span><br><span class="line">                     <span class="string">'other'</span>: [math.pi, <span class="number">100</span>, <span class="number">200</span>, <span class="number">300</span>, <span class="number">9876543210</span>, <span class="string">'This is a long string that goes on'</span>],</span><br><span class="line">                     <span class="string">'more'</span>: &#123;<span class="string">'inner'</span>: <span class="string">'This whole logical line should be wrapped.'</span>, some_tuple: [<span class="number">1</span>,</span><br><span class="line">                                                                                                  <span class="number">20</span>, <span class="number">300</span>, <span class="number">40000</span>, <span class="number">500000000</span>, <span class="number">60000000000000000</span>]&#125;&#125;</span><br><span class="line">    <span class="keyword">return</span> (some_tuple, some_variable)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">example1</span><span class="params">()</span>:</span></div><div class="line">    <span class="comment"># This is a long comment. This should be wrapped to fit within 72 characters.</span></div><div class="line">    some_tuple = (<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="string">'a'</span>)</div><div class="line">    some_variable = &#123;<span class="string">'long'</span>: <span class="string">'Long code lines should be wrapped within 79 characters.'</span>,</div><div class="line">                     <span class="string">'other'</span>: [math.pi, <span class="number">100</span>, <span class="number">200</span>, <span class="number">300</span>, <span class="number">9876543210</span>, <span class="string">'This is a long string that goes on'</span>],</div><div class="line">                     <span class="string">'more'</span>: &#123;<span class="string">'inner'</span>: <span class="string">'This whole logical line should be wrapped.'</span>, some_tuple: [<span class="number">1</span>,</div><div class="line">                                                                                                  <span class="number">20</span>, <span class="number">300</span>, <span class="number">40000</span>, <span class="number">500000000</span>, <span class="number">60000000000000000</span>]&#125;&#125;</div><div class="line">    <span class="keyword">return</span> (some_tuple, some_variable)</div></pre></td></tr></table></figure>
 <p>是不是看起来焕然一新了？</p>
-<h3 id="Pycharm中使用autopep8作为扩展工具"><a href="#Pycharm中使用autopep8作为扩展工具" class="headerlink" title="Pycharm中使用autopep8作为扩展工具"></a>Pycharm中使用autopep8作为扩展工具</h3><h4 id="安装autopep8"><a href="#安装autopep8" class="headerlink" title="安装autopep8"></a>安装autopep8</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install autopep8</span><br></pre></td></tr></table></figure>
+<h3 id="Pycharm中使用autopep8作为扩展工具"><a href="#Pycharm中使用autopep8作为扩展工具" class="headerlink" title="Pycharm中使用autopep8作为扩展工具"></a>Pycharm中使用autopep8作为扩展工具</h3><h4 id="安装autopep8"><a href="#安装autopep8" class="headerlink" title="安装autopep8"></a>安装autopep8</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip install autopep8</div></pre></td></tr></table></figure>
 <h4 id="Pycharm进行设置"><a href="#Pycharm进行设置" class="headerlink" title="Pycharm进行设置"></a>Pycharm进行设置</h4><ul>
 <li>Settings–&gt;Tools–&gt;External Tools 点击添加按钮<ul>
 <li>Name：autopep8（可以自定义）</li>
@@ -328,16 +338,18 @@
 
       
     </div>
-    
+
     <div>
       
         
+
       
     </div>
 
     <div>
       
         
+
       
     </div>
 
@@ -445,7 +457,7 @@
       
 
       <section class="site-overview sidebar-panel ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.png"
                alt="煎饼" />
@@ -455,7 +467,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">28</span>
+              <span class="site-state-item-count">29</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -488,7 +500,7 @@
               <span class="links-of-author-item">
                 <a href="https://github.com/jianbing" target="_blank" title="github">
                   
-                    <i class="fa fa-globe"></i>
+                    <i class="fa fa-fw fa-globe"></i>
                   
                   github
                 </a>
@@ -504,7 +516,7 @@
         
           <div class="links-of-blogroll motion-element links-of-blogroll-inline">
             <div class="links-of-blogroll-title">
-              <i class="fa fa-globe fa-fw"></i>
+              <i class="fa  fa-fw fa-globe"></i>
               
             </div>
             <ul class="links-of-blogroll-list">
@@ -565,7 +577,7 @@
 </div>
 
 <div class="powered-by">
-  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
 </div>
 
 <div class="theme-info">
@@ -607,46 +619,46 @@
 
 
   
-  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
 
   
-  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
 
   
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
-  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
 
   
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
   
-  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
-
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
 
 
 
@@ -671,19 +683,26 @@
 
   
     
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
   
 
 
 
 
 
-  
+
   
   
 
   
 
   
+
+  
+
+  
+
 
 </body>
 </html>

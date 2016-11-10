@@ -27,7 +27,9 @@
 
 
 
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -59,9 +61,11 @@
 
 
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
   <meta name="keywords" content="游戏测试,python," />
@@ -75,7 +79,7 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
 
 
 
@@ -100,7 +104,7 @@ GUI界面
 命令行界面
 
 Web界面可以使用Flask框架来搭建，GUI界面可以使用TK，PyQT，wxPython等GUI库来编写，从学习成本来说，命令行界面是最容易上手，这一篇我们来聊一聊命令行界面的实现。">
-<meta property="og:updated_time" content="2016-07-11T15:45:08.452Z">
+<meta property="og:updated_time" content="2016-10-27T08:38:25.460Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="命令行工具2.0版">
 <meta name="twitter:description" content="起源随着在工作中逐渐积累了不少测试脚本，需要对脚本们进行归类整合，目前发现3种可行方案：
@@ -121,16 +125,22 @@ Web界面可以使用Flask框架来搭建，GUI界面可以使用TK，PyQT，wxP
     fancybox: true,
     motion: true,
     duoshuo: {
-      userId: 0,
+      userId: '0',
       author: '博主'
     }
   };
 </script>
 
+
+
+
+  <link rel="canonical" href="http://jianbing.github.io/2016/07/11/cmd-tool/"/>
+
+
   <title> 命令行工具2.0版 | 煎饼的博客 </title>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
 
   
 
@@ -151,7 +161,7 @@ Web界面可以使用Flask框架来搭建，GUI界面可以使用TK，PyQT，wxP
   <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
       <div class="header-inner"><div class="site-meta ">
   
 
@@ -183,7 +193,7 @@ Web界面可以使用Flask框架来搭建，GUI界面可以使用TK，PyQT，wxP
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
           </a>
@@ -193,7 +203,7 @@ Web界面可以使用Flask框架来搭建，GUI界面可以使用TK，PyQT，wxP
         <li class="menu-item menu-item-about">
           <a href="/about" rel="section">
             
-              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
             关于
           </a>
@@ -203,7 +213,7 @@ Web界面可以使用Flask框架来搭建，GUI界面可以使用TK，PyQT，wxP
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             归档
           </a>
@@ -213,7 +223,7 @@ Web界面可以使用Flask框架来搭建，GUI界面可以使用TK，PyQT，wxP
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
             标签
           </a>
@@ -246,7 +256,7 @@ Web界面可以使用Flask框架来搭建，GUI界面可以使用TK，PyQT，wxP
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
 
     
       <header class="post-header">
@@ -319,31 +329,33 @@ Web界面可以使用Flask框架来搭建，GUI界面可以使用TK，PyQT，wxP
 <li>不需要做命令行参数解析，因为我都没打算用参数~偷笑~</li>
 </ul>
 <p>所以目前希望的运行效果是：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">请选择指令</span><br><span class="line"></span><br><span class="line"><span class="number">1</span>，备份apk，hotkey:b</span><br><span class="line"><span class="number">2</span>，屏幕截图，hotkey:s</span><br><span class="line"><span class="number">3</span>，获取屏幕分辨率，hotkey:r</span><br><span class="line">Make a choice</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">请选择指令</div><div class="line"></div><div class="line"><span class="number">1</span>，备份apk，hotkey:b</div><div class="line"><span class="number">2</span>，屏幕截图，hotkey:s</div><div class="line"><span class="number">3</span>，获取屏幕分辨率，hotkey:r</div><div class="line">Make a choice</div></pre></td></tr></table></figure>
 <h3 id="实现过程"><a href="#实现过程" class="headerlink" title="实现过程"></a>实现过程</h3><p>其实，Python标准库里边，argparse可以用于解析命令行参数和选项。出色的第三方库有docopt，Click等。不过介于自己的需要并不复杂，那就造个轮子吧~</p>
 <p>在之前，有写过一个<a href="https://github.com/jianbing/hexo-cmd-tool" target="_blank" rel="external">hexo-cmd-tool</a>，现在看起来使用方式还是麻烦了，于是基于它进行了改造。新增了一个装饰器cmdline来简化使用。</p>
 <p>先看一个使用的例子：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#! /usr/bin/env python</span></span><br><span class="line"><span class="comment"># -*- coding: UTF-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">from</span> utils.tools.cmd <span class="keyword">import</span> cmdline, CmdCenter</span><br><span class="line"></span><br><span class="line"><span class="meta">@cmdline('hexo generate', 'g')</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hexo_g</span><span class="params">()</span>:</span></span><br><span class="line">    os.system(<span class="string">'hexo g'</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">@cmdline('hexo server', 's')</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hexo_s</span><span class="params">()</span>:</span></span><br><span class="line">    os.system(<span class="string">'hexo s'</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">@cmdline('hexo version', 'v')</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hexo_v</span><span class="params">()</span>:</span></span><br><span class="line">    os.system(<span class="string">'hexo v'</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">@cmdline('hexo deploy', 'd')</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hexo_d</span><span class="params">()</span>:</span></span><br><span class="line">    os.system(<span class="string">'hexo d'</span>)</span><br><span class="line">	</span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    CmdCenter.work()</span><br></pre></td></tr></table></figure>
-<p>使用效果：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">请选择指令</span><br><span class="line"></span><br><span class="line"><span class="number">1</span>，hexo generate，hotkey:g</span><br><span class="line"><span class="number">2</span>，hexo server，hotkey:s</span><br><span class="line"><span class="number">3</span>，hexo version，hotkey:v</span><br><span class="line"><span class="number">4</span>，hexo deploy，hotkey:d</span><br><span class="line">Make a choice</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#! /usr/bin/env python</span></div><div class="line"><span class="comment"># -*- coding: UTF-8 -*-</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> os</div><div class="line"><span class="keyword">from</span> utils.tools.cmd <span class="keyword">import</span> cmdline, CmdCenter</div><div class="line"></div><div class="line"><span class="meta">@cmdline('hexo generate', 'g')</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">hexo_g</span><span class="params">()</span>:</span></div><div class="line">    os.system(<span class="string">'hexo g'</span>)</div><div class="line"></div><div class="line"><span class="meta">@cmdline('hexo server', 's')</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">hexo_s</span><span class="params">()</span>:</span></div><div class="line">    os.system(<span class="string">'hexo s'</span>)</div><div class="line"></div><div class="line"><span class="meta">@cmdline('hexo version', 'v')</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">hexo_v</span><span class="params">()</span>:</span></div><div class="line">    os.system(<span class="string">'hexo v'</span>)</div><div class="line"></div><div class="line"><span class="meta">@cmdline('hexo deploy', 'd')</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">hexo_d</span><span class="params">()</span>:</span></div><div class="line">    os.system(<span class="string">'hexo d'</span>)</div><div class="line">	</div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</div><div class="line">    CmdCenter.work()</div></pre></td></tr></table></figure>
+<p>使用效果：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">请选择指令</div><div class="line"></div><div class="line"><span class="number">1</span>，hexo generate，hotkey:g</div><div class="line"><span class="number">2</span>，hexo server，hotkey:s</div><div class="line"><span class="number">3</span>，hexo version，hotkey:v</div><div class="line"><span class="number">4</span>，hexo deploy，hotkey:d</div><div class="line">Make a choice</div></pre></td></tr></table></figure></p>
 <p>原理非常简单，利用装饰器的特性，在加载函数对象的时候，把函数加多一层封装转存起来。</p>
 <p>源码：</p>
 <blockquote>
 <p>开发环境：Python2.7+Win10+Pycharm</p>
 </blockquote>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#! /usr/bin/env python</span></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="keyword">from</span> __future__ <span class="keyword">import</span> unicode_literals</span><br><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> OrderedDict</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">_Cmd</span><span class="params">(object)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, func, title, hotkey=None, args=None)</span>:</span></span><br><span class="line">        self.__func = func</span><br><span class="line">        self.__title = title</span><br><span class="line">        self.__hotkey = hotkey</span><br><span class="line">        self.__args = args</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> self.__args:</span><br><span class="line">            self.__func(*self.__args)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            self.__func()</span><br><span class="line"></span><br><span class="line"><span class="meta">    @property</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">hotkey</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.__hotkey</span><br><span class="line"></span><br><span class="line"><span class="meta">    @property</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">title</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.__title</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">_CmdCenter</span><span class="params">(object)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.cmds = OrderedDict()</span><br><span class="line">        self.cmds_hotkey = dict()</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">add_cmd</span><span class="params">(self, cmd)</span>:</span></span><br><span class="line">        self.cmds[str(len(self.cmds) + <span class="number">1</span>)] = cmd</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> cmd.hotkey:</span><br><span class="line">            <span class="keyword">if</span> cmd.hotkey <span class="keyword">in</span> self.cmds_hotkey:</span><br><span class="line">                <span class="keyword">print</span> <span class="string">"\n热键冲突,&#123;0&#125;和&#123;1&#125;"</span>.format(cmd.title, self.cmds_hotkey[cmd.hotkey].title)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                self.cmds_hotkey[cmd.hotkey] = cmd</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">show_cmds</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">for</span> key <span class="keyword">in</span> self.cmds:</span><br><span class="line">            <span class="keyword">print</span> <span class="string">'&#123;0&#125;，&#123;1&#125;，hotkey:&#123;2&#125;'</span>.format(key, self.cmds[key].title, self.cmds[key].hotkey)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_choice</span><span class="params">(self)</span>:</span></span><br><span class="line">        choice = raw_input(<span class="string">"Make a choice\n"</span>)</span><br><span class="line">        <span class="keyword">return</span> choice</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">work</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">while</span> <span class="keyword">True</span>:</span><br><span class="line">            <span class="keyword">try</span>:</span><br><span class="line">                <span class="keyword">print</span> <span class="string">'-'</span> * <span class="number">80</span></span><br><span class="line">                <span class="keyword">print</span> <span class="string">'请选择指令\n'</span></span><br><span class="line">                self.show_cmds()</span><br><span class="line"></span><br><span class="line">                <span class="keyword">while</span> <span class="keyword">True</span>:</span><br><span class="line">                    choice = self.get_choice()</span><br><span class="line">                    <span class="keyword">if</span> choice <span class="keyword">not</span> <span class="keyword">in</span> self.cmds <span class="keyword">and</span> choice <span class="keyword">not</span> <span class="keyword">in</span> self.cmds_hotkey:</span><br><span class="line">                        <span class="keyword">print</span> <span class="string">'选择错误，重新选择'</span></span><br><span class="line">                        <span class="keyword">continue</span></span><br><span class="line">                    <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">                <span class="keyword">print</span> <span class="string">''</span></span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> choice <span class="keyword">in</span> self.cmds:</span><br><span class="line">                    self.cmds[choice].run()</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    self.cmds_hotkey[choice].run()</span><br><span class="line">                <span class="keyword">print</span> <span class="string">'\n执行完成\n'</span></span><br><span class="line">            <span class="keyword">except</span> KeyboardInterrupt:</span><br><span class="line">                <span class="keyword">print</span> <span class="string">'手动退出'</span></span><br><span class="line"></span><br><span class="line">CmdCenter = _CmdCenter()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">cmdline</span><span class="params">(title, hotkey=None)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">_cmdline</span><span class="params">(func)</span>:</span></span><br><span class="line">        CmdCenter.add_cmd(_Cmd(func, title, hotkey))</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">__cmdline</span><span class="params">(*args, **kwargs)</span>:</span></span><br><span class="line">            <span class="keyword">return</span> func(*args, **kwargs)</span><br><span class="line">        <span class="keyword">return</span> __cmdline</span><br><span class="line">    <span class="keyword">return</span> _cmdline</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#! /usr/bin/env python</span></div><div class="line"><span class="comment"># -*- coding: utf-8 -*-</span></div><div class="line"><span class="keyword">from</span> __future__ <span class="keyword">import</span> unicode_literals</div><div class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> OrderedDict</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">_Cmd</span><span class="params">(object)</span>:</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, func, title, hotkey=None, args=None)</span>:</span></div><div class="line">        self.__func = func</div><div class="line">        self.__title = title</div><div class="line">        self.__hotkey = hotkey</div><div class="line">        self.__args = args</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">if</span> self.__args:</div><div class="line">            self.__func(*self.__args)</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            self.__func()</div><div class="line"></div><div class="line"><span class="meta">    @property</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">hotkey</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">return</span> self.__hotkey</div><div class="line"></div><div class="line"><span class="meta">    @property</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">title</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">return</span> self.__title</div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">_CmdCenter</span><span class="params">(object)</span>:</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></div><div class="line">        self.cmds = OrderedDict()</div><div class="line">        self.cmds_hotkey = dict()</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">add_cmd</span><span class="params">(self, cmd)</span>:</span></div><div class="line">        self.cmds[str(len(self.cmds) + <span class="number">1</span>)] = cmd</div><div class="line"></div><div class="line">        <span class="keyword">if</span> cmd.hotkey:</div><div class="line">            <span class="keyword">if</span> cmd.hotkey <span class="keyword">in</span> self.cmds_hotkey:</div><div class="line">                <span class="keyword">print</span> <span class="string">"\n热键冲突,&#123;0&#125;和&#123;1&#125;"</span>.format(cmd.title, self.cmds_hotkey[cmd.hotkey].title)</div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                self.cmds_hotkey[cmd.hotkey] = cmd</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">show_cmds</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">for</span> key <span class="keyword">in</span> self.cmds:</div><div class="line">            <span class="keyword">print</span> <span class="string">'&#123;0&#125;，&#123;1&#125;，hotkey:&#123;2&#125;'</span>.format(key, self.cmds[key].title, self.cmds[key].hotkey)</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_choice</span><span class="params">(self)</span>:</span></div><div class="line">        choice = raw_input(<span class="string">"Make a choice\n"</span>)</div><div class="line">        <span class="keyword">return</span> choice</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">work</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">while</span> <span class="keyword">True</span>:</div><div class="line">            <span class="keyword">try</span>:</div><div class="line">                <span class="keyword">print</span> <span class="string">'-'</span> * <span class="number">80</span></div><div class="line">                <span class="keyword">print</span> <span class="string">'请选择指令\n'</span></div><div class="line">                self.show_cmds()</div><div class="line"></div><div class="line">                <span class="keyword">while</span> <span class="keyword">True</span>:</div><div class="line">                    choice = self.get_choice()</div><div class="line">                    <span class="keyword">if</span> choice <span class="keyword">not</span> <span class="keyword">in</span> self.cmds <span class="keyword">and</span> choice <span class="keyword">not</span> <span class="keyword">in</span> self.cmds_hotkey:</div><div class="line">                        <span class="keyword">print</span> <span class="string">'选择错误，重新选择'</span></div><div class="line">                        <span class="keyword">continue</span></div><div class="line">                    <span class="keyword">break</span></div><div class="line"></div><div class="line">                <span class="keyword">print</span> <span class="string">''</span></div><div class="line"></div><div class="line">                <span class="keyword">if</span> choice <span class="keyword">in</span> self.cmds:</div><div class="line">                    self.cmds[choice].run()</div><div class="line">                <span class="keyword">else</span>:</div><div class="line">                    self.cmds_hotkey[choice].run()</div><div class="line">                <span class="keyword">print</span> <span class="string">'\n执行完成\n'</span></div><div class="line">            <span class="keyword">except</span> KeyboardInterrupt:</div><div class="line">                <span class="keyword">print</span> <span class="string">'手动退出'</span></div><div class="line"></div><div class="line">CmdCenter = _CmdCenter()</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">cmdline</span><span class="params">(title, hotkey=None)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">_cmdline</span><span class="params">(func)</span>:</span></div><div class="line">        CmdCenter.add_cmd(_Cmd(func, title, hotkey))</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">def</span> <span class="title">__cmdline</span><span class="params">(*args, **kwargs)</span>:</span></div><div class="line">            <span class="keyword">return</span> func(*args, **kwargs)</div><div class="line">        <span class="keyword">return</span> __cmdline</div><div class="line">    <span class="keyword">return</span> _cmdline</div></pre></td></tr></table></figure>
 
-      
-    </div>
-    
-    <div>
-      
-        
       
     </div>
 
     <div>
       
         
+
+      
+    </div>
+
+    <div>
+      
+        
+
       
     </div>
 
@@ -369,6 +381,10 @@ Web界面可以使用Flask框架来搭建，GUI界面可以使用TK，PyQT，wxP
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/10/python-str-unicode/" rel="prev" title="聊一聊Python2的编码坑">
+                聊一聊Python2的编码坑 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -449,7 +465,7 @@ Web界面可以使用Flask框架来搭建，GUI界面可以使用TK，PyQT，wxP
       
 
       <section class="site-overview sidebar-panel ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.png"
                alt="煎饼" />
@@ -459,7 +475,7 @@ Web界面可以使用Flask框架来搭建，GUI界面可以使用TK，PyQT，wxP
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">28</span>
+              <span class="site-state-item-count">29</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -492,7 +508,7 @@ Web界面可以使用Flask框架来搭建，GUI界面可以使用TK，PyQT，wxP
               <span class="links-of-author-item">
                 <a href="https://github.com/jianbing" target="_blank" title="github">
                   
-                    <i class="fa fa-globe"></i>
+                    <i class="fa fa-fw fa-globe"></i>
                   
                   github
                 </a>
@@ -508,7 +524,7 @@ Web界面可以使用Flask框架来搭建，GUI界面可以使用TK，PyQT，wxP
         
           <div class="links-of-blogroll motion-element links-of-blogroll-inline">
             <div class="links-of-blogroll-title">
-              <i class="fa fa-globe fa-fw"></i>
+              <i class="fa  fa-fw fa-globe"></i>
               
             </div>
             <ul class="links-of-blogroll-list">
@@ -569,7 +585,7 @@ Web界面可以使用Flask框架来搭建，GUI界面可以使用TK，PyQT，wxP
 </div>
 
 <div class="powered-by">
-  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
 </div>
 
 <div class="theme-info">
@@ -611,46 +627,46 @@ Web界面可以使用Flask框架来搭建，GUI界面可以使用TK，PyQT，wxP
 
 
   
-  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
 
   
-  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
 
   
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
-  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
 
   
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
   
-  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
-
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
 
 
 
@@ -675,19 +691,26 @@ Web界面可以使用Flask框架来搭建，GUI界面可以使用TK，PyQT，wxP
 
   
     
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
   
 
 
 
 
 
-  
+
   
   
 
   
 
   
+
+  
+
+  
+
 
 </body>
 </html>

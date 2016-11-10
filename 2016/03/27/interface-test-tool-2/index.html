@@ -27,7 +27,9 @@
 
 
 
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -59,9 +61,11 @@
 
 
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
   <meta name="keywords" content="游戏测试," />
@@ -75,7 +79,7 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
 
 
 
@@ -94,7 +98,7 @@
 项目12011年那会，刚刚从学校踏入测试坑，项目是一个SLG页游，前后端使用Socket通">
 <meta property="og:image" content="http://jianbing.github.io/images/test-tool/pic1.png">
 <meta property="og:image" content="http://jianbing.github.io/images/test-tool/pic2.png">
-<meta property="og:updated_time" content="2016-04-29T16:49:57.576Z">
+<meta property="og:updated_time" content="2016-10-27T08:38:25.482Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="游戏测试之接口工具篇（下篇）">
 <meta name="twitter:description" content="上一篇分享了在做接口测试时，用到的一些工具软件，最终的感觉是，能用，但不顺手。最主要的原因是，发送请求后，没法很直观地查看服务端的返回结果，其次是使用起来，工作效率并不理想。
@@ -112,16 +116,22 @@
     fancybox: true,
     motion: true,
     duoshuo: {
-      userId: 0,
+      userId: '0',
       author: '博主'
     }
   };
 </script>
 
+
+
+
+  <link rel="canonical" href="http://jianbing.github.io/2016/03/27/interface-test-tool-2/"/>
+
+
   <title> 游戏测试之接口工具篇（下篇） | 煎饼的博客 </title>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
 
   
 
@@ -142,7 +152,7 @@
   <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
       <div class="header-inner"><div class="site-meta ">
   
 
@@ -174,7 +184,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
           </a>
@@ -184,7 +194,7 @@
         <li class="menu-item menu-item-about">
           <a href="/about" rel="section">
             
-              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
             关于
           </a>
@@ -194,7 +204,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             归档
           </a>
@@ -204,7 +214,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
             标签
           </a>
@@ -237,7 +247,7 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
 
     
       <header class="post-header">
@@ -298,14 +308,14 @@
         <p>上一篇分享了在做接口测试时，用到的一些工具软件，最终的感觉是，能用，但不顺手。最主要的原因是，发送请求后，没法很直观地查看服务端的返回结果，其次是使用起来，工作效率并不理想。</p>
 <p>在经历的几个项目中，最终都是使用了内部开发的接口工具，而每个项目的接口工具的原理和使用方式区别还挺大，在此分享下各个工具的设计思路。</p>
 <h3 id="项目1"><a href="#项目1" class="headerlink" title="项目1"></a>项目1</h3><p>2011年那会，刚刚从学校踏入测试坑，项目是一个SLG页游，前后端使用Socket通讯，数据交互采用Json格式，最初版本的接口测试是用WPE做的，后来服务端的主程MM在内网开了一个Web端口，可以接收Http Get请求，格式如下：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://192.168.22.248/sftx/gameSocket/send?u=playerId&amp;c=protocol&amp;p=port&amp;params=param1|param2|param3</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">http://192.168.22.248/sftx/gameSocket/send?u=playerId&amp;c=protocol&amp;p=port&amp;params=param1|param2|param3</div></pre></td></tr></table></figure>
 <a id="more"></a>
 <p>参数的含义如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">u：玩家ID</span><br><span class="line">c：操作协议号</span><br><span class="line">p：服务器端口号</span><br><span class="line">params：参数列表，多个参数使用<span class="string">"|"</span>连接</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">u：玩家ID</div><div class="line">c：操作协议号</div><div class="line">p：服务器端口号</div><div class="line">params：参数列表，多个参数使用<span class="string">"|"</span>连接</div></pre></td></tr></table></figure>
 <p>举个栗子：玩家升级主城</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">玩家ID：<span class="number">7001</span></span><br><span class="line">操作是升级主城：协议号<span class="number">110001</span></span><br><span class="line">参数列表：主城建筑ID是<span class="number">1001</span></span><br><span class="line">内网端口号：默认<span class="number">5001</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">玩家ID：<span class="number">7001</span></div><div class="line">操作是升级主城：协议号<span class="number">110001</span></div><div class="line">参数列表：主城建筑ID是<span class="number">1001</span></div><div class="line">内网端口号：默认<span class="number">5001</span></div></pre></td></tr></table></figure>
 <p>所以相应的Get请求是</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://192.168.22.248/sftx/gameSocket/send?u=7001&amp;c=110001&amp;p=5001&amp;params=1001</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">http://192.168.22.248/sftx/gameSocket/send?u=7001&amp;c=110001&amp;p=5001&amp;params=1001</div></pre></td></tr></table></figure>
 <p>把这个Get请求发送过去后，Web服务器会解析出相应的玩家ID，操作协议，参数列表，自动开启一个Socket连入内网游戏服务器，执行相应的操作，并返回处理结果。</p>
 <p>从此脱离了WPE，当时是用PHP围绕这个Web接口，做了一个调用页面，也实现了请求的新建，修改，分类保存，批量发送，并解析返回结果。</p>
 <p>基于这个接口，也实现了一些自动化的批量操作，如批量建号，批量升级等，对工作效率的提升也是很明显的，比如新建军团后，跑个批量申请入团，军团就满人了。</p>
@@ -315,7 +325,7 @@
 <p>游戏在网页上加载的时候，同时也加载一个测试用的js文件。</p>
 <p>执行接口测试的方式，是在Chrome的console窗口，输入已经加载的js函数sendCommand，把操作内容作为函数的参数，回车运行后发送给Flash客户端，Flash客户端接收后，解析出相应的操作ID和参数列表，执行后在console窗口打印出服务端返回结果。</p>
 <p>函数调用格式如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sendCommand(“PackagesController”, “move”, <span class="number">0</span>, [“BACKPACK”,<span class="number">0</span>,“BACKPACK”,<span class="number">30</span>]);</span><br><span class="line">操作模块：PackagesController  背包模块</span><br><span class="line">操作行为：move   移动背包物品</span><br><span class="line">参数列表：[“BACKPACK”,<span class="number">0</span>,“BACKPACK”,<span class="number">30</span>]   从第<span class="number">0</span>个格子移动到第<span class="number">30</span>个</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">sendCommand(“PackagesController”, “move”, <span class="number">0</span>, [“BACKPACK”,<span class="number">0</span>,“BACKPACK”,<span class="number">30</span>]);</div><div class="line">操作模块：PackagesController  背包模块</div><div class="line">操作行为：move   移动背包物品</div><div class="line">参数列表：[“BACKPACK”,<span class="number">0</span>,“BACKPACK”,<span class="number">30</span>]   从第<span class="number">0</span>个格子移动到第<span class="number">30</span>个</div></pre></td></tr></table></figure>
 <p>这个模式的一个好处：接口测试的请求是前端解析后，自行发出的，所以不会被挤号。</p>
 <h3 id="项目3"><a href="#项目3" class="headerlink" title="项目3"></a>项目3</h3><p>项目3是一个回合制的RPG手游，客户端使用Unity，Socket通讯，数据交互格式是PB，作为工作室的第一款手游，这次前后端主程都一直很忙，接口工具在项目前期一直没有落实下来。中间也一度是用WPE和烧饼顶着先大概测下接口。</p>
 <p>随着两个项目以来的一些积累，这次开始自己尝试独立完成接口工具，工具需求规划如下：</p>
@@ -338,16 +348,16 @@
 <p>那么，要从哪里切入来录制请求呢？最终选择了在Server层接收后，对请求进行封装前，主要原因是，接口测试主要关注参数的不合理修改后，服务端能否做出正确判断，可以不用关心校验Key等其他信息，对请求进行修改后，点击发送，直接调用Send方法，底层就会完成新的请求封装和发送。省代码啊~</p>
 <p>于是乎，现在的问题是，录制的代码加在哪里？</p>
 <p>这个项目采用的方式，是直接在Send函数里边，嵌入了转存请求的代码。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">Send</span><span class="params">(<span class="keyword">int</span> controllerID, <span class="keyword">int</span> handlerID, IEnumerable&lt;object&gt; paramList, Action&lt;GodResponse&gt; callback)</span> </span>&#123;</span><br><span class="line">	<span class="comment">// 煎饼加入</span></span><br><span class="line">	TestCenter.AddRequest(<span class="keyword">new</span> TRequest(controllerID, handlerID, paramList, callback));</span><br><span class="line">	<span class="comment">// 煎饼加入</span></span><br><span class="line">	var request = CreateRequest(controllerID, handlerID, paramList, callback);</span><br><span class="line">	SendRequest(request);</span><br><span class="line">	<span class="keyword">return</span> request.ID;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">Send</span><span class="params">(<span class="keyword">int</span> controllerID, <span class="keyword">int</span> handlerID, IEnumerable&lt;object&gt; paramList, Action&lt;GodResponse&gt; callback)</span> </span>&#123;</div><div class="line">	<span class="comment">// 煎饼加入</span></div><div class="line">	TestCenter.AddRequest(<span class="keyword">new</span> TRequest(controllerID, handlerID, paramList, callback));</div><div class="line">	<span class="comment">// 煎饼加入</span></div><div class="line">	var request = CreateRequest(controllerID, handlerID, paramList, callback);</div><div class="line">	SendRequest(request);</div><div class="line">	<span class="keyword">return</span> request.ID;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>TRequest的定义</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">[Serializable]</span><br><span class="line">public class TRequest :ICloneable &#123;</span><br><span class="line">    int controllerID;</span><br><span class="line">    int handlerID;</span><br><span class="line">    IEnumerable&lt;object&gt; paramList;</span><br><span class="line">    Action&lt;GodResponse&gt; callback;</span><br><span class="line">    public TRequest(int controllerID, int handlerID, IEnumerable&lt;object&gt; paramList, Action&lt;GodResponse&gt; callback) &#123;</span><br><span class="line">        this.controllerID = controllerID;</span><br><span class="line">        this.handlerID = handlerID;</span><br><span class="line">        this.paramList = paramList;</span><br><span class="line">        this.callback = callback;</span><br><span class="line">    &#125;</span><br><span class="line">    public object Clone() &#123;</span><br><span class="line">        MemoryStream stream = new MemoryStream();</span><br><span class="line">        BinaryFormatter formatter = new BinaryFormatter();</span><br><span class="line">        formatter.Serialize(stream, this);</span><br><span class="line">        stream.Position = 0;</span><br><span class="line">        return formatter.Deserialize(stream);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">[Serializable]</div><div class="line">public class TRequest :ICloneable &#123;</div><div class="line">    int controllerID;</div><div class="line">    int handlerID;</div><div class="line">    IEnumerable&lt;object&gt; paramList;</div><div class="line">    Action&lt;GodResponse&gt; callback;</div><div class="line">    public TRequest(int controllerID, int handlerID, IEnumerable&lt;object&gt; paramList, Action&lt;GodResponse&gt; callback) &#123;</div><div class="line">        this.controllerID = controllerID;</div><div class="line">        this.handlerID = handlerID;</div><div class="line">        this.paramList = paramList;</div><div class="line">        this.callback = callback;</div><div class="line">    &#125;</div><div class="line">    public object Clone() &#123;</div><div class="line">        MemoryStream stream = new MemoryStream();</div><div class="line">        BinaryFormatter formatter = new BinaryFormatter();</div><div class="line">        formatter.Serialize(stream, this);</div><div class="line">        stream.Position = 0;</div><div class="line">        return formatter.Deserialize(stream);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>这个做法其实不合理，因为我们项目的测试代码并不提交到项目的代码库，每次更新代码，都会出现冲突，更合理的方式是前端提供一个发送请求的事件，测试代码这边进行监听（下个项目已使用这种方式）。</p>
 <h3 id="测试工具UI"><a href="#测试工具UI" class="headerlink" title="测试工具UI"></a>测试工具UI</h3><p>UI界面选择了Unity古老的OnGUI方法，原因就是：易学，够用。下边是一个简单的GUI界面。</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">using UnityEngine;</span><br><span class="line"></span><br><span class="line">public class TestUI : MonoBehaviour &#123;</span><br><span class="line"></span><br><span class="line">    private Rect windowRect = new Rect(Screen.width * 0.25f, 0, Screen.width / 2, Screen.height - 10);</span><br><span class="line">    public Vector2 scrollPosition = Vector2.zero;</span><br><span class="line"></span><br><span class="line">    void OnGUI() &#123;</span><br><span class="line">            windowRect = GUI.Window(0, windowRect, WindowFunction, "接口测试工具");</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    void WindowFunction(int windowID) &#123;</span><br><span class="line">        </span><br><span class="line">        GUI.DragWindow(new Rect(0, 0, Screen.width/2, 30));</span><br><span class="line">        GUI.Box(new Rect(0,0,Screen.width,Screen.height),"");</span><br><span class="line"></span><br><span class="line">        GUILayout.BeginArea(new Rect(5, 20, Screen.width / 2-20, Screen.height));       </span><br><span class="line">        scrollPosition = GUILayout.BeginScrollView(scrollPosition,GUILayout.Width(Screen.width / 2 - 20),GUILayout.Height(Screen.height-60));</span><br><span class="line"></span><br><span class="line">        // 在这里请求列表解析</span><br><span class="line"></span><br><span class="line">        GUILayout.EndScrollView();</span><br><span class="line">        GUILayout.BeginHorizontal();</span><br><span class="line"></span><br><span class="line">        if (GUILayout.Button("统计数量")) &#123;</span><br><span class="line">        &#125;</span><br><span class="line">        if (GUILayout.Button("清空记录")) &#123;</span><br><span class="line">        &#125;</span><br><span class="line">        if (GUILayout.Button("录制")) &#123;</span><br><span class="line">        &#125;</span><br><span class="line">        if (GUILayout.Button("停止")) &#123;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        GUILayout.EndHorizontal();        </span><br><span class="line">        GUILayout.EndArea(); </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">using UnityEngine;</div><div class="line"></div><div class="line">public class TestUI : MonoBehaviour &#123;</div><div class="line"></div><div class="line">    private Rect windowRect = new Rect(Screen.width * 0.25f, 0, Screen.width / 2, Screen.height - 10);</div><div class="line">    public Vector2 scrollPosition = Vector2.zero;</div><div class="line"></div><div class="line">    void OnGUI() &#123;</div><div class="line">            windowRect = GUI.Window(0, windowRect, WindowFunction, "接口测试工具");</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    void WindowFunction(int windowID) &#123;</div><div class="line">        </div><div class="line">        GUI.DragWindow(new Rect(0, 0, Screen.width/2, 30));</div><div class="line">        GUI.Box(new Rect(0,0,Screen.width,Screen.height),"");</div><div class="line"></div><div class="line">        GUILayout.BeginArea(new Rect(5, 20, Screen.width / 2-20, Screen.height));       </div><div class="line">        scrollPosition = GUILayout.BeginScrollView(scrollPosition,GUILayout.Width(Screen.width / 2 - 20),GUILayout.Height(Screen.height-60));</div><div class="line"></div><div class="line">        // 在这里请求列表解析</div><div class="line"></div><div class="line">        GUILayout.EndScrollView();</div><div class="line">        GUILayout.BeginHorizontal();</div><div class="line"></div><div class="line">        if (GUILayout.Button("统计数量")) &#123;</div><div class="line">        &#125;</div><div class="line">        if (GUILayout.Button("清空记录")) &#123;</div><div class="line">        &#125;</div><div class="line">        if (GUILayout.Button("录制")) &#123;</div><div class="line">        &#125;</div><div class="line">        if (GUILayout.Button("停止")) &#123;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        GUILayout.EndHorizontal();        </div><div class="line">        GUILayout.EndArea(); </div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>效果图：</p>
 <p><img src="/images/test-tool/pic1.png" alt=""></p>
 <h3 id="参数列表解析"><a href="#参数列表解析" class="headerlink" title="参数列表解析"></a>参数列表解析</h3><p>参数列表是一个object类型的数组，所以里边可以放各种基础类型，解析的时候，需要用到反射，动态修改里边的内容，解析函数如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">ParseBaseType2</span><span class="params">(object aParam, object aList, <span class="keyword">int</span> index = <span class="number">0</span>)</span> </span>&#123;</span><br><span class="line">           GUILayout.BeginHorizontal();</span><br><span class="line">           Type paramType = aParam.GetType();</span><br><span class="line"></span><br><span class="line">           <span class="keyword">if</span> (paramType == typeof(string)) &#123;</span><br><span class="line">               GUILayout.Label(<span class="string">"String"</span>, GUILayout.Width(<span class="number">30</span>));</span><br><span class="line">               aParam = GUILayout.TextField(aParam.ToString());</span><br><span class="line"></span><br><span class="line">           &#125; <span class="keyword">else</span> <span class="keyword">if</span> (paramType == typeof(<span class="keyword">short</span>)) &#123;</span><br><span class="line">               GUILayout.Label(<span class="string">"Short"</span>, GUILayout.Width(<span class="number">30</span>));</span><br><span class="line">               aParam = Convert.ToInt16(GUILayout.TextField(aParam.ToString()));</span><br><span class="line"></span><br><span class="line">           &#125; <span class="keyword">else</span> <span class="keyword">if</span> (paramType == typeof(<span class="keyword">int</span>)) &#123;</span><br><span class="line">               GUILayout.Label(<span class="string">"Int"</span>, GUILayout.Width(<span class="number">30</span>));</span><br><span class="line">               aParam = Convert.ToInt32(GUILayout.TextField(aParam.ToString()));</span><br><span class="line"></span><br><span class="line">           &#125; <span class="keyword">else</span> <span class="keyword">if</span> (paramType == typeof(<span class="keyword">long</span>)) &#123;</span><br><span class="line">               GUILayout.Label(<span class="string">"Long"</span>, GUILayout.Width(<span class="number">30</span>));</span><br><span class="line">               aParam = Convert.ToInt64(GUILayout.TextField(aParam.ToString()));</span><br><span class="line"></span><br><span class="line">           &#125; <span class="keyword">else</span> <span class="keyword">if</span> (paramType == typeof(bool)) &#123;</span><br><span class="line">               GUILayout.Label(<span class="string">"Bool"</span>, GUILayout.Width(<span class="number">30</span>));</span><br><span class="line">               aParam = Convert.ToBoolean(GUILayout.TextField(aParam.ToString()));</span><br><span class="line">           &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">               GUILayout.Label(<span class="string">"type can not parse,type is "</span> + paramType.Name);</span><br><span class="line">               GUILayout.EndHorizontal();</span><br><span class="line">               <span class="keyword">return</span>;</span><br><span class="line">           &#125;</span><br><span class="line"></span><br><span class="line">           var removeAtMethod = aList.GetType().GetMethod(<span class="string">"RemoveAt"</span>);</span><br><span class="line">           removeAtMethod.Invoke(aList, <span class="keyword">new</span> object[] &#123; index &#125;);</span><br><span class="line"></span><br><span class="line">           var insertMethod = aList.GetType().GetMethod(<span class="string">"Insert"</span>);</span><br><span class="line">           insertMethod.Invoke(aList, <span class="keyword">new</span> object[] &#123; index, aParam &#125;);</span><br><span class="line"></span><br><span class="line">           GUILayout.EndHorizontal();</span><br><span class="line"></span><br><span class="line">       &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">ParseBaseType2</span><span class="params">(object aParam, object aList, <span class="keyword">int</span> index = <span class="number">0</span>)</span> </span>&#123;</div><div class="line">           GUILayout.BeginHorizontal();</div><div class="line">           Type paramType = aParam.GetType();</div><div class="line"></div><div class="line">           <span class="keyword">if</span> (paramType == typeof(string)) &#123;</div><div class="line">               GUILayout.Label(<span class="string">"String"</span>, GUILayout.Width(<span class="number">30</span>));</div><div class="line">               aParam = GUILayout.TextField(aParam.ToString());</div><div class="line"></div><div class="line">           &#125; <span class="keyword">else</span> <span class="keyword">if</span> (paramType == typeof(<span class="keyword">short</span>)) &#123;</div><div class="line">               GUILayout.Label(<span class="string">"Short"</span>, GUILayout.Width(<span class="number">30</span>));</div><div class="line">               aParam = Convert.ToInt16(GUILayout.TextField(aParam.ToString()));</div><div class="line"></div><div class="line">           &#125; <span class="keyword">else</span> <span class="keyword">if</span> (paramType == typeof(<span class="keyword">int</span>)) &#123;</div><div class="line">               GUILayout.Label(<span class="string">"Int"</span>, GUILayout.Width(<span class="number">30</span>));</div><div class="line">               aParam = Convert.ToInt32(GUILayout.TextField(aParam.ToString()));</div><div class="line"></div><div class="line">           &#125; <span class="keyword">else</span> <span class="keyword">if</span> (paramType == typeof(<span class="keyword">long</span>)) &#123;</div><div class="line">               GUILayout.Label(<span class="string">"Long"</span>, GUILayout.Width(<span class="number">30</span>));</div><div class="line">               aParam = Convert.ToInt64(GUILayout.TextField(aParam.ToString()));</div><div class="line"></div><div class="line">           &#125; <span class="keyword">else</span> <span class="keyword">if</span> (paramType == typeof(bool)) &#123;</div><div class="line">               GUILayout.Label(<span class="string">"Bool"</span>, GUILayout.Width(<span class="number">30</span>));</div><div class="line">               aParam = Convert.ToBoolean(GUILayout.TextField(aParam.ToString()));</div><div class="line">           &#125; <span class="keyword">else</span> &#123;</div><div class="line">               GUILayout.Label(<span class="string">"type can not parse,type is "</span> + paramType.Name);</div><div class="line">               GUILayout.EndHorizontal();</div><div class="line">               <span class="keyword">return</span>;</div><div class="line">           &#125;</div><div class="line"></div><div class="line">           var removeAtMethod = aList.GetType().GetMethod(<span class="string">"RemoveAt"</span>);</div><div class="line">           removeAtMethod.Invoke(aList, <span class="keyword">new</span> object[] &#123; index &#125;);</div><div class="line"></div><div class="line">           var insertMethod = aList.GetType().GetMethod(<span class="string">"Insert"</span>);</div><div class="line">           insertMethod.Invoke(aList, <span class="keyword">new</span> object[] &#123; index, aParam &#125;);</div><div class="line"></div><div class="line">           GUILayout.EndHorizontal();</div><div class="line"></div><div class="line">       &#125;</div></pre></td></tr></table></figure>
 <p>最终成品图：</p>
 <p><img src="/images/test-tool/pic2.png" alt=""></p>
 <h3 id="项目4"><a href="#项目4" class="headerlink" title="项目4"></a>项目4</h3><p>SLG手游，依旧Socket通讯，依旧PB。</p>
@@ -364,16 +374,18 @@
 
       
     </div>
-    
+
     <div>
       
         
+
       
     </div>
 
     <div>
       
         
+
       
     </div>
 
@@ -481,7 +493,7 @@
       
 
       <section class="site-overview sidebar-panel ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.png"
                alt="煎饼" />
@@ -491,7 +503,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">28</span>
+              <span class="site-state-item-count">29</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -524,7 +536,7 @@
               <span class="links-of-author-item">
                 <a href="https://github.com/jianbing" target="_blank" title="github">
                   
-                    <i class="fa fa-globe"></i>
+                    <i class="fa fa-fw fa-globe"></i>
                   
                   github
                 </a>
@@ -540,7 +552,7 @@
         
           <div class="links-of-blogroll motion-element links-of-blogroll-inline">
             <div class="links-of-blogroll-title">
-              <i class="fa fa-globe fa-fw"></i>
+              <i class="fa  fa-fw fa-globe"></i>
               
             </div>
             <ul class="links-of-blogroll-list">
@@ -601,7 +613,7 @@
 </div>
 
 <div class="powered-by">
-  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
 </div>
 
 <div class="theme-info">
@@ -643,46 +655,46 @@
 
 
   
-  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
 
   
-  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
 
   
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
-  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
 
   
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
   
-  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
-
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
 
 
 
@@ -707,19 +719,26 @@
 
   
     
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
   
 
 
 
 
 
-  
+
   
   
 
   
 
   
+
+  
+
+  
+
 
 </body>
 </html>

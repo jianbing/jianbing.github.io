@@ -27,7 +27,9 @@
 
 
 
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -59,9 +61,11 @@
 
 
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
   <meta name="keywords" content="python," />
@@ -75,7 +79,7 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
 
 
 
@@ -90,7 +94,7 @@
 <meta property="og:site_name" content="煎饼的博客">
 <meta property="og:description" content="有时候需要计算一下函数的时间，可以有以下的几种方式：
 简单粗暴式123456789import timedef func():    passif __name__ == &apos;__main__&apos;:      start = time.time()    func()    print time.time() - start">
-<meta property="og:updated_time" content="2016-05-14T00:14:50.191Z">
+<meta property="og:updated_time" content="2016-10-27T08:38:25.465Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="计算Python函数的运行时间">
 <meta name="twitter:description" content="有时候需要计算一下函数的时间，可以有以下的几种方式：
@@ -106,16 +110,22 @@
     fancybox: true,
     motion: true,
     duoshuo: {
-      userId: 0,
+      userId: '0',
       author: '博主'
     }
   };
 </script>
 
+
+
+
+  <link rel="canonical" href="http://jianbing.github.io/2016/04/15/count-pyfunc-running-time/"/>
+
+
   <title> 计算Python函数的运行时间 | 煎饼的博客 </title>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
 
   
 
@@ -136,7 +146,7 @@
   <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
       <div class="header-inner"><div class="site-meta ">
   
 
@@ -168,7 +178,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
           </a>
@@ -178,7 +188,7 @@
         <li class="menu-item menu-item-about">
           <a href="/about" rel="section">
             
-              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
             关于
           </a>
@@ -188,7 +198,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             归档
           </a>
@@ -198,7 +208,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
             标签
           </a>
@@ -231,7 +241,7 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
 
     
       <header class="post-header">
@@ -290,30 +300,32 @@
 
       
         <p>有时候需要计算一下函数的时间，可以有以下的几种方式：</p>
-<h3 id="简单粗暴式"><a href="#简单粗暴式" class="headerlink" title="简单粗暴式"></a>简单粗暴式</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">func</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:  </span><br><span class="line">    start = time.time()</span><br><span class="line">    func()</span><br><span class="line">    <span class="keyword">print</span> time.time() - start</span><br></pre></td></tr></table></figure>
+<h3 id="简单粗暴式"><a href="#简单粗暴式" class="headerlink" title="简单粗暴式"></a>简单粗暴式</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> time</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">func</span><span class="params">()</span>:</span></div><div class="line">    <span class="keyword">pass</span></div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:  </div><div class="line">    start = time.time()</div><div class="line">    func()</div><div class="line">    <span class="keyword">print</span> time.time() - start</div></pre></td></tr></table></figure>
 <a id="more"></a>
-<h3 id="简单粗暴式的升级版"><a href="#简单粗暴式的升级版" class="headerlink" title="简单粗暴式的升级版"></a>简单粗暴式的升级版</h3><p>使用装饰器<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">count_running_time</span><span class="params">(func)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">_count_running_time</span><span class="params">(*args, **kwargs)</span>:</span></span><br><span class="line">        start = time.time()</span><br><span class="line">        res = func(*args, **kwargs)</span><br><span class="line">        print(<span class="string">'cost time :&#123;0&#125;'</span>.format(time.time() - start))</span><br><span class="line">        <span class="keyword">return</span> res</span><br><span class="line">    <span class="keyword">return</span> _count_running_time</span><br><span class="line"></span><br><span class="line"><span class="meta">@count_running_time</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">func</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    func()</span><br></pre></td></tr></table></figure></p>
+<h3 id="简单粗暴式的升级版"><a href="#简单粗暴式的升级版" class="headerlink" title="简单粗暴式的升级版"></a>简单粗暴式的升级版</h3><p>使用装饰器<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> time</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">count_running_time</span><span class="params">(func)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">_count_running_time</span><span class="params">(*args, **kwargs)</span>:</span></div><div class="line">        start = time.time()</div><div class="line">        res = func(*args, **kwargs)</div><div class="line">        print(<span class="string">'cost time :&#123;0&#125;'</span>.format(time.time() - start))</div><div class="line">        <span class="keyword">return</span> res</div><div class="line">    <span class="keyword">return</span> _count_running_time</div><div class="line"></div><div class="line"><span class="meta">@count_running_time</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">func</span><span class="params">()</span>:</span></div><div class="line">    <span class="keyword">pass</span></div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">    func()</div></pre></td></tr></table></figure></p>
 <blockquote>
 <p>以上两种方式，只能简单统计函数的总运行时间，如果函数复杂，需要分析里边调用的次数和耗时，则满足不了我们的需求。</p>
 </blockquote>
 <h3 id="优雅的统计方式"><a href="#优雅的统计方式" class="headerlink" title="优雅的统计方式"></a>优雅的统计方式</h3><p>使用cProfile来进行统计，使用pstats来分析结果，直接看代码吧~</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">profile_func</span><span class="params">(func)</span>:</span></span><br><span class="line">    <span class="keyword">import</span> cProfile</span><br><span class="line">    cProfile.run(<span class="string">"&#123;&#125;()"</span>.format(func.func_name),<span class="string">"prof.txt"</span>)</span><br><span class="line">    <span class="keyword">import</span> pstats</span><br><span class="line">    p = pstats.Stats(<span class="string">"prof.txt"</span>)</span><br><span class="line">    p.sort_stats(<span class="string">"time"</span>).print_stats()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">func</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">print</span> <span class="string">'hello world'</span></span><br><span class="line">    <span class="keyword">import</span> time</span><br><span class="line">    time.sleep(<span class="number">3</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    profile_func(func)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> time</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">profile_func</span><span class="params">(func)</span>:</span></div><div class="line">    <span class="keyword">import</span> cProfile</div><div class="line">    cProfile.run(<span class="string">"&#123;&#125;()"</span>.format(func.func_name),<span class="string">"prof.txt"</span>)</div><div class="line">    <span class="keyword">import</span> pstats</div><div class="line">    p = pstats.Stats(<span class="string">"prof.txt"</span>)</div><div class="line">    p.sort_stats(<span class="string">"time"</span>).print_stats()</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">func</span><span class="params">()</span>:</span></div><div class="line">    <span class="keyword">print</span> <span class="string">'hello world'</span></div><div class="line">    <span class="keyword">import</span> time</div><div class="line">    time.sleep(<span class="number">3</span>)</div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">    profile_func(func)</div></pre></td></tr></table></figure>
 <p>打印如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">hello world</span><br><span class="line">Sat Apr <span class="number">16</span> <span class="number">17</span>:<span class="number">19</span>:<span class="number">10</span> <span class="number">2016</span>    prof.txt</span><br><span class="line"></span><br><span class="line">         <span class="number">4</span> function calls <span class="keyword">in</span> <span class="number">3.000</span> seconds</span><br><span class="line"></span><br><span class="line">   Ordered by: internal time</span><br><span class="line"></span><br><span class="line">   ncalls  tottime  percall  cumtime  percall filename:lineno(function)</span><br><span class="line">        <span class="number">1</span>    <span class="number">3.000</span>    <span class="number">3.000</span>    <span class="number">3.000</span>    <span class="number">3.000</span> &#123;time.sleep&#125;</span><br><span class="line">        <span class="number">1</span>    <span class="number">0.000</span>    <span class="number">0.000</span>    <span class="number">3.000</span>    <span class="number">3.000</span> C:/Py27Project/testtools/local_test/__init__.py:<span class="number">12</span>(func)</span><br><span class="line">        <span class="number">1</span>    <span class="number">0.000</span>    <span class="number">0.000</span>    <span class="number">3.000</span>    <span class="number">3.000</span> &lt;string&gt;:<span class="number">1</span>(&lt;module&gt;)</span><br><span class="line">        <span class="number">1</span>    <span class="number">0.000</span>    <span class="number">0.000</span>    <span class="number">0.000</span>    <span class="number">0.000</span> &#123;method <span class="string">'disable'</span> of <span class="string">'_lsprof.Profiler'</span> objects&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">hello world</div><div class="line">Sat Apr <span class="number">16</span> <span class="number">17</span>:<span class="number">19</span>:<span class="number">10</span> <span class="number">2016</span>    prof.txt</div><div class="line"></div><div class="line">         <span class="number">4</span> function calls <span class="keyword">in</span> <span class="number">3.000</span> seconds</div><div class="line"></div><div class="line">   Ordered by: internal time</div><div class="line"></div><div class="line">   ncalls  tottime  percall  cumtime  percall filename:lineno(function)</div><div class="line">        <span class="number">1</span>    <span class="number">3.000</span>    <span class="number">3.000</span>    <span class="number">3.000</span>    <span class="number">3.000</span> &#123;time.sleep&#125;</div><div class="line">        <span class="number">1</span>    <span class="number">0.000</span>    <span class="number">0.000</span>    <span class="number">3.000</span>    <span class="number">3.000</span> C:/Py27Project/testtools/local_test/__init__.py:<span class="number">12</span>(func)</div><div class="line">        <span class="number">1</span>    <span class="number">0.000</span>    <span class="number">0.000</span>    <span class="number">3.000</span>    <span class="number">3.000</span> &lt;string&gt;:<span class="number">1</span>(&lt;module&gt;)</div><div class="line">        <span class="number">1</span>    <span class="number">0.000</span>    <span class="number">0.000</span>    <span class="number">0.000</span>    <span class="number">0.000</span> &#123;method <span class="string">'disable'</span> of <span class="string">'_lsprof.Profiler'</span> objects&#125;</div></pre></td></tr></table></figure>
 <p>函数调用的次数和耗时一目了然~</p>
 
       
     </div>
-    
+
     <div>
       
         
+
       
     </div>
 
     <div>
       
         
+
       
     </div>
 
@@ -421,7 +433,7 @@
       
 
       <section class="site-overview sidebar-panel ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.png"
                alt="煎饼" />
@@ -431,7 +443,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">28</span>
+              <span class="site-state-item-count">29</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -464,7 +476,7 @@
               <span class="links-of-author-item">
                 <a href="https://github.com/jianbing" target="_blank" title="github">
                   
-                    <i class="fa fa-globe"></i>
+                    <i class="fa fa-fw fa-globe"></i>
                   
                   github
                 </a>
@@ -480,7 +492,7 @@
         
           <div class="links-of-blogroll motion-element links-of-blogroll-inline">
             <div class="links-of-blogroll-title">
-              <i class="fa fa-globe fa-fw"></i>
+              <i class="fa  fa-fw fa-globe"></i>
               
             </div>
             <ul class="links-of-blogroll-list">
@@ -541,7 +553,7 @@
 </div>
 
 <div class="powered-by">
-  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
 </div>
 
 <div class="theme-info">
@@ -583,46 +595,46 @@
 
 
   
-  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
 
   
-  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
 
   
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
-  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
 
   
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
   
-  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
-
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
 
 
 
@@ -647,19 +659,26 @@
 
   
     
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
   
 
 
 
 
 
-  
+
   
   
 
   
 
   
+
+  
+
+  
+
 
 </body>
 </html>

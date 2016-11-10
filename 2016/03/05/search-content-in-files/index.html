@@ -27,7 +27,9 @@
 
 
 
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -59,9 +61,11 @@
 
 
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
   <meta name="keywords" content="python,小工具," />
@@ -75,7 +79,7 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
 
 
 
@@ -98,7 +102,7 @@
 方式1：整理各种可能获得这些道具的途径，在游戏内一一确认。这个方式，耗时久，而且遗漏的可能性比较高。
 方式2：检查前后端相关的配置表里边，是否已经删除了这几个道具相关的配置。这个方法靠谱很多。但是配置表几十个，要一个一个看？
 作为">
-<meta property="og:updated_time" content="2016-06-30T14:44:24.268Z">
+<meta property="og:updated_time" content="2016-10-27T08:38:25.506Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在文件夹内查找指定文本">
 <meta name="twitter:description" content="有天策划童鞋说，这个版本我删掉了几个道具，你看看我有没有删漏？
@@ -118,16 +122,22 @@
     fancybox: true,
     motion: true,
     duoshuo: {
-      userId: 0,
+      userId: '0',
       author: '博主'
     }
   };
 </script>
 
+
+
+
+  <link rel="canonical" href="http://jianbing.github.io/2016/03/05/search-content-in-files/"/>
+
+
   <title> 在文件夹内查找指定文本 | 煎饼的博客 </title>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
 
   
 
@@ -148,7 +158,7 @@
   <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
       <div class="header-inner"><div class="site-meta ">
   
 
@@ -180,7 +190,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
           </a>
@@ -190,7 +200,7 @@
         <li class="menu-item menu-item-about">
           <a href="/about" rel="section">
             
-              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
             关于
           </a>
@@ -200,7 +210,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             归档
           </a>
@@ -210,7 +220,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
             标签
           </a>
@@ -243,7 +253,7 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
 
     
       <header class="post-header">
@@ -311,19 +321,21 @@
 <blockquote>
 <p>开发环境：Python2.7+Win10+Pycharm</p>
 </blockquote>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#! /usr/bin/env python</span></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="keyword">from</span> __future__ <span class="keyword">import</span> unicode_literals</span><br><span class="line"><span class="keyword">import</span> codecs</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_files_by_suffix</span><span class="params">(path, suffixes=<span class="params">(<span class="string">"txt"</span>, <span class="string">"xml"</span>)</span>, one_layer=True)</span>:</span></span><br><span class="line">    <span class="string">"""从path路径下，找出全部指定后缀名的文件，支持1层目录，或者整个目录遍历</span><br><span class="line"></span><br><span class="line">    :param path: 目标文件夹</span><br><span class="line">    :param suffixes: 目标文件的后缀名</span><br><span class="line">    :param one_layer:如果为True，只遍历一层目录</span><br><span class="line">    :return:</span><br><span class="line">    """</span></span><br><span class="line">    file_list = []</span><br><span class="line">    <span class="keyword">for</span> root, dirs, files <span class="keyword">in</span> os.walk(path):</span><br><span class="line">        <span class="keyword">for</span> afile <span class="keyword">in</span> files:</span><br><span class="line">            file_suffix = os.path.splitext(afile)[<span class="number">1</span>][<span class="number">1</span>:].lower()</span><br><span class="line">            <span class="keyword">if</span> file_suffix <span class="keyword">in</span> suffixes:</span><br><span class="line">                file_list.append(os.path.join(root, afile))</span><br><span class="line">        <span class="keyword">if</span> one_layer:</span><br><span class="line">            <span class="keyword">return</span> file_list</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> file_list</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line"></span><br><span class="line">    path = <span class="string">r"C:\Project\config\branches\config-1.4"</span></span><br><span class="line"></span><br><span class="line">    files = get_files_by_suffix(path, [<span class="string">"txt"</span>, <span class="string">"xml"</span>], one_layer=<span class="keyword">False</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> afile <span class="keyword">in</span> files:</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            <span class="keyword">with</span> codecs.open(afile, <span class="string">'r'</span>, encoding=<span class="string">'utf-8'</span>, errors=<span class="string">'ignore'</span>) <span class="keyword">as</span> f:</span><br><span class="line">                file_content = f.read()</span><br><span class="line">                position = file_content.find(<span class="string">"神器"</span>)</span><br><span class="line">                <span class="keyword">if</span> position != <span class="number">-1</span>:</span><br><span class="line">                    print(<span class="string">"find in &#123;0&#125;"</span>.format(afile))</span><br><span class="line">                    print(file_content[position<span class="number">-100</span>:position+<span class="number">100</span>])</span><br><span class="line">                    print(<span class="string">"_"</span>*<span class="number">150</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">            print(e)</span><br><span class="line">            print(afile)</span><br><span class="line">            print(<span class="string">"#"</span>*<span class="number">150</span>)</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    
-    <div>
-      
-        
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#! /usr/bin/env python</span></div><div class="line"><span class="comment"># -*- coding: utf-8 -*-</span></div><div class="line"><span class="keyword">from</span> __future__ <span class="keyword">import</span> unicode_literals</div><div class="line"><span class="keyword">import</span> codecs</div><div class="line"><span class="keyword">import</span> os</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_files_by_suffix</span><span class="params">(path, suffixes=<span class="params">(<span class="string">"txt"</span>, <span class="string">"xml"</span>)</span>, one_layer=True)</span>:</span></div><div class="line">    <span class="string">"""从path路径下，找出全部指定后缀名的文件，支持1层目录，或者整个目录遍历</span></div><div class="line"></div><div class="line">    :param path: 目标文件夹</div><div class="line">    :param suffixes: 目标文件的后缀名</div><div class="line">    :param one_layer:如果为True，只遍历一层目录</div><div class="line">    :return:</div><div class="line">    """</div><div class="line">    file_list = []</div><div class="line">    <span class="keyword">for</span> root, dirs, files <span class="keyword">in</span> os.walk(path):</div><div class="line">        <span class="keyword">for</span> afile <span class="keyword">in</span> files:</div><div class="line">            file_suffix = os.path.splitext(afile)[<span class="number">1</span>][<span class="number">1</span>:].lower()</div><div class="line">            <span class="keyword">if</span> file_suffix <span class="keyword">in</span> suffixes:</div><div class="line">                file_list.append(os.path.join(root, afile))</div><div class="line">        <span class="keyword">if</span> one_layer:</div><div class="line">            <span class="keyword">return</span> file_list</div><div class="line"></div><div class="line">    <span class="keyword">return</span> file_list</div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line"></div><div class="line">    path = <span class="string">r"C:\Project\config\branches\config-1.4"</span></div><div class="line"></div><div class="line">    files = get_files_by_suffix(path, [<span class="string">"txt"</span>, <span class="string">"xml"</span>], one_layer=<span class="keyword">False</span>)</div><div class="line"></div><div class="line">    <span class="keyword">for</span> afile <span class="keyword">in</span> files:</div><div class="line">        <span class="keyword">try</span>:</div><div class="line">            <span class="keyword">with</span> codecs.open(afile, <span class="string">'r'</span>, encoding=<span class="string">'utf-8'</span>, errors=<span class="string">'ignore'</span>) <span class="keyword">as</span> f:</div><div class="line">                file_content = f.read()</div><div class="line">                position = file_content.find(<span class="string">"神器"</span>)</div><div class="line">                <span class="keyword">if</span> position != <span class="number">-1</span>:</div><div class="line">                    print(<span class="string">"find in &#123;0&#125;"</span>.format(afile))</div><div class="line">                    print(file_content[position<span class="number">-100</span>:position+<span class="number">100</span>])</div><div class="line">                    print(<span class="string">"_"</span>*<span class="number">150</span>)</div><div class="line"></div><div class="line">        <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</div><div class="line">            print(e)</div><div class="line">            print(afile)</div><div class="line">            print(<span class="string">"#"</span>*<span class="number">150</span>)</div></pre></td></tr></table></figure>
       
     </div>
 
     <div>
       
         
+
+      
+    </div>
+
+    <div>
+      
+        
+
       
     </div>
 
@@ -433,7 +445,7 @@
       
 
       <section class="site-overview sidebar-panel ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.png"
                alt="煎饼" />
@@ -443,7 +455,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">28</span>
+              <span class="site-state-item-count">29</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -476,7 +488,7 @@
               <span class="links-of-author-item">
                 <a href="https://github.com/jianbing" target="_blank" title="github">
                   
-                    <i class="fa fa-globe"></i>
+                    <i class="fa fa-fw fa-globe"></i>
                   
                   github
                 </a>
@@ -492,7 +504,7 @@
         
           <div class="links-of-blogroll motion-element links-of-blogroll-inline">
             <div class="links-of-blogroll-title">
-              <i class="fa fa-globe fa-fw"></i>
+              <i class="fa  fa-fw fa-globe"></i>
               
             </div>
             <ul class="links-of-blogroll-list">
@@ -553,7 +565,7 @@
 </div>
 
 <div class="powered-by">
-  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
 </div>
 
 <div class="theme-info">
@@ -595,46 +607,46 @@
 
 
   
-  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
 
   
-  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
 
   
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
-  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
 
   
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
   
-  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
-
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
 
 
 
@@ -659,19 +671,26 @@
 
   
     
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
   
 
 
 
 
 
-  
+
   
   
 
   
 
   
+
+  
+
+  
+
 
 </body>
 </html>
