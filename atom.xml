@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jianbing.github.io/"/>
-  <updated>2017-01-14T11:37:39.947Z</updated>
+  <updated>2017-01-14T12:06:14.346Z</updated>
   <id>http://jianbing.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://jianbing.github.io/2017/01/14/count-pyfunc-running-time/"/>
     <id>http://jianbing.github.io/2017/01/14/count-pyfunc-running-time/</id>
     <published>2017-01-13T16:00:00.000Z</published>
-    <updated>2017-01-14T11:37:39.947Z</updated>
+    <updated>2017-01-14T12:06:14.346Z</updated>
     
     <content type="html"><![CDATA[<p>有时候需要计算一下函数的时间，可以有以下的几种方式：</p>
 <h3 id="简单粗暴式"><a href="#简单粗暴式" class="headerlink" title="简单粗暴式"></a>简单粗暴式</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> time</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">func</span><span class="params">()</span>:</span></div><div class="line">    <span class="keyword">pass</span></div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:  </div><div class="line">    start = time.time()</div><div class="line">    func()</div><div class="line">    <span class="keyword">print</span> time.time() - start</div></pre></td></tr></table></figure>
@@ -46,7 +46,7 @@
     </summary>
     
     
-      <category term="python" scheme="http://jianbing.github.io/tags/python/"/>
+      <category term="Python" scheme="http://jianbing.github.io/tags/Python/"/>
     
   </entry>
   
@@ -55,7 +55,7 @@
     <link href="http://jianbing.github.io/2016/11/10/python-str-unicode/"/>
     <id>http://jianbing.github.io/2016/11/10/python-str-unicode/</id>
     <published>2016-11-09T16:00:00.000Z</published>
-    <updated>2016-11-10T08:18:00.270Z</updated>
+    <updated>2017-01-14T12:07:03.185Z</updated>
     
     <content type="html"><![CDATA[<p>Py2的编码问题真是历史悠久，下边这个报错更是经常见到。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">UnicodeDecodeError: <span class="string">'ascii'</span> codec can<span class="string">'t decode byte 0xe9 in position 2: ordinal not in range(128)</span></div></pre></td></tr></table></figure></p>
 <p>在避开Py2的编码坑之前，我们需要了解一下一些常见的编码。</p>
@@ -120,7 +120,7 @@
     </summary>
     
     
-      <category term="python" scheme="http://jianbing.github.io/tags/python/"/>
+      <category term="Python" scheme="http://jianbing.github.io/tags/Python/"/>
     
   </entry>
   
@@ -186,7 +186,7 @@
     <link href="http://jianbing.github.io/2016/06/29/pycharm-autopep8/"/>
     <id>http://jianbing.github.io/2016/06/29/pycharm-autopep8/</id>
     <published>2016-06-28T16:00:00.000Z</published>
-    <updated>2016-10-27T08:38:25.501Z</updated>
+    <updated>2017-01-14T12:06:52.730Z</updated>
     
     <content type="html"><![CDATA[<h3 id="关于PEP-8"><a href="#关于PEP-8" class="headerlink" title="关于PEP 8"></a>关于PEP 8</h3><p><a href="https://www.python.org/dev/peps/pep-0008/" target="_blank" rel="external">PEP 8</a>，Style Guide for Python Code，是Python官方推出的Python编码风格的约定，虽然这不是硬性的规定，但是如果Python程序员都尽量遵循这个文档，那么编码风格的统一会让代码的可读性大大提升。</p>
 <p>在Pycharm里边默认也是有进行PEP8的检测，强迫症的人表示，看到代码中有黄色波浪线，就一定得先改好它。</p>
@@ -223,7 +223,7 @@
 <p>–aggressive autopep8默认只修复空白，对齐相关的PEP8问题，加入--aggressive设置，会增加修复如 x == None 修复为 x is None，{“a”: 1, “b”: 2}.has_key(‘a’) 修复为’a’ in {“a”: 1, “b”: 2}</p>
 <p>–ignore  忽略PEP8检查项</p>
 <p>因为我只打算用autopep8来修复空格，空行这一类的排版问题，同时要忽略每一行长度过长的检测（E501 - Try to make lines fit within –max-line-length characters.），所以最终设置是：</p>
-<p>--in-place   --ignore=E501  $FilePath$ </p>
+<p>--in-place   --ignore=E501  $FilePath$</p>
 ]]></content>
     
     <summary type="html">
@@ -234,7 +234,7 @@
     </summary>
     
     
-      <category term="python" scheme="http://jianbing.github.io/tags/python/"/>
+      <category term="Python" scheme="http://jianbing.github.io/tags/Python/"/>
     
   </entry>
   
@@ -361,7 +361,7 @@
     <link href="http://jianbing.github.io/2016/05/21/sikuli-tool/"/>
     <id>http://jianbing.github.io/2016/05/21/sikuli-tool/</id>
     <published>2016-05-20T16:00:00.000Z</published>
-    <updated>2016-10-27T08:38:25.522Z</updated>
+    <updated>2017-01-14T12:07:16.120Z</updated>
     
     <content type="html"><![CDATA[<h3 id="关于Sikuli"><a href="#关于Sikuli" class="headerlink" title="关于Sikuli"></a>关于Sikuli</h3><p>Sikuli 是由 MIT 的研究团队发布的新型图形化编程技术。它以图像检索技术为基础，提供了一套基于 Jython 的脚本语言以及集成开发环境。使用者可利用屏幕截图直接引用 GUI 元素进行编程，完成交互操作。Sikuli 一词取自墨西哥 Huichol Indian 土著语，意为“上帝之眼”， Sikuli 让电脑能像人一样“看”这个“真实世界”。</p>
 <p>通过Sikuli自带的IDE，操作简单，容易上手，可以编写出非常具备可读性的代码。</p>
@@ -422,7 +422,7 @@
     </summary>
     
     
-      <category term="python" scheme="http://jianbing.github.io/tags/python/"/>
+      <category term="Python" scheme="http://jianbing.github.io/tags/Python/"/>
     
       <category term="测试工具" scheme="http://jianbing.github.io/tags/%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7/"/>
     
@@ -515,7 +515,7 @@
     <link href="http://jianbing.github.io/2016/04/27/adb-tool/"/>
     <id>http://jianbing.github.io/2016/04/27/adb-tool/</id>
     <published>2016-04-26T16:00:00.000Z</published>
-    <updated>2016-10-27T08:38:25.449Z</updated>
+    <updated>2017-01-14T12:06:00.813Z</updated>
     
     <content type="html"><![CDATA[<p>之前封装了一批基于adb命令的函数，用于辅助游戏安卓版本的测试，<a href="https://github.com/jianbing/utils/blob/master/android.py" target="_blank" rel="external">源码在此</a>。</p>
 <p>虽然已经比较方便了，但是在使用过程中，还是存在一些不足。</p>
@@ -560,7 +560,7 @@
     
       <category term="游戏测试" scheme="http://jianbing.github.io/tags/%E6%B8%B8%E6%88%8F%E6%B5%8B%E8%AF%95/"/>
     
-      <category term="python" scheme="http://jianbing.github.io/tags/python/"/>
+      <category term="Python" scheme="http://jianbing.github.io/tags/Python/"/>
     
   </entry>
   
@@ -615,7 +615,7 @@
     <link href="http://jianbing.github.io/2016/04/21/kill_thunderPlatform/"/>
     <id>http://jianbing.github.io/2016/04/21/kill_thunderPlatform/</id>
     <published>2016-04-20T16:00:00.000Z</published>
-    <updated>2016-10-27T08:38:25.489Z</updated>
+    <updated>2017-01-14T12:06:42.855Z</updated>
     
     <content type="html"><![CDATA[<p>退出了迅雷后，有时候会发现它还是在悄悄地上传，占用着带宽，在任务管理器里边查看，是一个叫ThunderPlatform.exe的程序。</p>
 <p>百度了下，很多解决方案都是禁用XLServicePlatform服务。</p>
@@ -639,16 +639,16 @@
     </summary>
     
     
-      <category term="python" scheme="http://jianbing.github.io/tags/python/"/>
+      <category term="Python" scheme="http://jianbing.github.io/tags/Python/"/>
     
   </entry>
   
   <entry>
-    <title>检查端口占用情况</title>
+    <title>使用Python检查端口占用情况</title>
     <link href="http://jianbing.github.io/2016/04/20/kill_5037/"/>
     <id>http://jianbing.github.io/2016/04/20/kill_5037/</id>
     <published>2016-04-19T16:00:00.000Z</published>
-    <updated>2017-01-14T11:38:57.067Z</updated>
+    <updated>2017-01-14T12:06:33.723Z</updated>
     
     <content type="html"><![CDATA[<p>使用adb的时候，有时候会发现5037端口被其他程序占用了。于是有了以下这个脚本，检查端口被占用的情况，并结束该进程。</p>
 <a id="more"></a>
@@ -667,7 +667,7 @@
     </summary>
     
     
-      <category term="python" scheme="http://jianbing.github.io/tags/python/"/>
+      <category term="Python" scheme="http://jianbing.github.io/tags/Python/"/>
     
   </entry>
   
@@ -987,7 +987,7 @@
     <link href="http://jianbing.github.io/2016/03/17/pycharm-tips/"/>
     <id>http://jianbing.github.io/2016/03/17/pycharm-tips/</id>
     <published>2016-03-16T16:00:00.000Z</published>
-    <updated>2016-10-27T08:38:25.503Z</updated>
+    <updated>2017-01-14T12:06:58.509Z</updated>
     
     <content type="html"><![CDATA[<p>分享一个Pycharm的代码提示技巧~</p>
 <p>有时候Pycharm并没有自动收集到对象可用的方法，比如这个对象的类型要运行的时候才知道，举个栗子：</p>
@@ -1014,7 +1014,7 @@
     </summary>
     
     
-      <category term="python" scheme="http://jianbing.github.io/tags/python/"/>
+      <category term="Python" scheme="http://jianbing.github.io/tags/Python/"/>
     
   </entry>
   
@@ -1023,7 +1023,7 @@
     <link href="http://jianbing.github.io/2016/03/13/selenium-bs4-data-capture/"/>
     <id>http://jianbing.github.io/2016/03/13/selenium-bs4-data-capture/</id>
     <published>2016-03-12T16:00:00.000Z</published>
-    <updated>2016-10-27T08:38:25.510Z</updated>
+    <updated>2017-01-14T12:07:07.436Z</updated>
     
     <content type="html"><![CDATA[<h3 id="起源"><a href="#起源" class="headerlink" title="起源"></a>起源</h3><p>自从工作室使用了Teambition作为项目管理工具后，为了统一管理，bug也开始记录到Teambition里边去。</p>
 <p>总体来说，Teambition轻便，多客户端支持，界面也很漂亮，但是如果用来管理bug的话，那么问题来了~</p>
@@ -1069,7 +1069,7 @@
     </summary>
     
     
-      <category term="python" scheme="http://jianbing.github.io/tags/python/"/>
+      <category term="Python" scheme="http://jianbing.github.io/tags/Python/"/>
     
       <category term="小工具" scheme="http://jianbing.github.io/tags/%E5%B0%8F%E5%B7%A5%E5%85%B7/"/>
     

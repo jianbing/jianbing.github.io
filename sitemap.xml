@@ -2,6 +2,90 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://jianbing.github.io/2016/03/04/wxpython-textctrl-tips/</loc>
+    
+    <lastmod>2017-01-14T12:07:24.682Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jianbing.github.io/2016/05/21/sikuli-tool/</loc>
+    
+    <lastmod>2017-01-14T12:07:16.120Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jianbing.github.io/2016/03/13/selenium-bs4-data-capture/</loc>
+    
+    <lastmod>2017-01-14T12:07:07.436Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jianbing.github.io/2016/11/10/python-str-unicode/</loc>
+    
+    <lastmod>2017-01-14T12:07:03.185Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jianbing.github.io/2016/03/17/pycharm-tips/</loc>
+    
+    <lastmod>2017-01-14T12:06:58.509Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jianbing.github.io/2016/06/29/pycharm-autopep8/</loc>
+    
+    <lastmod>2017-01-14T12:06:52.730Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jianbing.github.io/2016/04/21/kill_thunderPlatform/</loc>
+    
+    <lastmod>2017-01-14T12:06:42.855Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jianbing.github.io/2016/04/20/kill_5037/</loc>
+    
+    <lastmod>2017-01-14T12:06:33.723Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jianbing.github.io/2017/01/14/count-pyfunc-running-time/</loc>
+    
+    <lastmod>2017-01-14T12:06:14.346Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jianbing.github.io/2016/03/08/check-player-name/</loc>
+    
+    <lastmod>2017-01-14T12:06:05.949Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jianbing.github.io/2016/04/27/adb-tool/</loc>
+    
+    <lastmod>2017-01-14T12:06:00.813Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jianbing.github.io/2016/03/05/search-content-in-files/</loc>
+    
+    <lastmod>2017-01-14T12:05:54.075Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://jianbing.github.io/2016/06/06/unity-pic-check/</loc>
     
     <lastmod>2017-01-14T11:39:57.293Z</lastmod>
@@ -9,37 +93,9 @@
   </url>
   
   <url>
-    <loc>http://jianbing.github.io/2016/04/20/kill_5037/</loc>
-    
-    <lastmod>2017-01-14T11:38:57.067Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://jianbing.github.io/2017/01/14/count-pyfunc-running-time/</loc>
-    
-    <lastmod>2017-01-14T11:37:39.947Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://jianbing.github.io/2016/03/04/wxpython-textctrl-tips/</loc>
-    
-    <lastmod>2017-01-14T09:46:41.177Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://jianbing.github.io/about/index.html</loc>
     
     <lastmod>2016-11-10T09:25:44.841Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://jianbing.github.io/2016/11/10/python-str-unicode/</loc>
-    
-    <lastmod>2016-11-10T08:18:00.270Z</lastmod>
     
   </url>
   
@@ -72,13 +128,6 @@
   </url>
   
   <url>
-    <loc>http://jianbing.github.io/2016/05/21/sikuli-tool/</loc>
-    
-    <lastmod>2016-10-27T08:38:25.522Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://jianbing.github.io/2016/04/30/set-up-next/</loc>
     
     <lastmod>2016-10-27T08:38:25.516Z</lastmod>
@@ -93,44 +142,9 @@
   </url>
   
   <url>
-    <loc>http://jianbing.github.io/2016/03/13/selenium-bs4-data-capture/</loc>
-    
-    <lastmod>2016-10-27T08:38:25.510Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://jianbing.github.io/2016/03/05/search-content-in-files/</loc>
-    
-    <lastmod>2016-10-27T08:38:25.506Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://jianbing.github.io/2016/03/17/pycharm-tips/</loc>
-    
-    <lastmod>2016-10-27T08:38:25.503Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://jianbing.github.io/2016/06/29/pycharm-autopep8/</loc>
-    
-    <lastmod>2016-10-27T08:38:25.501Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://jianbing.github.io/2016/04/10/network-traffic-test/</loc>
     
     <lastmod>2016-10-27T08:38:25.497Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://jianbing.github.io/2016/04/21/kill_thunderPlatform/</loc>
-    
-    <lastmod>2016-10-27T08:38:25.489Z</lastmod>
     
   </url>
   
@@ -163,23 +177,9 @@
   </url>
   
   <url>
-    <loc>http://jianbing.github.io/2016/03/08/check-player-name/</loc>
-    
-    <lastmod>2016-10-27T08:38:25.457Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://jianbing.github.io/2016/04/05/android-tcpdump/</loc>
     
     <lastmod>2016-10-27T08:38:25.453Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://jianbing.github.io/2016/04/27/adb-tool/</loc>
-    
-    <lastmod>2016-10-27T08:38:25.449Z</lastmod>
     
   </url>
   
