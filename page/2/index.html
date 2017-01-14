@@ -251,116 +251,6 @@
             
               
                 
-                <a class="post-title-link" href="/2016/04/27/adb-tool/" itemprop="url">
-                  ADB工具类分享
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-27T00:00:00+08:00" content="2016-04-27">
-              2016-04-27
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/04/27/adb-tool/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/27/adb-tool/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>之前封装了一批基于adb命令的函数，用于辅助游戏安卓版本的测试，<a href="https://github.com/jianbing/utils/blob/master/android.py">源码在此</a>。</p>
-<p>虽然已经比较方便了，但是在使用过程中，还是存在一些不足。</p>
-<ul>
-<li>不支持同时连接多部手机</li>
-<li>不支持adb通过wifi连接手机</li>
-<li>部分函数的写法不太合理</li>
-</ul>
-<p>周末的时候，重新封装了一个ADB工具类，把之前的函数整合进去。来看看怎么使用吧~</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/04/27/adb-tool/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2016/04/23/cpu-memory/" itemprop="url">
                   安卓性能专项之CPU内存篇
                 </a>
@@ -676,110 +566,6 @@
             
               
                 
-                <a class="post-title-link" href="/2016/04/15/count-pyfunc-running-time/" itemprop="url">
-                  计算Python函数的运行时间
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-15T00:00:00+08:00" content="2016-04-15">
-              2016-04-15
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/04/15/count-pyfunc-running-time/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/15/count-pyfunc-running-time/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>有时候需要计算一下函数的时间，可以有以下的几种方式：</p>
-<h3 id="简单粗暴式"><a href="#简单粗暴式" class="headerlink" title="简单粗暴式"></a>简单粗暴式</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> time</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">func</span><span class="params">()</span>:</span></div><div class="line">    <span class="keyword">pass</span></div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:  </div><div class="line">    start = time.time()</div><div class="line">    func()</div><div class="line">    <span class="keyword">print</span> time.time() - start</div></pre></td></tr></table></figure>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/04/15/count-pyfunc-running-time/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2016/04/13/unity-fps-tool/" itemprop="url">
                   安卓性能专项之FPS测试篇
                 </a>
@@ -991,112 +777,6 @@
             
               
                 
-                <a class="post-title-link" href="/2016/04/07/about-blog/" itemprop="url">
-                  关于这个博客
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-07T00:00:00+08:00" content="2016-04-07">
-              2016-04-07
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/04/07/about-blog/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/07/about-blog/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>时间还真是快，从上个月3号搭建好了这个博客，到今天，已经过了一个月了。</p>
-<p>来点闲聊吧~</p>
-<h3 id="写博客的初衷"><a href="#写博客的初衷" class="headerlink" title="写博客的初衷"></a>写博客的初衷</h3><p>作为一枚游戏测试，有一个很明显的感受是，相对于软件测试，游戏测试圈子，学习资料稀缺许多，这几年自己也逐渐有了一些积累，在这里分享自己的一些学习经验，虽然路过的人应该会比较少，有缘就看看呗。</p>
-<p>之前的笔记都是记录在有道云笔记里边，只有自己看的缘故，所以比较懒，笔记往往写得比较片段化，不够系统和完整，在重新码字的过程中，会有新的思考和沉淀，也是对自己的一种提升。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/04/07/about-blog/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2016/04/05/android-tcpdump/" itemprop="url">
                   安卓上使用tcpdump抓包的几种方式
                 </a>
@@ -1208,8 +888,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/03/29/share-test-library/" itemprop="url">
-                  分享一个工具类库
+                <a class="post-title-link" href="/2016/03/27/interface-test-tool-2/" itemprop="url">
+                  游戏测试之接口工具篇（下篇）
                 </a>
               
             
@@ -1222,8 +902,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-29T00:00:00+08:00" content="2016-03-29">
-              2016-03-29
+            <time itemprop="dateCreated" datetime="2016-03-27T00:00:00+08:00" content="2016-03-27">
+              2016-03-27
             </time>
           </span>
 
@@ -1233,8 +913,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/03/29/share-test-library/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/29/share-test-library/" itemprop="commentsCount"></span>
+                <a href="/2016/03/27/interface-test-tool-2/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/27/interface-test-tool-2/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -1258,13 +938,347 @@
 
       
         
-          
-            <p>简单整理了下，把平时测试工作中用到的工具类库放到<a href="https://github.com/jianbing/utils" target="_blank" rel="external">Github</a>上了。</p>
-<p>平时也是一个人折腾，写的也比较随意（哈哈，其实是新手水平了）。</p>
-<p>简单介绍一下各个文件的主要内容：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">utils</div><div class="line">    android.py       主要是常用adb命令的封装</div><div class="line">    common.py        公共函数</div><div class="line">    decorators.py    自己常用的一些装饰器</div><div class="line">    cmdtool          封装了一个简单的命令行工具</div><div class="line">    tools            几个工具类</div><div class="line">        monitor.py       安卓app的CPU，内存占用情况的监视器，支持内存占用达到指定值的时候自动截图</div><div class="line">        biplist.py       在Github上淘到，可以解析IPA安装包里边的plist文件</div><div class="line">        sftpclient.py    基于paramiko简单封装的sftp客户端，平时主要用来下载内网配置表，看看发版时间</div><div class="line">        minipb.py   	 某天写着玩的迷你进度条</div><div class="line">        taskcenter.py    多线程池</div><div class="line">        adb.py           adb工具类</div></pre></td></tr></table></figure>
+          <p>上一篇分享了在做接口测试时，用到的一些工具软件，最终的感觉是，能用，但不顺手。最主要的原因是，发送请求后，没法很直观地查看服务端的返回结果，其次是使用起来，工作效率并不理想。</p>
+<p>在经历的几个项目中，最终都是使用了内部开发的接口工具，而每个项目的接口工具的原理和使用方式区别还挺大，在此分享下各个工具的设计思路。</p>
+<h3 id="项目1"><a href="#项目1" class="headerlink" title="项目1"></a>项目1</h3><p>2011年那会，刚刚从学校踏入测试坑，项目是一个SLG页游，前后端使用Socket通讯，数据交互采用Json格式，最初版本的接口测试是用WPE做的，后来服务端的主程MM在内网开了一个Web端口，可以接收Http Get请求，格式如下：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">http://192.168.22.248/sftx/gameSocket/send?u=playerId&amp;c=protocol&amp;p=port&amp;params=param1|param2|param3</div></pre></td></tr></table></figure>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/03/27/interface-test-tool-2/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/03/26/interface-test-tool-1/" itemprop="url">
+                  游戏测试之接口工具篇（上篇）
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-03-26T00:00:00+08:00" content="2016-03-26">
+              2016-03-26
+            </time>
+          </span>
 
           
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/03/26/interface-test-tool-1/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/26/interface-test-tool-1/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>这几天在折腾内网的接口测试工具时，想起这几年做游戏接口测试时，也尝试了若干工具软件，在此简单记录下用过的接口工具，本文记录的是可以用于接口测试的第三方工具软件。</p>
+<p>软件清单：</p>
+<p>WPE，Charles，Loadrunner，烧饼修改器</p>
+<h3 id="项目背景"><a href="#项目背景" class="headerlink" title="项目背景"></a>项目背景</h3><p>几个项目下来，前后端都是采用Socket协议通讯，数据包格式用过Json，AMF3，Protobuf。</p>
+<h3 id="接口测试的重要性"><a href="#接口测试的重要性" class="headerlink" title="接口测试的重要性"></a>接口测试的重要性</h3><p>接口测试要不要做，就举两个如果没做接口测试，有可能会出现的bug吧：</p>
+<ul>
+<li><p>重发领奖封包，可以重复领奖。</p>
+</li>
+<li><p>背包出售道具，修改售价溢出，获取大量游戏币。  </p>
+</li>
+</ul>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/03/26/interface-test-tool-1/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/03/17/pycharm-tips/" itemprop="url">
+                  Pycharm代码提示技巧
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-03-17T00:00:00+08:00" content="2016-03-17">
+              2016-03-17
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/03/17/pycharm-tips/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/17/pycharm-tips/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>分享一个Pycharm的代码提示技巧~</p>
+<p>有时候Pycharm并没有自动收集到对象可用的方法，比如这个对象的类型要运行的时候才知道，举个栗子：</p>
+<p><img src="/images/pycharm-tips/pic1.png" alt=""></p>
+<p>这个时候，我们可以用type来查看对象的类型。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">print</span> type(d)</div></pre></td></tr></table></figure>
+<p>发现类型是：atx.device.AndroidDevice</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/03/17/pycharm-tips/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/03/13/selenium-bs4-data-capture/" itemprop="url">
+                  Teambition数据抓取
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-03-13T00:00:00+08:00" content="2016-03-13">
+              2016-03-13
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/03/13/selenium-bs4-data-capture/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/13/selenium-bs4-data-capture/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="起源"><a href="#起源" class="headerlink" title="起源"></a>起源</h3><p>自从工作室使用了Teambition作为项目管理工具后，为了统一管理，bug也开始记录到Teambition里边去。</p>
+<p>总体来说，Teambition轻便，多客户端支持，界面也很漂亮，但是如果用来管理bug的话，那么问题来了~</p>
+<p>因为用的是免费版，数据统计功能弱到几乎可以忽略，那么怎么做bug统计呢？以当前未修复的bug统计为例。</p>
+<p>最开始的几天，操作过程是这么做的：</p>
+<ol>
+<li>打开Teambition的客户端，进入到测试分组的主页</li>
+<li>右击打开开发者工具，把整个html内容保存到桌面</li>
+<li>运行一段python小程序，解析这个html，打印出未修复的bug统计</li>
+</ol>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/03/13/selenium-bs4-data-capture/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -1336,7 +1350,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">29</span>
+              <span class="site-state-item-count">24</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1426,8 +1440,8 @@
       <div class="footer-inner">
         <div class="copyright" >
   
-  &copy; 
-  <span itemprop="copyrightYear">2016</span>
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

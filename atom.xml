@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jianbing.github.io/"/>
-  <updated>2016-11-10T08:18:00.270Z</updated>
+  <updated>2017-01-14T11:37:39.947Z</updated>
   <id>http://jianbing.github.io/</id>
   
   <author>
@@ -14,6 +14,41 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>计算Python函数的运行时间</title>
+    <link href="http://jianbing.github.io/2017/01/14/count-pyfunc-running-time/"/>
+    <id>http://jianbing.github.io/2017/01/14/count-pyfunc-running-time/</id>
+    <published>2017-01-13T16:00:00.000Z</published>
+    <updated>2017-01-14T11:37:39.947Z</updated>
+    
+    <content type="html"><![CDATA[<p>有时候需要计算一下函数的时间，可以有以下的几种方式：</p>
+<h3 id="简单粗暴式"><a href="#简单粗暴式" class="headerlink" title="简单粗暴式"></a>简单粗暴式</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> time</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">func</span><span class="params">()</span>:</span></div><div class="line">    <span class="keyword">pass</span></div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:  </div><div class="line">    start = time.time()</div><div class="line">    func()</div><div class="line">    <span class="keyword">print</span> time.time() - start</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<h3 id="升级版1"><a href="#升级版1" class="headerlink" title="升级版1"></a>升级版1</h3><p>使用装饰器<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> time</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">count_running_time</span><span class="params">(func)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">_count_running_time</span><span class="params">(*args, **kwargs)</span>:</span></div><div class="line">        start = time.time()</div><div class="line">        res = func(*args, **kwargs)</div><div class="line">        print(<span class="string">'cost time :&#123;0&#125;'</span>.format(time.time() - start))</div><div class="line">        <span class="keyword">return</span> res</div><div class="line">    <span class="keyword">return</span> _count_running_time</div><div class="line"></div><div class="line"><span class="meta">@count_running_time</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">func</span><span class="params">()</span>:</span></div><div class="line">    <span class="keyword">pass</span></div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">    func()</div></pre></td></tr></table></figure></p>
+<h3 id="升级版2"><a href="#升级版2" class="headerlink" title="升级版2"></a>升级版2</h3><p>通过上下文管理器</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> contextlib <span class="keyword">import</span> contextmanager</div><div class="line"></div><div class="line"><span class="meta">@contextmanager</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">count_time</span><span class="params">()</span>:</span></div><div class="line">    start_time = time.time()</div><div class="line">    print(<span class="string">"开始执行"</span>)</div><div class="line">    <span class="keyword">yield</span></div><div class="line">    print(<span class="string">"执行结束，耗时&#123;&#125;"</span>.format(time.time() - start_time))</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line"></div><div class="line">    <span class="keyword">with</span> count_time():</div><div class="line">        print(<span class="string">"hi"</span>)</div></pre></td></tr></table></figure>
+<blockquote>
+<p>以上的方式，只能简单统计函数的总运行时间，如果函数复杂，需要分析里边调用的次数和耗时，则满足不了我们的需求。</p>
+</blockquote>
+<h3 id="更精确的统计方式"><a href="#更精确的统计方式" class="headerlink" title="更精确的统计方式"></a>更精确的统计方式</h3><p>使用cProfile来进行统计，使用pstats来分析结果，直接看代码吧~</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> time</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">profile_func</span><span class="params">(func)</span>:</span></div><div class="line">    <span class="keyword">import</span> cProfile</div><div class="line">    cProfile.run(<span class="string">"&#123;&#125;()"</span>.format(func.func_name),<span class="string">"prof.txt"</span>)</div><div class="line">    <span class="keyword">import</span> pstats</div><div class="line">    p = pstats.Stats(<span class="string">"prof.txt"</span>)</div><div class="line">    p.sort_stats(<span class="string">"time"</span>).print_stats()</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">func</span><span class="params">()</span>:</span></div><div class="line">    <span class="keyword">print</span> <span class="string">'hello world'</span></div><div class="line">    <span class="keyword">import</span> time</div><div class="line">    time.sleep(<span class="number">3</span>)</div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">    profile_func(func)</div></pre></td></tr></table></figure>
+<p>打印如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">hello world</div><div class="line">Sat Apr <span class="number">16</span> <span class="number">17</span>:<span class="number">19</span>:<span class="number">10</span> <span class="number">2016</span>    prof.txt</div><div class="line"></div><div class="line">         <span class="number">4</span> function calls <span class="keyword">in</span> <span class="number">3.000</span> seconds</div><div class="line"></div><div class="line">   Ordered by: internal time</div><div class="line"></div><div class="line">   ncalls  tottime  percall  cumtime  percall filename:lineno(function)</div><div class="line">        <span class="number">1</span>    <span class="number">3.000</span>    <span class="number">3.000</span>    <span class="number">3.000</span>    <span class="number">3.000</span> &#123;time.sleep&#125;</div><div class="line">        <span class="number">1</span>    <span class="number">0.000</span>    <span class="number">0.000</span>    <span class="number">3.000</span>    <span class="number">3.000</span> C:/Py27Project/testtools/local_test/__init__.py:<span class="number">12</span>(func)</div><div class="line">        <span class="number">1</span>    <span class="number">0.000</span>    <span class="number">0.000</span>    <span class="number">3.000</span>    <span class="number">3.000</span> &lt;string&gt;:<span class="number">1</span>(&lt;module&gt;)</div><div class="line">        <span class="number">1</span>    <span class="number">0.000</span>    <span class="number">0.000</span>    <span class="number">0.000</span>    <span class="number">0.000</span> &#123;method <span class="string">'disable'</span> of <span class="string">'_lsprof.Profiler'</span> objects&#125;</div></pre></td></tr></table></figure>
+<p>函数调用的次数和耗时一目了然~</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;有时候需要计算一下函数的时间，可以有以下的几种方式：&lt;/p&gt;
+&lt;h3 id=&quot;简单粗暴式&quot;&gt;&lt;a href=&quot;#简单粗暴式&quot; class=&quot;headerlink&quot; title=&quot;简单粗暴式&quot;&gt;&lt;/a&gt;简单粗暴式&lt;/h3&gt;&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; time&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;func&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt;:&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;pass&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; __name__ == &lt;span class=&quot;string&quot;&gt;&#39;__main__&#39;&lt;/span&gt;:  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    start = time.time()&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    func()&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;print&lt;/span&gt; time.time() - start&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+    
+    </summary>
+    
+    
+      <category term="python" scheme="http://jianbing.github.io/tags/python/"/>
+    
+  </entry>
   
   <entry>
     <title>聊一聊Python2的编码坑</title>
@@ -84,61 +119,6 @@
     
     </summary>
     
-    
-      <category term="python" scheme="http://jianbing.github.io/tags/python/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>命令行工具2.0版</title>
-    <link href="http://jianbing.github.io/2016/07/11/cmd-tool/"/>
-    <id>http://jianbing.github.io/2016/07/11/cmd-tool/</id>
-    <published>2016-07-10T16:00:00.000Z</published>
-    <updated>2016-10-27T08:38:25.460Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="起源"><a href="#起源" class="headerlink" title="起源"></a>起源</h3><p>随着在工作中逐渐积累了不少测试脚本，需要对脚本们进行归类整合，目前发现3种可行方案：</p>
-<ul>
-<li>Web界面</li>
-<li>GUI界面</li>
-<li>命令行界面</li>
-</ul>
-<p>Web界面可以使用Flask框架来搭建，GUI界面可以使用TK，PyQT，wxPython等GUI库来编写，从学习成本来说，命令行界面是最容易上手，这一篇我们来聊一聊命令行界面的实现。</p>
-<a id="more"></a>
-<h3 id="整理需求"><a href="#整理需求" class="headerlink" title="整理需求"></a>整理需求</h3><p>我的需求其实还是比较简单的：</p>
-<ul>
-<li>多个命令可以随时调整顺序，方便在中间加入新的命令</li>
-<li>支持快捷键操作</li>
-<li>不需要做命令行参数解析，因为我都没打算用参数~偷笑~</li>
-</ul>
-<p>所以目前希望的运行效果是：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">请选择指令</div><div class="line"></div><div class="line"><span class="number">1</span>，备份apk，hotkey:b</div><div class="line"><span class="number">2</span>，屏幕截图，hotkey:s</div><div class="line"><span class="number">3</span>，获取屏幕分辨率，hotkey:r</div><div class="line">Make a choice</div></pre></td></tr></table></figure>
-<h3 id="实现过程"><a href="#实现过程" class="headerlink" title="实现过程"></a>实现过程</h3><p>其实，Python标准库里边，argparse可以用于解析命令行参数和选项。出色的第三方库有docopt，Click等。不过介于自己的需要并不复杂，那就造个轮子吧~</p>
-<p>在之前，有写过一个<a href="https://github.com/jianbing/hexo-cmd-tool" target="_blank" rel="external">hexo-cmd-tool</a>，现在看起来使用方式还是麻烦了，于是基于它进行了改造。新增了一个装饰器cmdline来简化使用。</p>
-<p>先看一个使用的例子：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#! /usr/bin/env python</span></div><div class="line"><span class="comment"># -*- coding: UTF-8 -*-</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> os</div><div class="line"><span class="keyword">from</span> utils.tools.cmd <span class="keyword">import</span> cmdline, CmdCenter</div><div class="line"></div><div class="line"><span class="meta">@cmdline('hexo generate', 'g')</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">hexo_g</span><span class="params">()</span>:</span></div><div class="line">    os.system(<span class="string">'hexo g'</span>)</div><div class="line"></div><div class="line"><span class="meta">@cmdline('hexo server', 's')</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">hexo_s</span><span class="params">()</span>:</span></div><div class="line">    os.system(<span class="string">'hexo s'</span>)</div><div class="line"></div><div class="line"><span class="meta">@cmdline('hexo version', 'v')</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">hexo_v</span><span class="params">()</span>:</span></div><div class="line">    os.system(<span class="string">'hexo v'</span>)</div><div class="line"></div><div class="line"><span class="meta">@cmdline('hexo deploy', 'd')</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">hexo_d</span><span class="params">()</span>:</span></div><div class="line">    os.system(<span class="string">'hexo d'</span>)</div><div class="line">	</div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</div><div class="line">    CmdCenter.work()</div></pre></td></tr></table></figure>
-<p>使用效果：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">请选择指令</div><div class="line"></div><div class="line"><span class="number">1</span>，hexo generate，hotkey:g</div><div class="line"><span class="number">2</span>，hexo server，hotkey:s</div><div class="line"><span class="number">3</span>，hexo version，hotkey:v</div><div class="line"><span class="number">4</span>，hexo deploy，hotkey:d</div><div class="line">Make a choice</div></pre></td></tr></table></figure></p>
-<p>原理非常简单，利用装饰器的特性，在加载函数对象的时候，把函数加多一层封装转存起来。</p>
-<p>源码：</p>
-<blockquote>
-<p>开发环境：Python2.7+Win10+Pycharm</p>
-</blockquote>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#! /usr/bin/env python</span></div><div class="line"><span class="comment"># -*- coding: utf-8 -*-</span></div><div class="line"><span class="keyword">from</span> __future__ <span class="keyword">import</span> unicode_literals</div><div class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> OrderedDict</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">_Cmd</span><span class="params">(object)</span>:</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, func, title, hotkey=None, args=None)</span>:</span></div><div class="line">        self.__func = func</div><div class="line">        self.__title = title</div><div class="line">        self.__hotkey = hotkey</div><div class="line">        self.__args = args</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">if</span> self.__args:</div><div class="line">            self.__func(*self.__args)</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            self.__func()</div><div class="line"></div><div class="line"><span class="meta">    @property</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">hotkey</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">return</span> self.__hotkey</div><div class="line"></div><div class="line"><span class="meta">    @property</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">title</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">return</span> self.__title</div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">_CmdCenter</span><span class="params">(object)</span>:</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></div><div class="line">        self.cmds = OrderedDict()</div><div class="line">        self.cmds_hotkey = dict()</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">add_cmd</span><span class="params">(self, cmd)</span>:</span></div><div class="line">        self.cmds[str(len(self.cmds) + <span class="number">1</span>)] = cmd</div><div class="line"></div><div class="line">        <span class="keyword">if</span> cmd.hotkey:</div><div class="line">            <span class="keyword">if</span> cmd.hotkey <span class="keyword">in</span> self.cmds_hotkey:</div><div class="line">                <span class="keyword">print</span> <span class="string">"\n热键冲突,&#123;0&#125;和&#123;1&#125;"</span>.format(cmd.title, self.cmds_hotkey[cmd.hotkey].title)</div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                self.cmds_hotkey[cmd.hotkey] = cmd</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">show_cmds</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">for</span> key <span class="keyword">in</span> self.cmds:</div><div class="line">            <span class="keyword">print</span> <span class="string">'&#123;0&#125;，&#123;1&#125;，hotkey:&#123;2&#125;'</span>.format(key, self.cmds[key].title, self.cmds[key].hotkey)</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_choice</span><span class="params">(self)</span>:</span></div><div class="line">        choice = raw_input(<span class="string">"Make a choice\n"</span>)</div><div class="line">        <span class="keyword">return</span> choice</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">work</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">while</span> <span class="keyword">True</span>:</div><div class="line">            <span class="keyword">try</span>:</div><div class="line">                <span class="keyword">print</span> <span class="string">'-'</span> * <span class="number">80</span></div><div class="line">                <span class="keyword">print</span> <span class="string">'请选择指令\n'</span></div><div class="line">                self.show_cmds()</div><div class="line"></div><div class="line">                <span class="keyword">while</span> <span class="keyword">True</span>:</div><div class="line">                    choice = self.get_choice()</div><div class="line">                    <span class="keyword">if</span> choice <span class="keyword">not</span> <span class="keyword">in</span> self.cmds <span class="keyword">and</span> choice <span class="keyword">not</span> <span class="keyword">in</span> self.cmds_hotkey:</div><div class="line">                        <span class="keyword">print</span> <span class="string">'选择错误，重新选择'</span></div><div class="line">                        <span class="keyword">continue</span></div><div class="line">                    <span class="keyword">break</span></div><div class="line"></div><div class="line">                <span class="keyword">print</span> <span class="string">''</span></div><div class="line"></div><div class="line">                <span class="keyword">if</span> choice <span class="keyword">in</span> self.cmds:</div><div class="line">                    self.cmds[choice].run()</div><div class="line">                <span class="keyword">else</span>:</div><div class="line">                    self.cmds_hotkey[choice].run()</div><div class="line">                <span class="keyword">print</span> <span class="string">'\n执行完成\n'</span></div><div class="line">            <span class="keyword">except</span> KeyboardInterrupt:</div><div class="line">                <span class="keyword">print</span> <span class="string">'手动退出'</span></div><div class="line"></div><div class="line">CmdCenter = _CmdCenter()</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">cmdline</span><span class="params">(title, hotkey=None)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">_cmdline</span><span class="params">(func)</span>:</span></div><div class="line">        CmdCenter.add_cmd(_Cmd(func, title, hotkey))</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">def</span> <span class="title">__cmdline</span><span class="params">(*args, **kwargs)</span>:</span></div><div class="line">            <span class="keyword">return</span> func(*args, **kwargs)</div><div class="line">        <span class="keyword">return</span> __cmdline</div><div class="line">    <span class="keyword">return</span> _cmdline</div></pre></td></tr></table></figure>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;起源&quot;&gt;&lt;a href=&quot;#起源&quot; class=&quot;headerlink&quot; title=&quot;起源&quot;&gt;&lt;/a&gt;起源&lt;/h3&gt;&lt;p&gt;随着在工作中逐渐积累了不少测试脚本，需要对脚本们进行归类整合，目前发现3种可行方案：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Web界面&lt;/li&gt;
-&lt;li&gt;GUI界面&lt;/li&gt;
-&lt;li&gt;命令行界面&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Web界面可以使用Flask框架来搭建，GUI界面可以使用TK，PyQT，wxPython等GUI库来编写，从学习成本来说，命令行界面是最容易上手，这一篇我们来聊一聊命令行界面的实现。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="游戏测试" scheme="http://jianbing.github.io/tags/%E6%B8%B8%E6%88%8F%E6%B5%8B%E8%AF%95/"/>
     
       <category term="python" scheme="http://jianbing.github.io/tags/python/"/>
     
@@ -330,7 +310,7 @@
     <link href="http://jianbing.github.io/2016/06/06/unity-pic-check/"/>
     <id>http://jianbing.github.io/2016/06/06/unity-pic-check/</id>
     <published>2016-06-05T16:00:00.000Z</published>
-    <updated>2016-10-27T08:38:25.534Z</updated>
+    <updated>2017-01-14T11:39:57.293Z</updated>
     
     <content type="html"><![CDATA[<h3 id="检查点整理"><a href="#检查点整理" class="headerlink" title="检查点整理"></a>检查点整理</h3><p>合理的设置可以减少内存的占用，以我们游戏的安卓平台为例：</p>
 <ul>
@@ -355,7 +335,7 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">- buildTarget: Android</div><div class="line">    maxTextureSize: <span class="number">2048</span></div><div class="line">    textureFormat: <span class="number">-1</span></div><div class="line">    compressionQuality: <span class="number">100</span></div><div class="line">    allowsAlphaSplitting: <span class="number">0</span></div></pre></td></tr></table></figure>
 <h4 id="C-方式"><a href="#C-方式" class="headerlink" title="C#方式"></a>C#方式</h4><p>通过Unity的api，读取相应的设置，进行检查。核心代码如下：</p>
 <p>pic变量是图片的路径，如 @”Assets/Res/zh-CN/Battle/Texture/BG/BG_001.jpg”</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">TextureImporter ti = AssetImporter.GetAtPath(pic) <span class="keyword">as</span> TextureImporter;</div><div class="line">int maxSize = <span class="number">0</span>;</div><div class="line">TextureImporterFormat format;</div><div class="line">int compressionQuality = <span class="number">0</span>;</div><div class="line">ti.GetPlatformTextureSettings(<span class="string">"Android"</span>, out maxSize, out format, out compressionQuality);</div><div class="line"></div><div class="line">Debug.LogWarning(string.Format(<span class="string">"strat to check &#123;0&#125;"</span>,pic));</div><div class="line"></div><div class="line">    </div><div class="line"><span class="keyword">if</span> (maxSize != <span class="number">1024</span>) &#123;</div><div class="line">    Debug.LogError(string.Format(<span class="string">"&#123;0&#125;,max size is not 1024,now is &#123;1&#125;"</span>, pic, maxSize));</div><div class="line">&#125;</div><div class="line"><span class="keyword">if</span>(format != TextureImporterFormat.AutomaticCompressed) &#123;</div><div class="line">    Debug.LogError(string.Format(<span class="string">"&#123;0&#125;,format is not compressed,now is &#123;1&#125;"</span>, pic, format));</div><div class="line">&#125;</div><div class="line"><span class="keyword">if</span> (compressionQuality != <span class="number">100</span>) &#123;</div><div class="line">    Debug.LogError(string.Format(<span class="string">"&#123;0&#125;,compression quality is not best,now is &#123;1&#125;"</span>, pic, compressionQuality.ToString()));</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">if</span>(pic.ToLower().IndexOf(<span class="string">"png"</span>) &gt; <span class="number">-1</span>) &#123;</div><div class="line">    <span class="keyword">if</span> (!ti.GetAllowsAlphaSplitting()) &#123;</div><div class="line">        Debug.LogError(string.Format(<span class="string">"&#123;0&#125;,compress using ETC1 is not true"</span>, pic));</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">TextureImporter ti = AssetImporter.GetAtPath(pic) <span class="keyword">as</span> TextureImporter;</div><div class="line">int maxSize = <span class="number">0</span>;</div><div class="line">TextureImporterFormat format;</div><div class="line">int compressionQuality = <span class="number">0</span>;</div><div class="line">ti.GetPlatformTextureSettings(<span class="string">"Android"</span>, out maxSize, out format, out compressionQuality);</div><div class="line"></div><div class="line">Debug.LogWarning(string.Format(<span class="string">"strat to check &#123;0&#125;"</span>,pic));</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">if</span> (maxSize != <span class="number">1024</span>) &#123;</div><div class="line">    Debug.LogError(string.Format(<span class="string">"&#123;0&#125;,max size is not 1024,now is &#123;1&#125;"</span>, pic, maxSize));</div><div class="line">&#125;</div><div class="line"><span class="keyword">if</span>(format != TextureImporterFormat.AutomaticCompressed) &#123;</div><div class="line">    Debug.LogError(string.Format(<span class="string">"&#123;0&#125;,format is not compressed,now is &#123;1&#125;"</span>, pic, format));</div><div class="line">&#125;</div><div class="line"><span class="keyword">if</span> (compressionQuality != <span class="number">100</span>) &#123;</div><div class="line">    Debug.LogError(string.Format(<span class="string">"&#123;0&#125;,compression quality is not best,now is &#123;1&#125;"</span>, pic, compressionQuality.ToString()));</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">if</span>(pic.ToLower().IndexOf(<span class="string">"png"</span>) &gt; <span class="number">-1</span>) &#123;</div><div class="line">    <span class="keyword">if</span> (!ti.GetAllowsAlphaSplitting()) &#123;</div><div class="line">        Debug.LogError(string.Format(<span class="string">"&#123;0&#125;,compress using ETC1 is not true"</span>, pic));</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 ]]></content>
     
     <summary type="html">
@@ -438,48 +418,6 @@
 &lt;li&gt;调试功能比较弱&lt;/li&gt;
 &lt;li&gt;无法在现有的代码里边，直接集成sikuli的功能&lt;/li&gt;
 &lt;/ul&gt;
-    
-    </summary>
-    
-    
-      <category term="python" scheme="http://jianbing.github.io/tags/python/"/>
-    
-      <category term="测试工具" scheme="http://jianbing.github.io/tags/%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>用Python制作一个迷你快捷键工具</title>
-    <link href="http://jianbing.github.io/2016/05/13/mini-hotkey-tool/"/>
-    <id>http://jianbing.github.io/2016/05/13/mini-hotkey-tool/</id>
-    <published>2016-05-12T16:00:00.000Z</published>
-    <updated>2016-10-27T08:38:25.492Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="工具起源"><a href="#工具起源" class="headerlink" title="工具起源"></a>工具起源</h3><p>有时候在群里看到一个新鲜的名词，想要搜索一下是个什么东东，一般流程是：复制文本，打开浏览器，粘贴到搜索框，回车。</p>
-<p>有时候看到一个电影名称，想快速在豆瓣电影看下评分，一般流程是：复制文本，打开豆瓣电影，粘贴，点击搜索。</p>
-<p>在记录bug的时候，需要把截图拖动到上传控件上，经常需要在屏幕下方一堆已经打开的文件夹中，找到截图的文件夹。</p>
-<p>如果这些事情，可以用快捷键来快速完成就好了。于是开始查找资料~</p>
-<a id="more"></a>
-<h3 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h3><p>通过对鼠标和键盘事件的监控，如果按下的组合键满足已经设置的快捷键组合，就执行指定的函数代码。</p>
-<h3 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h3><p>需要安装以下的库：</p>
-<ul>
-<li><a href="https://sourceforge.net/projects/pywin32/files/pywin32/" target="_blank" rel="external">pywin32</a></li>
-<li><a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#pyhook" target="_blank" rel="external">pyhook</a></li>
-<li><a href="https://github.com/schurpf/pyhk" target="_blank" rel="external">pyhk</a></li>
-<li>pyperclip，查看剪贴板数据，通过pip安装即可</li>
-</ul>
-<h3 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h3><blockquote>
-<p>开发环境：Python2.7+Win10+Pycharm</p>
-</blockquote>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#! /usr/bin/env python</span></div><div class="line"><span class="comment"># -*- coding: UTF-8 -*-</span></div><div class="line"><span class="keyword">from</span> pyhk <span class="keyword">import</span> pyhk</div><div class="line"><span class="keyword">import</span> os</div><div class="line"><span class="keyword">import</span> subprocess</div><div class="line"><span class="keyword">import</span> pyperclip</div><div class="line"></div><div class="line">CONST_LIEBAO_DIR = <span class="string">r"C:\Users\Bing\AppData\Local\liebao\liebao.exe"</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">open_shot_dir</span><span class="params">()</span>:</span></div><div class="line">    os.system(<span class="string">r"start  C:\Users\Bing\Desktop\shot"</span>)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">search_douban_movie</span><span class="params">()</span>:</span></div><div class="line">    copy_str = pyperclip.paste().strip()</div><div class="line">    subprocess.Popen((<span class="string">'&#123;0&#125; https://movie.douban.com/subject_search?search_text=&#123;1&#125;'</span>.format(CONST_LIEBAO_DIR, copy_str.encode(<span class="string">'gb2312'</span>))))</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">search_baidu</span><span class="params">()</span>:</span></div><div class="line">    copy_str = pyperclip.paste().strip()</div><div class="line">    subprocess.Popen((<span class="string">'&#123;0&#125; https://www.baidu.com/s?wd=&#123;1&#125;'</span>.format(CONST_LIEBAO_DIR, copy_str.encode(<span class="string">'gb2312'</span>))))</div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">    <span class="keyword">print</span> <span class="string">"start working"</span></div><div class="line">    hot = pyhk()</div><div class="line">    hot.addHotkey([<span class="string">'mouse left'</span>, <span class="string">'S'</span>], open_shot_dir)</div><div class="line">    hot.addHotkey([<span class="string">'mouse left'</span>, <span class="string">'D'</span>], search_douban_movie)</div><div class="line">    hot.addHotkey([<span class="string">'mouse left'</span>, <span class="string">'B'</span>], search_baidu)</div><div class="line">    hot.start()</div></pre></td></tr></table></figure>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;工具起源&quot;&gt;&lt;a href=&quot;#工具起源&quot; class=&quot;headerlink&quot; title=&quot;工具起源&quot;&gt;&lt;/a&gt;工具起源&lt;/h3&gt;&lt;p&gt;有时候在群里看到一个新鲜的名词，想要搜索一下是个什么东东，一般流程是：复制文本，打开浏览器，粘贴到搜索框，回车。&lt;/p&gt;
-&lt;p&gt;有时候看到一个电影名称，想快速在豆瓣电影看下评分，一般流程是：复制文本，打开豆瓣电影，粘贴，点击搜索。&lt;/p&gt;
-&lt;p&gt;在记录bug的时候，需要把截图拖动到上传控件上，经常需要在屏幕下方一堆已经打开的文件夹中，找到截图的文件夹。&lt;/p&gt;
-&lt;p&gt;如果这些事情，可以用快捷键来快速完成就好了。于是开始查找资料~&lt;/p&gt;
     
     </summary>
     
@@ -710,14 +648,14 @@
     <link href="http://jianbing.github.io/2016/04/20/kill_5037/"/>
     <id>http://jianbing.github.io/2016/04/20/kill_5037/</id>
     <published>2016-04-19T16:00:00.000Z</published>
-    <updated>2016-10-27T08:38:25.485Z</updated>
+    <updated>2017-01-14T11:38:57.067Z</updated>
     
     <content type="html"><![CDATA[<p>使用adb的时候，有时候会发现5037端口被其他程序占用了。于是有了以下这个脚本，检查端口被占用的情况，并结束该进程。</p>
 <a id="more"></a>
 <blockquote>
-<p>开发环境：Python2.7+Win10+Pycharm</p>
+<p>开发环境：Python3.5+Win10+Pycharm</p>
 </blockquote>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#! /usr/bin/env python</span></div><div class="line"><span class="comment"># -*- coding: UTF-8 -*-</span></div><div class="line"><span class="keyword">from</span> __future__ <span class="keyword">import</span> unicode_literals</div><div class="line"><span class="keyword">import</span> os</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">is_port_used</span><span class="params">(port=<span class="number">5037</span>, kill=False)</span>:</span></div><div class="line">    cmd = <span class="string">'netstat -ano | findstr &#123;&#125; | findstr  LISTENING'</span>.format(port)</div><div class="line">    <span class="keyword">print</span> cmd</div><div class="line">    result = os.popen(cmd).read()</div><div class="line">    <span class="keyword">print</span> result</div><div class="line"></div><div class="line">    <span class="keyword">if</span> result != <span class="string">''</span>:</div><div class="line">        pid = result.split()[<span class="number">-1</span>]</div><div class="line"></div><div class="line">        result = os.popen(<span class="string">'tasklist /FI "PID eq &#123;0&#125;'</span>.format(pid)).read()</div><div class="line">        <span class="keyword">print</span> result</div><div class="line"></div><div class="line">        position = result.rfind(<span class="string">'====='</span>.encode())</div><div class="line">        program_name = result[position+<span class="number">5</span>:].split()[<span class="number">0</span>]</div><div class="line">        <span class="keyword">print</span> <span class="string">"占用的程序是&#123;&#125;"</span>.format(program_name)</div><div class="line"></div><div class="line">        result = os.popen(<span class="string">'wmic process where name="&#123;0&#125;" get executablepath'</span>.format(program_name)).read()</div><div class="line"></div><div class="line">        result = result.split()</div><div class="line">        <span class="keyword">print</span> <span class="string">"占用的程序所在位置：&#123;&#125;"</span>.format(result[<span class="number">1</span>])</div><div class="line"></div><div class="line">        cmd = <span class="string">"explorer &#123;0&#125;"</span>.format(os.path.dirname(result[<span class="number">1</span>]))</div><div class="line">        os.popen(cmd)  <span class="comment"># 打开所在文件夹</span></div><div class="line">        <span class="keyword">if</span> kill:</div><div class="line">            os.popen(<span class="string">"taskkill /F /PID &#123;0&#125;"</span>.format(pid))   <span class="comment"># 结束进程</span></div><div class="line">    <span class="keyword">else</span>:</div><div class="line">        <span class="keyword">print</span> <span class="string">'&#123;&#125;端口没有被占用'</span>.format(port)</div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">    is_port_used()</div><div class="line">    input()</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#! /usr/bin/env python</span></div><div class="line"><span class="comment"># -*- coding: UTF-8 -*-</span></div><div class="line"><span class="keyword">import</span> os</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">is_port_used</span><span class="params">(port=<span class="number">5037</span>, kill=False)</span>:</span></div><div class="line">    cmd = <span class="string">'netstat -ano | findstr &#123;&#125; | findstr  LISTENING'</span>.format(port)</div><div class="line">    print(cmd)</div><div class="line">    result = os.popen(cmd).read()</div><div class="line">    print(result)</div><div class="line">    pid = <span class="keyword">None</span></div><div class="line">    <span class="keyword">if</span> result != <span class="string">''</span>:</div><div class="line">        <span class="keyword">try</span>:</div><div class="line">            pid = result.split()[<span class="number">-1</span>]</div><div class="line"></div><div class="line">            result = os.popen(<span class="string">'tasklist /FI "PID eq &#123;0&#125;'</span>.format(pid)).read()</div><div class="line">            <span class="string">""":type: str """</span></div><div class="line">            print(result)</div><div class="line"></div><div class="line">            position = result.rfind(<span class="string">'====='</span>)</div><div class="line">            program_name = result[position + <span class="number">5</span>:].split()[<span class="number">0</span>]</div><div class="line">            print(<span class="string">"占用的程序是&#123;&#125;"</span>.format(program_name))</div><div class="line"></div><div class="line">            result = os.popen(<span class="string">'wmic process where name="&#123;0&#125;" get executablepath'</span>.format(program_name)).read()</div><div class="line"></div><div class="line">            result = result.split()</div><div class="line">            print(<span class="string">"占用的程序所在位置：&#123;&#125;"</span>.format(result[<span class="number">1</span>]))</div><div class="line"></div><div class="line">            cmd = <span class="string">"explorer &#123;0&#125;"</span>.format(os.path.dirname(result[<span class="number">1</span>]))</div><div class="line">            execute_cmd(cmd)  <span class="comment"># 打开所在文件夹</span></div><div class="line"></div><div class="line">        <span class="keyword">except</span> Exception:</div><div class="line">            <span class="keyword">import</span> traceback</div><div class="line">            traceback.print_exc()</div><div class="line">        <span class="keyword">finally</span>:</div><div class="line">            <span class="keyword">if</span> kill:</div><div class="line">                <span class="keyword">if</span> <span class="keyword">not</span> pid:</div><div class="line">                    <span class="keyword">raise</span> Exception(<span class="string">"pid is None"</span>)</div><div class="line">                print(os.popen(<span class="string">"taskkill /F /PID &#123;0&#125;"</span>.format(pid)).read())   <span class="comment"># 结束进程</span></div><div class="line"></div><div class="line">    <span class="keyword">else</span>:</div><div class="line">        print(<span class="string">'&#123;&#125;端口没有被占用'</span>.format(port))</div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">    is_port_used()</div><div class="line">    input()</div></pre></td></tr></table></figure>
 <p>运行结果：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">netstat -ano | findstr <span class="number">5037</span> | findstr  LISTENING</div><div class="line">  TCP    <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">5037</span>         <span class="number">0.0</span><span class="number">.0</span><span class="number">.0</span>:<span class="number">0</span>              LISTENING       <span class="number">16600</span></div><div class="line"></div><div class="line"></div><div class="line">映像名称                       PID 会话名              会话<span class="comment">#       内存使用</span></div><div class="line">========================= ======== ================ =========== ============</div><div class="line">adb.exe                      <span class="number">16600</span> Console                    <span class="number">1</span>      <span class="number">3</span>,<span class="number">868</span> K</div><div class="line"></div><div class="line">占用的程序是adb.exe</div><div class="line">占用的程序所在位置：C:\Android\sdk\platform-tools\adb.exe</div></pre></td></tr></table></figure>
 ]]></content>
@@ -725,39 +663,6 @@
     <summary type="html">
     
       &lt;p&gt;使用adb的时候，有时候会发现5037端口被其他程序占用了。于是有了以下这个脚本，检查端口被占用的情况，并结束该进程。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="python" scheme="http://jianbing.github.io/tags/python/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>计算Python函数的运行时间</title>
-    <link href="http://jianbing.github.io/2016/04/15/count-pyfunc-running-time/"/>
-    <id>http://jianbing.github.io/2016/04/15/count-pyfunc-running-time/</id>
-    <published>2016-04-14T16:00:00.000Z</published>
-    <updated>2016-10-27T08:38:25.465Z</updated>
-    
-    <content type="html"><![CDATA[<p>有时候需要计算一下函数的时间，可以有以下的几种方式：</p>
-<h3 id="简单粗暴式"><a href="#简单粗暴式" class="headerlink" title="简单粗暴式"></a>简单粗暴式</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> time</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">func</span><span class="params">()</span>:</span></div><div class="line">    <span class="keyword">pass</span></div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:  </div><div class="line">    start = time.time()</div><div class="line">    func()</div><div class="line">    <span class="keyword">print</span> time.time() - start</div></pre></td></tr></table></figure>
-<a id="more"></a>
-<h3 id="简单粗暴式的升级版"><a href="#简单粗暴式的升级版" class="headerlink" title="简单粗暴式的升级版"></a>简单粗暴式的升级版</h3><p>使用装饰器<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> time</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">count_running_time</span><span class="params">(func)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">_count_running_time</span><span class="params">(*args, **kwargs)</span>:</span></div><div class="line">        start = time.time()</div><div class="line">        res = func(*args, **kwargs)</div><div class="line">        print(<span class="string">'cost time :&#123;0&#125;'</span>.format(time.time() - start))</div><div class="line">        <span class="keyword">return</span> res</div><div class="line">    <span class="keyword">return</span> _count_running_time</div><div class="line"></div><div class="line"><span class="meta">@count_running_time</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">func</span><span class="params">()</span>:</span></div><div class="line">    <span class="keyword">pass</span></div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">    func()</div></pre></td></tr></table></figure></p>
-<blockquote>
-<p>以上两种方式，只能简单统计函数的总运行时间，如果函数复杂，需要分析里边调用的次数和耗时，则满足不了我们的需求。</p>
-</blockquote>
-<h3 id="优雅的统计方式"><a href="#优雅的统计方式" class="headerlink" title="优雅的统计方式"></a>优雅的统计方式</h3><p>使用cProfile来进行统计，使用pstats来分析结果，直接看代码吧~</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> time</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">profile_func</span><span class="params">(func)</span>:</span></div><div class="line">    <span class="keyword">import</span> cProfile</div><div class="line">    cProfile.run(<span class="string">"&#123;&#125;()"</span>.format(func.func_name),<span class="string">"prof.txt"</span>)</div><div class="line">    <span class="keyword">import</span> pstats</div><div class="line">    p = pstats.Stats(<span class="string">"prof.txt"</span>)</div><div class="line">    p.sort_stats(<span class="string">"time"</span>).print_stats()</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">func</span><span class="params">()</span>:</span></div><div class="line">    <span class="keyword">print</span> <span class="string">'hello world'</span></div><div class="line">    <span class="keyword">import</span> time</div><div class="line">    time.sleep(<span class="number">3</span>)</div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">    profile_func(func)</div></pre></td></tr></table></figure>
-<p>打印如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">hello world</div><div class="line">Sat Apr <span class="number">16</span> <span class="number">17</span>:<span class="number">19</span>:<span class="number">10</span> <span class="number">2016</span>    prof.txt</div><div class="line"></div><div class="line">         <span class="number">4</span> function calls <span class="keyword">in</span> <span class="number">3.000</span> seconds</div><div class="line"></div><div class="line">   Ordered by: internal time</div><div class="line"></div><div class="line">   ncalls  tottime  percall  cumtime  percall filename:lineno(function)</div><div class="line">        <span class="number">1</span>    <span class="number">3.000</span>    <span class="number">3.000</span>    <span class="number">3.000</span>    <span class="number">3.000</span> &#123;time.sleep&#125;</div><div class="line">        <span class="number">1</span>    <span class="number">0.000</span>    <span class="number">0.000</span>    <span class="number">3.000</span>    <span class="number">3.000</span> C:/Py27Project/testtools/local_test/__init__.py:<span class="number">12</span>(func)</div><div class="line">        <span class="number">1</span>    <span class="number">0.000</span>    <span class="number">0.000</span>    <span class="number">3.000</span>    <span class="number">3.000</span> &lt;string&gt;:<span class="number">1</span>(&lt;module&gt;)</div><div class="line">        <span class="number">1</span>    <span class="number">0.000</span>    <span class="number">0.000</span>    <span class="number">0.000</span>    <span class="number">0.000</span> &#123;method <span class="string">'disable'</span> of <span class="string">'_lsprof.Profiler'</span> objects&#125;</div></pre></td></tr></table></figure>
-<p>函数调用的次数和耗时一目了然~</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;有时候需要计算一下函数的时间，可以有以下的几种方式：&lt;/p&gt;
-&lt;h3 id=&quot;简单粗暴式&quot;&gt;&lt;a href=&quot;#简单粗暴式&quot; class=&quot;headerlink&quot; title=&quot;简单粗暴式&quot;&gt;&lt;/a&gt;简单粗暴式&lt;/h3&gt;&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; time&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;func&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt;:&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;pass&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; __name__ == &lt;span class=&quot;string&quot;&gt;&#39;__main__&#39;&lt;/span&gt;:  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    start = time.time()&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    func()&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;print&lt;/span&gt; time.time() - start&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
     
     </summary>
     
@@ -865,38 +770,6 @@
   </entry>
   
   <entry>
-    <title>关于这个博客</title>
-    <link href="http://jianbing.github.io/2016/04/07/about-blog/"/>
-    <id>http://jianbing.github.io/2016/04/07/about-blog/</id>
-    <published>2016-04-06T16:00:00.000Z</published>
-    <updated>2016-10-27T08:38:25.446Z</updated>
-    
-    <content type="html"><![CDATA[<p>时间还真是快，从上个月3号搭建好了这个博客，到今天，已经过了一个月了。</p>
-<p>来点闲聊吧~</p>
-<h3 id="写博客的初衷"><a href="#写博客的初衷" class="headerlink" title="写博客的初衷"></a>写博客的初衷</h3><p>作为一枚游戏测试，有一个很明显的感受是，相对于软件测试，游戏测试圈子，学习资料稀缺许多，这几年自己也逐渐有了一些积累，在这里分享自己的一些学习经验，虽然路过的人应该会比较少，有缘就看看呗。</p>
-<p>之前的笔记都是记录在有道云笔记里边，只有自己看的缘故，所以比较懒，笔记往往写得比较片段化，不够系统和完整，在重新码字的过程中，会有新的思考和沉淀，也是对自己的一种提升。</p>
-<a id="more"></a>
-<h3 id="分享什么"><a href="#分享什么" class="headerlink" title="分享什么"></a>分享什么</h3><p>首先，手把手，一步一图的教程贴应该不多，这几年深有体会的一点是，最好的教程贴，往往都是官方的文档。</p>
-<p>在这里主要分享的是各种测试类型的个人心得和经验吧，哼哼，谁说游戏测试就是点点点，除了功能测试，我们还可以关注游戏的性能情况，接口测试，数据安全，游戏兼容性，测试环境配置，工具开发等等领域。</p>
-<p>还可以分享工作中对遇到的一些问题的解决思路，以及其中的重点步骤和踩过的坑。</p>
-<p>还有就是折腾一些测试工具和脚本的心得体会吧，以及学习一些开源库的流水账记录，最近已经成为Star狂魔了~</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;时间还真是快，从上个月3号搭建好了这个博客，到今天，已经过了一个月了。&lt;/p&gt;
-&lt;p&gt;来点闲聊吧~&lt;/p&gt;
-&lt;h3 id=&quot;写博客的初衷&quot;&gt;&lt;a href=&quot;#写博客的初衷&quot; class=&quot;headerlink&quot; title=&quot;写博客的初衷&quot;&gt;&lt;/a&gt;写博客的初衷&lt;/h3&gt;&lt;p&gt;作为一枚游戏测试，有一个很明显的感受是，相对于软件测试，游戏测试圈子，学习资料稀缺许多，这几年自己也逐渐有了一些积累，在这里分享自己的一些学习经验，虽然路过的人应该会比较少，有缘就看看呗。&lt;/p&gt;
-&lt;p&gt;之前的笔记都是记录在有道云笔记里边，只有自己看的缘故，所以比较懒，笔记往往写得比较片段化，不够系统和完整，在重新码字的过程中，会有新的思考和沉淀，也是对自己的一种提升。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="杂" scheme="http://jianbing.github.io/tags/%E6%9D%82/"/>
-    
-  </entry>
-  
-  <entry>
     <title>安卓上使用tcpdump抓包的几种方式</title>
     <link href="http://jianbing.github.io/2016/04/05/android-tcpdump/"/>
     <id>http://jianbing.github.io/2016/04/05/android-tcpdump/</id>
@@ -962,27 +835,243 @@
   </entry>
   
   <entry>
-    <title>分享一个工具类库</title>
-    <link href="http://jianbing.github.io/2016/03/29/share-test-library/"/>
-    <id>http://jianbing.github.io/2016/03/29/share-test-library/</id>
-    <published>2016-03-28T16:00:00.000Z</published>
-    <updated>2016-10-27T08:38:25.519Z</updated>
+    <title>游戏测试之接口工具篇（下篇）</title>
+    <link href="http://jianbing.github.io/2016/03/27/interface-test-tool-2/"/>
+    <id>http://jianbing.github.io/2016/03/27/interface-test-tool-2/</id>
+    <published>2016-03-26T16:00:00.000Z</published>
+    <updated>2016-10-27T08:38:25.482Z</updated>
     
-    <content type="html"><![CDATA[<p>简单整理了下，把平时测试工作中用到的工具类库放到<a href="https://github.com/jianbing/utils" target="_blank" rel="external">Github</a>上了。</p>
-<p>平时也是一个人折腾，写的也比较随意（哈哈，其实是新手水平了）。</p>
-<p>简单介绍一下各个文件的主要内容：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">utils</div><div class="line">    android.py       主要是常用adb命令的封装</div><div class="line">    common.py        公共函数</div><div class="line">    decorators.py    自己常用的一些装饰器</div><div class="line">    cmdtool          封装了一个简单的命令行工具</div><div class="line">    tools            几个工具类</div><div class="line">        monitor.py       安卓app的CPU，内存占用情况的监视器，支持内存占用达到指定值的时候自动截图</div><div class="line">        biplist.py       在Github上淘到，可以解析IPA安装包里边的plist文件</div><div class="line">        sftpclient.py    基于paramiko简单封装的sftp客户端，平时主要用来下载内网配置表，看看发版时间</div><div class="line">        minipb.py   	 某天写着玩的迷你进度条</div><div class="line">        taskcenter.py    多线程池</div><div class="line">        adb.py           adb工具类</div></pre></td></tr></table></figure>
+    <content type="html"><![CDATA[<p>上一篇分享了在做接口测试时，用到的一些工具软件，最终的感觉是，能用，但不顺手。最主要的原因是，发送请求后，没法很直观地查看服务端的返回结果，其次是使用起来，工作效率并不理想。</p>
+<p>在经历的几个项目中，最终都是使用了内部开发的接口工具，而每个项目的接口工具的原理和使用方式区别还挺大，在此分享下各个工具的设计思路。</p>
+<h3 id="项目1"><a href="#项目1" class="headerlink" title="项目1"></a>项目1</h3><p>2011年那会，刚刚从学校踏入测试坑，项目是一个SLG页游，前后端使用Socket通讯，数据交互采用Json格式，最初版本的接口测试是用WPE做的，后来服务端的主程MM在内网开了一个Web端口，可以接收Http Get请求，格式如下：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">http://192.168.22.248/sftx/gameSocket/send?u=playerId&amp;c=protocol&amp;p=port&amp;params=param1|param2|param3</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>参数的含义如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">u：玩家ID</div><div class="line">c：操作协议号</div><div class="line">p：服务器端口号</div><div class="line">params：参数列表，多个参数使用<span class="string">"|"</span>连接</div></pre></td></tr></table></figure>
+<p>举个栗子：玩家升级主城</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">玩家ID：<span class="number">7001</span></div><div class="line">操作是升级主城：协议号<span class="number">110001</span></div><div class="line">参数列表：主城建筑ID是<span class="number">1001</span></div><div class="line">内网端口号：默认<span class="number">5001</span></div></pre></td></tr></table></figure>
+<p>所以相应的Get请求是</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">http://192.168.22.248/sftx/gameSocket/send?u=7001&amp;c=110001&amp;p=5001&amp;params=1001</div></pre></td></tr></table></figure>
+<p>把这个Get请求发送过去后，Web服务器会解析出相应的玩家ID，操作协议，参数列表，自动开启一个Socket连入内网游戏服务器，执行相应的操作，并返回处理结果。</p>
+<p>从此脱离了WPE，当时是用PHP围绕这个Web接口，做了一个调用页面，也实现了请求的新建，修改，分类保存，批量发送，并解析返回结果。</p>
+<p>基于这个接口，也实现了一些自动化的批量操作，如批量建号，批量升级等，对工作效率的提升也是很明显的，比如新建军团后，跑个批量申请入团，军团就满人了。</p>
+<p>这个模式的不足之处：发送请求后，因为Web那边会自行创建新的Socket连接，会自动挤号。</p>
+<h3 id="项目2"><a href="#项目2" class="headerlink" title="项目2"></a>项目2</h3><p>项目2是一个RPG页游，前后端使用Socket通讯，数据交互格式是AMF3。</p>
+<p>当时后端底层在重写ing，所以没空折腾一个Web端口给我调用~这个时候前端主程FF站了出来，提出了一个方案。</p>
+<p>游戏在网页上加载的时候，同时也加载一个测试用的js文件。</p>
+<p>执行接口测试的方式，是在Chrome的console窗口，输入已经加载的js函数sendCommand，把操作内容作为函数的参数，回车运行后发送给Flash客户端，Flash客户端接收后，解析出相应的操作ID和参数列表，执行后在console窗口打印出服务端返回结果。</p>
+<p>函数调用格式如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">sendCommand(“PackagesController”, “move”, <span class="number">0</span>, [“BACKPACK”,<span class="number">0</span>,“BACKPACK”,<span class="number">30</span>]);</div><div class="line">操作模块：PackagesController  背包模块</div><div class="line">操作行为：move   移动背包物品</div><div class="line">参数列表：[“BACKPACK”,<span class="number">0</span>,“BACKPACK”,<span class="number">30</span>]   从第<span class="number">0</span>个格子移动到第<span class="number">30</span>个</div></pre></td></tr></table></figure>
+<p>这个模式的一个好处：接口测试的请求是前端解析后，自行发出的，所以不会被挤号。</p>
+<h3 id="项目3"><a href="#项目3" class="headerlink" title="项目3"></a>项目3</h3><p>项目3是一个回合制的RPG手游，客户端使用Unity，Socket通讯，数据交互格式是PB，作为工作室的第一款手游，这次前后端主程都一直很忙，接口工具在项目前期一直没有落实下来。中间也一度是用WPE和烧饼顶着先大概测下接口。</p>
+<p>随着两个项目以来的一些积累，这次开始自己尝试独立完成接口工具，工具需求规划如下：</p>
+<ul>
+<li>支持录制请求</li>
+<li>可以对录制的请求进行复制，删除</li>
+<li>解析请求里边的参数列表</li>
+<li>查看服务端的返回结果</li>
+<li>自动校验返回结果</li>
+<li>测试用例保存到本地</li>
+</ul>
+<p>实现过程中的一些积累在此记录下：</p>
+<h3 id="录制的原理"><a href="#录制的原理" class="headerlink" title="录制的原理"></a>录制的原理</h3><p>点击一个技能升级的按钮的背后发生了什么？</p>
+<ol>
+<li>UI接收到点击请求，调用技能模块</li>
+<li>技能模块准备好参数列表，调用Server层的Send方法，生成一个请求</li>
+<li>Server层接收后，对请求进行封装，加入校验key和请求头，压缩为PB格式，生成最终请求</li>
+<li>发送给服务端</li>
+</ol>
+<p>那么，要从哪里切入来录制请求呢？最终选择了在Server层接收后，对请求进行封装前，主要原因是，接口测试主要关注参数的不合理修改后，服务端能否做出正确判断，可以不用关心校验Key等其他信息，对请求进行修改后，点击发送，直接调用Send方法，底层就会完成新的请求封装和发送。省代码啊~</p>
+<p>于是乎，现在的问题是，录制的代码加在哪里？</p>
+<p>这个项目采用的方式，是直接在Send函数里边，嵌入了转存请求的代码。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">Send</span><span class="params">(<span class="keyword">int</span> controllerID, <span class="keyword">int</span> handlerID, IEnumerable&lt;object&gt; paramList, Action&lt;GodResponse&gt; callback)</span> </span>&#123;</div><div class="line">	<span class="comment">// 煎饼加入</span></div><div class="line">	TestCenter.AddRequest(<span class="keyword">new</span> TRequest(controllerID, handlerID, paramList, callback));</div><div class="line">	<span class="comment">// 煎饼加入</span></div><div class="line">	var request = CreateRequest(controllerID, handlerID, paramList, callback);</div><div class="line">	SendRequest(request);</div><div class="line">	<span class="keyword">return</span> request.ID;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>TRequest的定义</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">[Serializable]</div><div class="line">public class TRequest :ICloneable &#123;</div><div class="line">    int controllerID;</div><div class="line">    int handlerID;</div><div class="line">    IEnumerable&lt;object&gt; paramList;</div><div class="line">    Action&lt;GodResponse&gt; callback;</div><div class="line">    public TRequest(int controllerID, int handlerID, IEnumerable&lt;object&gt; paramList, Action&lt;GodResponse&gt; callback) &#123;</div><div class="line">        this.controllerID = controllerID;</div><div class="line">        this.handlerID = handlerID;</div><div class="line">        this.paramList = paramList;</div><div class="line">        this.callback = callback;</div><div class="line">    &#125;</div><div class="line">    public object Clone() &#123;</div><div class="line">        MemoryStream stream = new MemoryStream();</div><div class="line">        BinaryFormatter formatter = new BinaryFormatter();</div><div class="line">        formatter.Serialize(stream, this);</div><div class="line">        stream.Position = 0;</div><div class="line">        return formatter.Deserialize(stream);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这个做法其实不合理，因为我们项目的测试代码并不提交到项目的代码库，每次更新代码，都会出现冲突，更合理的方式是前端提供一个发送请求的事件，测试代码这边进行监听（下个项目已使用这种方式）。</p>
+<h3 id="测试工具UI"><a href="#测试工具UI" class="headerlink" title="测试工具UI"></a>测试工具UI</h3><p>UI界面选择了Unity古老的OnGUI方法，原因就是：易学，够用。下边是一个简单的GUI界面。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">using UnityEngine;</div><div class="line"></div><div class="line">public class TestUI : MonoBehaviour &#123;</div><div class="line"></div><div class="line">    private Rect windowRect = new Rect(Screen.width * 0.25f, 0, Screen.width / 2, Screen.height - 10);</div><div class="line">    public Vector2 scrollPosition = Vector2.zero;</div><div class="line"></div><div class="line">    void OnGUI() &#123;</div><div class="line">            windowRect = GUI.Window(0, windowRect, WindowFunction, "接口测试工具");</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    void WindowFunction(int windowID) &#123;</div><div class="line">        </div><div class="line">        GUI.DragWindow(new Rect(0, 0, Screen.width/2, 30));</div><div class="line">        GUI.Box(new Rect(0,0,Screen.width,Screen.height),"");</div><div class="line"></div><div class="line">        GUILayout.BeginArea(new Rect(5, 20, Screen.width / 2-20, Screen.height));       </div><div class="line">        scrollPosition = GUILayout.BeginScrollView(scrollPosition,GUILayout.Width(Screen.width / 2 - 20),GUILayout.Height(Screen.height-60));</div><div class="line"></div><div class="line">        // 在这里请求列表解析</div><div class="line"></div><div class="line">        GUILayout.EndScrollView();</div><div class="line">        GUILayout.BeginHorizontal();</div><div class="line"></div><div class="line">        if (GUILayout.Button("统计数量")) &#123;</div><div class="line">        &#125;</div><div class="line">        if (GUILayout.Button("清空记录")) &#123;</div><div class="line">        &#125;</div><div class="line">        if (GUILayout.Button("录制")) &#123;</div><div class="line">        &#125;</div><div class="line">        if (GUILayout.Button("停止")) &#123;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        GUILayout.EndHorizontal();        </div><div class="line">        GUILayout.EndArea(); </div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>效果图：</p>
+<p><img src="/images/test-tool/pic1.png" alt=""></p>
+<h3 id="参数列表解析"><a href="#参数列表解析" class="headerlink" title="参数列表解析"></a>参数列表解析</h3><p>参数列表是一个object类型的数组，所以里边可以放各种基础类型，解析的时候，需要用到反射，动态修改里边的内容，解析函数如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">ParseBaseType2</span><span class="params">(object aParam, object aList, <span class="keyword">int</span> index = <span class="number">0</span>)</span> </span>&#123;</div><div class="line">           GUILayout.BeginHorizontal();</div><div class="line">           Type paramType = aParam.GetType();</div><div class="line"></div><div class="line">           <span class="keyword">if</span> (paramType == typeof(string)) &#123;</div><div class="line">               GUILayout.Label(<span class="string">"String"</span>, GUILayout.Width(<span class="number">30</span>));</div><div class="line">               aParam = GUILayout.TextField(aParam.ToString());</div><div class="line"></div><div class="line">           &#125; <span class="keyword">else</span> <span class="keyword">if</span> (paramType == typeof(<span class="keyword">short</span>)) &#123;</div><div class="line">               GUILayout.Label(<span class="string">"Short"</span>, GUILayout.Width(<span class="number">30</span>));</div><div class="line">               aParam = Convert.ToInt16(GUILayout.TextField(aParam.ToString()));</div><div class="line"></div><div class="line">           &#125; <span class="keyword">else</span> <span class="keyword">if</span> (paramType == typeof(<span class="keyword">int</span>)) &#123;</div><div class="line">               GUILayout.Label(<span class="string">"Int"</span>, GUILayout.Width(<span class="number">30</span>));</div><div class="line">               aParam = Convert.ToInt32(GUILayout.TextField(aParam.ToString()));</div><div class="line"></div><div class="line">           &#125; <span class="keyword">else</span> <span class="keyword">if</span> (paramType == typeof(<span class="keyword">long</span>)) &#123;</div><div class="line">               GUILayout.Label(<span class="string">"Long"</span>, GUILayout.Width(<span class="number">30</span>));</div><div class="line">               aParam = Convert.ToInt64(GUILayout.TextField(aParam.ToString()));</div><div class="line"></div><div class="line">           &#125; <span class="keyword">else</span> <span class="keyword">if</span> (paramType == typeof(bool)) &#123;</div><div class="line">               GUILayout.Label(<span class="string">"Bool"</span>, GUILayout.Width(<span class="number">30</span>));</div><div class="line">               aParam = Convert.ToBoolean(GUILayout.TextField(aParam.ToString()));</div><div class="line">           &#125; <span class="keyword">else</span> &#123;</div><div class="line">               GUILayout.Label(<span class="string">"type can not parse,type is "</span> + paramType.Name);</div><div class="line">               GUILayout.EndHorizontal();</div><div class="line">               <span class="keyword">return</span>;</div><div class="line">           &#125;</div><div class="line"></div><div class="line">           var removeAtMethod = aList.GetType().GetMethod(<span class="string">"RemoveAt"</span>);</div><div class="line">           removeAtMethod.Invoke(aList, <span class="keyword">new</span> object[] &#123; index &#125;);</div><div class="line"></div><div class="line">           var insertMethod = aList.GetType().GetMethod(<span class="string">"Insert"</span>);</div><div class="line">           insertMethod.Invoke(aList, <span class="keyword">new</span> object[] &#123; index, aParam &#125;);</div><div class="line"></div><div class="line">           GUILayout.EndHorizontal();</div><div class="line"></div><div class="line">       &#125;</div></pre></td></tr></table></figure>
+<p>最终成品图：</p>
+<p><img src="/images/test-tool/pic2.png" alt=""></p>
+<h3 id="项目4"><a href="#项目4" class="headerlink" title="项目4"></a>项目4</h3><p>SLG手游，依旧Socket通讯，依旧PB。</p>
+<p>在上一个接口工具的基础上，新增了：</p>
+<ul>
+<li><p>更详细的用例设计和用例库的读取和保存（使用C#的序列化）</p>
+</li>
+<li><p>增加自动化接口测试模块，测试结果通过Http请求发送到Web服务器</p>
+</li>
+<li><p>增加一个Web服务器接收测试结果并进行统计（使用Flask搭建），测试结果用图表形式展示（Echarts）</p>
+</li>
+</ul>
+<p>Coding，Coding~</p>
 ]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;简单整理了下，把平时测试工作中用到的工具类库放到&lt;a href=&quot;https://github.com/jianbing/utils&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Github&lt;/a&gt;上了。&lt;/p&gt;
-&lt;p&gt;平时也是一个人折腾，写的也比较随意
+      &lt;p&gt;上一篇分享了在做接口测试时，用到的一些工具软件，最终的感觉是，能用，但不顺手。最主要的原因是，发送请求后，没法很直观地查看服务端的返回结果，其次是使用起来，工作效率并不理想。&lt;/p&gt;
+&lt;p&gt;在经历的几个项目中，最终都是使用了内部开发的接口工具，而每个项目的接口工具的原理和使用方式区别还挺大，在此分享下各个工具的设计思路。&lt;/p&gt;
+&lt;h3 id=&quot;项目1&quot;&gt;&lt;a href=&quot;#项目1&quot; class=&quot;headerlink&quot; title=&quot;项目1&quot;&gt;&lt;/a&gt;项目1&lt;/h3&gt;&lt;p&gt;2011年那会，刚刚从学校踏入测试坑，项目是一个SLG页游，前后端使用Socket通讯，数据交互采用Json格式，最初版本的接口测试是用WPE做的，后来服务端的主程MM在内网开了一个Web端口，可以接收Http Get请求，格式如下：&lt;/p&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;http://192.168.22.248/sftx/gameSocket/send?u=playerId&amp;amp;c=protocol&amp;amp;p=port&amp;amp;params=param1|param2|param3&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
     
     </summary>
     
     
-      <category term="测试工具" scheme="http://jianbing.github.io/tags/%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7/"/>
+      <category term="游戏测试" scheme="http://jianbing.github.io/tags/%E6%B8%B8%E6%88%8F%E6%B5%8B%E8%AF%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>游戏测试之接口工具篇（上篇）</title>
+    <link href="http://jianbing.github.io/2016/03/26/interface-test-tool-1/"/>
+    <id>http://jianbing.github.io/2016/03/26/interface-test-tool-1/</id>
+    <published>2016-03-25T16:00:00.000Z</published>
+    <updated>2016-10-27T08:38:25.477Z</updated>
+    
+    <content type="html"><![CDATA[<p>这几天在折腾内网的接口测试工具时，想起这几年做游戏接口测试时，也尝试了若干工具软件，在此简单记录下用过的接口工具，本文记录的是可以用于接口测试的第三方工具软件。</p>
+<p>软件清单：</p>
+<p>WPE，Charles，Loadrunner，烧饼修改器</p>
+<h3 id="项目背景"><a href="#项目背景" class="headerlink" title="项目背景"></a>项目背景</h3><p>几个项目下来，前后端都是采用Socket协议通讯，数据包格式用过Json，AMF3，Protobuf。</p>
+<h3 id="接口测试的重要性"><a href="#接口测试的重要性" class="headerlink" title="接口测试的重要性"></a>接口测试的重要性</h3><p>接口测试要不要做，就举两个如果没做接口测试，有可能会出现的bug吧：</p>
+<ul>
+<li><p>重发领奖封包，可以重复领奖。</p>
+</li>
+<li><p>背包出售道具，修改售价溢出，获取大量游戏币。  </p>
+</li>
+</ul>
+<a id="more"></a>
+<h3 id="正式开始"><a href="#正式开始" class="headerlink" title="正式开始"></a>正式开始</h3><h3 id="WPE"><a href="#WPE" class="headerlink" title="WPE"></a>WPE</h3><p>WPE是一个经典的网络封包编辑器，可以拦截，修改，重发Socket协议的封包，对于爱折腾的游戏玩家，是必备工具。操作简单，入门教程上网一搜就不少。</p>
+<p>WPE也是不少项目作为接口测试工具的首选，我也用过一段时间，在使用的过程中，有几个点，不太好用。</p>
+<ul>
+<li>大部分游戏都采用二进制加密传输封包，WPE拦截到的封包，可读性不佳，修改封包的指定字段的数值也比较麻烦。</li>
+<li>发送封包后，没有提供返回结果的显示，操作是否生效只能在游戏内确认。</li>
+<li>虽然可以把发送过的封包保存起来，但是作为测试用例来统一管理是挺不方便的。</li>
+</ul>
+<h3 id="Charles"><a href="#Charles" class="headerlink" title="Charles"></a>Charles</h3><p>Charles可以查看所有连接互联网的Http通信，也支持修改和重发，但是对于Socket协议，<b>不支持啊</b>（Fiddler同理），而我经历过的项目全是Socket通讯的~</p>
+<h3 id="Loadrunner"><a href="#Loadrunner" class="headerlink" title="Loadrunner"></a>Loadrunner</h3><p>一提到Loadrunner，第一个联想词就是压力测试，其实用它来做接口测试，也是可以的。</p>
+<p>有两种方式，一种是直接录制Socket通讯的请求和返回，另外一种是使用Java Vuser自行开发接口测试脚本，之前碍于编程水平的限制，只使用了第一种方式，用起来也是有不方便的地方。</p>
+<ul>
+<li>对于Socket通讯，录制起来，效果和WPE是一样的，回放的时候可以查看返回，但是可读性依旧不行。</li>
+<li>游戏大部分都是自定义数据包结构，Loadrunner无法直接解析返回数据包的内容，需要编写解包的代码。</li>
+<li>运行起来太重量级了。</li>
+</ul>
+<h3 id="烧饼修改器"><a href="#烧饼修改器" class="headerlink" title="烧饼修改器"></a>烧饼修改器</h3><p>烧饼修改器是一个运行在手机上的app，需要Root或者越狱，可以修改正在运行的游戏的内存数据，从而曲折地测试类似于背包出售是否有负数溢出的接口漏洞这类问题。从可测试的接口范围看，是大大不如WPE和Loadrunner的。只能测试到参数列表中，包含游戏内数值的接口协议。</p>
+<p>同类软件，八门神器，PC平台的CE。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;这几天在折腾内网的接口测试工具时，想起这几年做游戏接口测试时，也尝试了若干工具软件，在此简单记录下用过的接口工具，本文记录的是可以用于接口测试的第三方工具软件。&lt;/p&gt;
+&lt;p&gt;软件清单：&lt;/p&gt;
+&lt;p&gt;WPE，Charles，Loadrunner，烧饼修改器&lt;/p&gt;
+&lt;h3 id=&quot;项目背景&quot;&gt;&lt;a href=&quot;#项目背景&quot; class=&quot;headerlink&quot; title=&quot;项目背景&quot;&gt;&lt;/a&gt;项目背景&lt;/h3&gt;&lt;p&gt;几个项目下来，前后端都是采用Socket协议通讯，数据包格式用过Json，AMF3，Protobuf。&lt;/p&gt;
+&lt;h3 id=&quot;接口测试的重要性&quot;&gt;&lt;a href=&quot;#接口测试的重要性&quot; class=&quot;headerlink&quot; title=&quot;接口测试的重要性&quot;&gt;&lt;/a&gt;接口测试的重要性&lt;/h3&gt;&lt;p&gt;接口测试要不要做，就举两个如果没做接口测试，有可能会出现的bug吧：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;重发领奖封包，可以重复领奖。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;背包出售道具，修改售价溢出，获取大量游戏币。  &lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+    
+      <category term="游戏测试" scheme="http://jianbing.github.io/tags/%E6%B8%B8%E6%88%8F%E6%B5%8B%E8%AF%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Pycharm代码提示技巧</title>
+    <link href="http://jianbing.github.io/2016/03/17/pycharm-tips/"/>
+    <id>http://jianbing.github.io/2016/03/17/pycharm-tips/</id>
+    <published>2016-03-16T16:00:00.000Z</published>
+    <updated>2016-10-27T08:38:25.503Z</updated>
+    
+    <content type="html"><![CDATA[<p>分享一个Pycharm的代码提示技巧~</p>
+<p>有时候Pycharm并没有自动收集到对象可用的方法，比如这个对象的类型要运行的时候才知道，举个栗子：</p>
+<p><img src="/images/pycharm-tips/pic1.png" alt=""></p>
+<p>这个时候，我们可以用type来查看对象的类型。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">print</span> type(d)</div></pre></td></tr></table></figure>
+<p>发现类型是：atx.device.AndroidDevice</p>
+<a id="more"></a>
+<p>于是，我们可以在定义了d后，加上一句</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="string">""" :type: atx.device.AndroidDevice"""</span></div></pre></td></tr></table></figure>
+<p>这就告诉了Pycharm，d的类型是atx.device.AndroidDevice，于是乎，代码提示就出现了~</p>
+<p><img src="/images/pycharm-tips/pic2.png" alt=""></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;分享一个Pycharm的代码提示技巧~&lt;/p&gt;
+&lt;p&gt;有时候Pycharm并没有自动收集到对象可用的方法，比如这个对象的类型要运行的时候才知道，举个栗子：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/pycharm-tips/pic1.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;这个时候，我们可以用type来查看对象的类型。&lt;/p&gt;
+&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;print&lt;/span&gt; type(d)&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;发现类型是：atx.device.AndroidDevice&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="python" scheme="http://jianbing.github.io/tags/python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Teambition数据抓取</title>
+    <link href="http://jianbing.github.io/2016/03/13/selenium-bs4-data-capture/"/>
+    <id>http://jianbing.github.io/2016/03/13/selenium-bs4-data-capture/</id>
+    <published>2016-03-12T16:00:00.000Z</published>
+    <updated>2016-10-27T08:38:25.510Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="起源"><a href="#起源" class="headerlink" title="起源"></a>起源</h3><p>自从工作室使用了Teambition作为项目管理工具后，为了统一管理，bug也开始记录到Teambition里边去。</p>
+<p>总体来说，Teambition轻便，多客户端支持，界面也很漂亮，但是如果用来管理bug的话，那么问题来了~</p>
+<p>因为用的是免费版，数据统计功能弱到几乎可以忽略，那么怎么做bug统计呢？以当前未修复的bug统计为例。</p>
+<p>最开始的几天，操作过程是这么做的：</p>
+<ol>
+<li>打开Teambition的客户端，进入到测试分组的主页</li>
+<li>右击打开开发者工具，把整个html内容保存到桌面</li>
+<li>运行一段python小程序，解析这个html，打印出未修复的bug统计</li>
+</ol>
+<a id="more"></a>
+<p>结果如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">当前未修复bug总计：18</div><div class="line">SC 6</div><div class="line">ZP 1</div><div class="line">QR 3</div><div class="line">DR 3</div><div class="line">FF 5</div></pre></td></tr></table></figure></p>
+<p>这个方案虽然暂时够用，但是操作起来，还是比较麻烦，决定进行优化：</p>
+<p><code>目标</code>：采集bug数据过程全自动化，并转为json格式保存起来</p>
+<blockquote>
+<p>开发环境：Python2.7+Win10+Pycharm</p>
+</blockquote>
+<h3 id="第一次尝试，使用requests库"><a href="#第一次尝试，使用requests库" class="headerlink" title="第一次尝试，使用requests库"></a>第一次尝试，使用requests库</h3><p>登陆</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> requests</div><div class="line">s = requests.session()</div><div class="line">header = &#123;<span class="string">'user-agent'</span>:<span class="string">'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.80 Safari/537.36'</span>,</div><div class="line"><span class="string">'content-type'</span>:<span class="string">'application/x-www-form-urlencoded'</span></div><div class="line">&#125;</div><div class="line">payload = &#123;</div><div class="line"><span class="string">'phone'</span>:<span class="keyword">None</span>,</div><div class="line"><span class="string">'email'</span>:<span class="string">''</span>,</div><div class="line"><span class="string">'password'</span>:<span class="string">''</span></div><div class="line">&#125;</div><div class="line">r = s.post(<span class="string">"https://account.Teambition.com/login"</span>,data=payload, headers=header)</div><div class="line"><span class="keyword">print</span> r.status_code</div></pre></td></tr></table></figure>
+<p>登陆成功~</p>
+<p>下一步，获取全部的bug信息，卡住了，原因是：Teambition的页面是通过js动态生成的，而requests进入测试分组页拿到的js执行渲染前的页面，所以获取不到bug数据，如果要继续走下去，需要分析获取真实数据的url地址，暂时先搁着。</p>
+<h3 id="第二次尝试，使用selenium-bs4"><a href="#第二次尝试，使用selenium-bs4" class="headerlink" title="第二次尝试，使用selenium+bs4"></a>第二次尝试，使用selenium+bs4</h3><p>登陆</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</div><div class="line">driver = webdriver.Chrome()</div><div class="line">driver.set_page_load_timeout(<span class="number">5</span>)  <span class="comment"># 设置超时，有时候个别js会加载太久</span></div><div class="line"><span class="keyword">try</span>:</div><div class="line">    driver.get(<span class="string">'https://account.Teambition.com/login'</span>)</div><div class="line"><span class="keyword">except</span> Exception <span class="keyword">as</span> e:</div><div class="line">    <span class="keyword">print</span> e</div><div class="line"><span class="comment"># 输入用户名</span></div><div class="line">driver.find_element_by_xpath(<span class="string">"/html/body/section/div[2]/form/div[2]/input"</span>).send_keys(<span class="string">''</span>)</div><div class="line"><span class="comment"># 输入密码</span></div><div class="line">driver.find_element_by_xpath(<span class="string">"/html/body/section/div[2]/form/div[3]/input"</span>).send_keys(<span class="string">''</span>)</div><div class="line"><span class="comment"># 登陆按钮</span></div><div class="line">driver.find_element_by_xpath(<span class="string">"/html/body/section/div[2]/form/button"</span>).click()</div></pre></td></tr></table></figure>
+<p>选择项目，进入测试分组页</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 选择项目</span></div><div class="line">driver.find_element_by_xpath(<span class="string">'//*[@id="content"]/div/ul/li[2]/ul/li[2]'</span>).click()</div><div class="line">sleep_for(<span class="number">1</span>)</div><div class="line"><span class="comment"># 点击下拉菜单</span></div><div class="line">driver.find_element_by_xpath(<span class="string">'//*[@id="content"]/div/nav/div/section/ul/li[1]/i'</span>).click()</div><div class="line">sleep_for(<span class="number">2</span>)</div><div class="line">popover_id = driver.find_element_by_class_name(<span class="string">"popover"</span>)</div><div class="line">aid = popover_id.get_attribute(<span class="string">'id'</span>)</div><div class="line"><span class="comment"># 进入测试分组页</span></div><div class="line">driver.find_element_by_xpath(<span class="string">'//*[@id="&#123;0&#125;"]/div/div/ul[1]/li[3]'</span>.format(aid)).click()</div></pre></td></tr></table></figure>
+<p>使用bs4分析页面并保存数据</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> bs4,json</div><div class="line">soup = bs4.BeautifulSoup(driver.page_source,<span class="string">'lxml'</span>) <span class="comment"># 使用lxml作为解析器，需要单独安装</span></div><div class="line">bugs = dict()</div><div class="line">all_bugs = soup.find_all(<span class="string">'li'</span>, &#123;<span class="string">'class'</span>:re.compile(<span class="string">"scrum-stage"</span>)&#125;)  <span class="comment"># 获取全部分组</span></div><div class="line"></div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> all_bugs:</div><div class="line"></div><div class="line">    group = i.find(<span class="string">'div'</span>, &#123;<span class="string">'class'</span>: <span class="string">'stage-name'</span>&#125;).text.strip().split()[<span class="number">0</span>]  <span class="comment"># 获取分组名称，如“待处理”</span></div><div class="line"></div><div class="line">    <span class="keyword">for</span> ii <span class="keyword">in</span> i.find_all(<span class="string">'li'</span>):</div><div class="line"></div><div class="line">        aid = ii[<span class="string">'data-id'</span>]</div><div class="line">        name = ii.find(<span class="string">'div'</span>, &#123;<span class="string">'class'</span>: <span class="string">'avatar img-circle img-24 hinted'</span>&#125;)[<span class="string">'data-title'</span>]</div><div class="line">        title = ii.find(<span class="string">'div'</span>, &#123;<span class="string">'class'</span>: <span class="string">'task-content'</span>&#125;).text.strip()</div><div class="line"></div><div class="line">        bugs[aid] = &#123;<span class="string">'name'</span>: name, <span class="string">"title"</span>: title, <span class="string">"group"</span>: group, <span class="string">"record_time"</span>: time_now&#125;</div><div class="line"><span class="comment"># 保存数据</span></div><div class="line">collect_txt = <span class="string">"bugstat.txt"</span></div><div class="line"><span class="keyword">with</span> open(collect_txt, <span class="string">'w'</span>) <span class="keyword">as</span> f:</div><div class="line">    f.write(json.dumps(bugs))</div></pre></td></tr></table></figure>
+<p>搞定~</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;起源&quot;&gt;&lt;a href=&quot;#起源&quot; class=&quot;headerlink&quot; title=&quot;起源&quot;&gt;&lt;/a&gt;起源&lt;/h3&gt;&lt;p&gt;自从工作室使用了Teambition作为项目管理工具后，为了统一管理，bug也开始记录到Teambition里边去。&lt;/p&gt;
+&lt;p&gt;总体来说，Teambition轻便，多客户端支持，界面也很漂亮，但是如果用来管理bug的话，那么问题来了~&lt;/p&gt;
+&lt;p&gt;因为用的是免费版，数据统计功能弱到几乎可以忽略，那么怎么做bug统计呢？以当前未修复的bug统计为例。&lt;/p&gt;
+&lt;p&gt;最开始的几天，操作过程是这么做的：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;打开Teambition的客户端，进入到测试分组的主页&lt;/li&gt;
+&lt;li&gt;右击打开开发者工具，把整个html内容保存到桌面&lt;/li&gt;
+&lt;li&gt;运行一段python小程序，解析这个html，打印出未修复的bug统计&lt;/li&gt;
+&lt;/ol&gt;
+    
+    </summary>
+    
+    
+      <category term="python" scheme="http://jianbing.github.io/tags/python/"/>
+    
+      <category term="小工具" scheme="http://jianbing.github.io/tags/%E5%B0%8F%E5%B7%A5%E5%85%B7/"/>
     
   </entry>
   

@@ -2,6 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://jianbing.github.io/2016/06/06/unity-pic-check/</loc>
+    
+    <lastmod>2017-01-14T11:39:57.293Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jianbing.github.io/2016/04/20/kill_5037/</loc>
+    
+    <lastmod>2017-01-14T11:38:57.067Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jianbing.github.io/2017/01/14/count-pyfunc-running-time/</loc>
+    
+    <lastmod>2017-01-14T11:37:39.947Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jianbing.github.io/2016/03/04/wxpython-textctrl-tips/</loc>
+    
+    <lastmod>2017-01-14T09:46:41.177Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://jianbing.github.io/about/index.html</loc>
     
     <lastmod>2016-11-10T09:25:44.841Z</lastmod>
@@ -23,23 +51,9 @@
   </url>
   
   <url>
-    <loc>http://jianbing.github.io/2016/03/04/wxpython-textctrl-tips/</loc>
-    
-    <lastmod>2016-10-27T08:38:25.542Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://jianbing.github.io/2016/05/07/unity-show-error-tool/</loc>
     
     <lastmod>2016-10-27T08:38:25.537Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://jianbing.github.io/2016/06/06/unity-pic-check/</loc>
-    
-    <lastmod>2016-10-27T08:38:25.534Z</lastmod>
     
   </url>
   
@@ -61,13 +75,6 @@
     <loc>http://jianbing.github.io/2016/05/21/sikuli-tool/</loc>
     
     <lastmod>2016-10-27T08:38:25.522Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://jianbing.github.io/2016/03/29/share-test-library/</loc>
-    
-    <lastmod>2016-10-27T08:38:25.519Z</lastmod>
     
   </url>
   
@@ -121,23 +128,9 @@
   </url>
   
   <url>
-    <loc>http://jianbing.github.io/2016/05/13/mini-hotkey-tool/</loc>
-    
-    <lastmod>2016-10-27T08:38:25.492Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://jianbing.github.io/2016/04/21/kill_thunderPlatform/</loc>
     
     <lastmod>2016-10-27T08:38:25.489Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://jianbing.github.io/2016/04/20/kill_5037/</loc>
-    
-    <lastmod>2016-10-27T08:38:25.485Z</lastmod>
     
   </url>
   
@@ -156,13 +149,6 @@
   </url>
   
   <url>
-    <loc>http://jianbing.github.io/2016/03/09/hexo-cmd-tool/</loc>
-    
-    <lastmod>2016-10-27T08:38:25.474Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://jianbing.github.io/2016/06/13/game-test-automation-1/</loc>
     
     <lastmod>2016-10-27T08:38:25.472Z</lastmod>
@@ -173,20 +159,6 @@
     <loc>http://jianbing.github.io/2016/04/23/cpu-memory/</loc>
     
     <lastmod>2016-10-27T08:38:25.469Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://jianbing.github.io/2016/04/15/count-pyfunc-running-time/</loc>
-    
-    <lastmod>2016-10-27T08:38:25.465Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://jianbing.github.io/2016/07/11/cmd-tool/</loc>
-    
-    <lastmod>2016-10-27T08:38:25.460Z</lastmod>
     
   </url>
   
@@ -208,13 +180,6 @@
     <loc>http://jianbing.github.io/2016/04/27/adb-tool/</loc>
     
     <lastmod>2016-10-27T08:38:25.449Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://jianbing.github.io/2016/04/07/about-blog/</loc>
-    
-    <lastmod>2016-10-27T08:38:25.446Z</lastmod>
     
   </url>
   

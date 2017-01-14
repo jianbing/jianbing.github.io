@@ -90,11 +90,11 @@
 简单粗暴式123456789import timedef func():    passif __name__ == &apos;__main__&apos;:      start = time.time()    func()    print time.time() - start">
 <meta property="og:type" content="article">
 <meta property="og:title" content="计算Python函数的运行时间">
-<meta property="og:url" content="http://jianbing.github.io/2016/04/15/count-pyfunc-running-time/index.html">
+<meta property="og:url" content="http://jianbing.github.io/2017/01/14/count-pyfunc-running-time/index.html">
 <meta property="og:site_name" content="煎饼的博客">
 <meta property="og:description" content="有时候需要计算一下函数的时间，可以有以下的几种方式：
 简单粗暴式123456789import timedef func():    passif __name__ == &apos;__main__&apos;:      start = time.time()    func()    print time.time() - start">
-<meta property="og:updated_time" content="2016-10-27T08:38:25.465Z">
+<meta property="og:updated_time" content="2017-01-14T11:37:39.947Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="计算Python函数的运行时间">
 <meta name="twitter:description" content="有时候需要计算一下函数的时间，可以有以下的几种方式：
@@ -119,7 +119,7 @@
 
 
 
-  <link rel="canonical" href="http://jianbing.github.io/2016/04/15/count-pyfunc-running-time/"/>
+  <link rel="canonical" href="http://jianbing.github.io/2017/01/14/count-pyfunc-running-time/"/>
 
 
   <title> 计算Python函数的运行时间 | 煎饼的博客 </title>
@@ -264,8 +264,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-15T00:00:00+08:00" content="2016-04-15">
-              2016-04-15
+            <time itemprop="dateCreated" datetime="2017-01-14T00:00:00+08:00" content="2017-01-14">
+              2017-01-14
             </time>
           </span>
 
@@ -275,8 +275,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/04/15/count-pyfunc-running-time/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/15/count-pyfunc-running-time/" itemprop="commentsCount"></span>
+                <a href="/2017/01/14/count-pyfunc-running-time/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/01/14/count-pyfunc-running-time/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -302,11 +302,13 @@
         <p>有时候需要计算一下函数的时间，可以有以下的几种方式：</p>
 <h3 id="简单粗暴式"><a href="#简单粗暴式" class="headerlink" title="简单粗暴式"></a>简单粗暴式</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> time</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">func</span><span class="params">()</span>:</span></div><div class="line">    <span class="keyword">pass</span></div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:  </div><div class="line">    start = time.time()</div><div class="line">    func()</div><div class="line">    <span class="keyword">print</span> time.time() - start</div></pre></td></tr></table></figure>
 <a id="more"></a>
-<h3 id="简单粗暴式的升级版"><a href="#简单粗暴式的升级版" class="headerlink" title="简单粗暴式的升级版"></a>简单粗暴式的升级版</h3><p>使用装饰器<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> time</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">count_running_time</span><span class="params">(func)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">_count_running_time</span><span class="params">(*args, **kwargs)</span>:</span></div><div class="line">        start = time.time()</div><div class="line">        res = func(*args, **kwargs)</div><div class="line">        print(<span class="string">'cost time :&#123;0&#125;'</span>.format(time.time() - start))</div><div class="line">        <span class="keyword">return</span> res</div><div class="line">    <span class="keyword">return</span> _count_running_time</div><div class="line"></div><div class="line"><span class="meta">@count_running_time</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">func</span><span class="params">()</span>:</span></div><div class="line">    <span class="keyword">pass</span></div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">    func()</div></pre></td></tr></table></figure></p>
+<h3 id="升级版1"><a href="#升级版1" class="headerlink" title="升级版1"></a>升级版1</h3><p>使用装饰器<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> time</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">count_running_time</span><span class="params">(func)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">_count_running_time</span><span class="params">(*args, **kwargs)</span>:</span></div><div class="line">        start = time.time()</div><div class="line">        res = func(*args, **kwargs)</div><div class="line">        print(<span class="string">'cost time :&#123;0&#125;'</span>.format(time.time() - start))</div><div class="line">        <span class="keyword">return</span> res</div><div class="line">    <span class="keyword">return</span> _count_running_time</div><div class="line"></div><div class="line"><span class="meta">@count_running_time</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">func</span><span class="params">()</span>:</span></div><div class="line">    <span class="keyword">pass</span></div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">    func()</div></pre></td></tr></table></figure></p>
+<h3 id="升级版2"><a href="#升级版2" class="headerlink" title="升级版2"></a>升级版2</h3><p>通过上下文管理器</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> contextlib <span class="keyword">import</span> contextmanager</div><div class="line"></div><div class="line"><span class="meta">@contextmanager</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">count_time</span><span class="params">()</span>:</span></div><div class="line">    start_time = time.time()</div><div class="line">    print(<span class="string">"开始执行"</span>)</div><div class="line">    <span class="keyword">yield</span></div><div class="line">    print(<span class="string">"执行结束，耗时&#123;&#125;"</span>.format(time.time() - start_time))</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line"></div><div class="line">    <span class="keyword">with</span> count_time():</div><div class="line">        print(<span class="string">"hi"</span>)</div></pre></td></tr></table></figure>
 <blockquote>
-<p>以上两种方式，只能简单统计函数的总运行时间，如果函数复杂，需要分析里边调用的次数和耗时，则满足不了我们的需求。</p>
+<p>以上的方式，只能简单统计函数的总运行时间，如果函数复杂，需要分析里边调用的次数和耗时，则满足不了我们的需求。</p>
 </blockquote>
-<h3 id="优雅的统计方式"><a href="#优雅的统计方式" class="headerlink" title="优雅的统计方式"></a>优雅的统计方式</h3><p>使用cProfile来进行统计，使用pstats来分析结果，直接看代码吧~</p>
+<h3 id="更精确的统计方式"><a href="#更精确的统计方式" class="headerlink" title="更精确的统计方式"></a>更精确的统计方式</h3><p>使用cProfile来进行统计，使用pstats来分析结果，直接看代码吧~</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> time</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">profile_func</span><span class="params">(func)</span>:</span></div><div class="line">    <span class="keyword">import</span> cProfile</div><div class="line">    cProfile.run(<span class="string">"&#123;&#125;()"</span>.format(func.func_name),<span class="string">"prof.txt"</span>)</div><div class="line">    <span class="keyword">import</span> pstats</div><div class="line">    p = pstats.Stats(<span class="string">"prof.txt"</span>)</div><div class="line">    p.sort_stats(<span class="string">"time"</span>).print_stats()</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">func</span><span class="params">()</span>:</span></div><div class="line">    <span class="keyword">print</span> <span class="string">'hello world'</span></div><div class="line">    <span class="keyword">import</span> time</div><div class="line">    time.sleep(<span class="number">3</span>)</div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">    profile_func(func)</div></pre></td></tr></table></figure>
 <p>打印如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">hello world</div><div class="line">Sat Apr <span class="number">16</span> <span class="number">17</span>:<span class="number">19</span>:<span class="number">10</span> <span class="number">2016</span>    prof.txt</div><div class="line"></div><div class="line">         <span class="number">4</span> function calls <span class="keyword">in</span> <span class="number">3.000</span> seconds</div><div class="line"></div><div class="line">   Ordered by: internal time</div><div class="line"></div><div class="line">   ncalls  tottime  percall  cumtime  percall filename:lineno(function)</div><div class="line">        <span class="number">1</span>    <span class="number">3.000</span>    <span class="number">3.000</span>    <span class="number">3.000</span>    <span class="number">3.000</span> &#123;time.sleep&#125;</div><div class="line">        <span class="number">1</span>    <span class="number">0.000</span>    <span class="number">0.000</span>    <span class="number">3.000</span>    <span class="number">3.000</span> C:/Py27Project/testtools/local_test/__init__.py:<span class="number">12</span>(func)</div><div class="line">        <span class="number">1</span>    <span class="number">0.000</span>    <span class="number">0.000</span>    <span class="number">3.000</span>    <span class="number">3.000</span> &lt;string&gt;:<span class="number">1</span>(&lt;module&gt;)</div><div class="line">        <span class="number">1</span>    <span class="number">0.000</span>    <span class="number">0.000</span>    <span class="number">0.000</span>    <span class="number">0.000</span> &#123;method <span class="string">'disable'</span> of <span class="string">'_lsprof.Profiler'</span> objects&#125;</div></pre></td></tr></table></figure>
@@ -342,17 +344,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/04/13/unity-fps-tool/" rel="next" title="安卓性能专项之FPS测试篇">
-                <i class="fa fa-chevron-left"></i> 安卓性能专项之FPS测试篇
+              <a href="/2016/11/10/python-str-unicode/" rel="next" title="聊一聊Python2的编码坑">
+                <i class="fa fa-chevron-left"></i> 聊一聊Python2的编码坑
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/04/20/kill_5037/" rel="prev" title="检查端口占用情况">
-                检查端口占用情况 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -367,10 +365,10 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2016/04/15/count-pyfunc-running-time/"
+        <div class="ds-share flat" data-thread-key="2017/01/14/count-pyfunc-running-time/"
      data-title="计算Python函数的运行时间"
      data-content=""
-     data-url="http://jianbing.github.io/2016/04/15/count-pyfunc-running-time/">
+     data-url="http://jianbing.github.io/2017/01/14/count-pyfunc-running-time/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -397,8 +395,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/04/15/count-pyfunc-running-time/"
-           data-title="计算Python函数的运行时间" data-url="http://jianbing.github.io/2016/04/15/count-pyfunc-running-time/">
+      <div class="ds-thread" data-thread-key="2017/01/14/count-pyfunc-running-time/"
+           data-title="计算Python函数的运行时间" data-url="http://jianbing.github.io/2017/01/14/count-pyfunc-running-time/">
       </div>
     
   </div>
@@ -443,7 +441,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">29</span>
+              <span class="site-state-item-count">24</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -526,7 +524,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#简单粗暴式"><span class="nav-number">1.</span> <span class="nav-text">简单粗暴式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#简单粗暴式的升级版"><span class="nav-number">2.</span> <span class="nav-text">简单粗暴式的升级版</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#优雅的统计方式"><span class="nav-number">3.</span> <span class="nav-text">优雅的统计方式</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#简单粗暴式"><span class="nav-number">1.</span> <span class="nav-text">简单粗暴式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#升级版1"><span class="nav-number">2.</span> <span class="nav-text">升级版1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#升级版2"><span class="nav-number">3.</span> <span class="nav-text">升级版2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更精确的统计方式"><span class="nav-number">4.</span> <span class="nav-text">更精确的统计方式</span></a></li></ol></div>
             
           </div>
         </section>
@@ -544,8 +542,8 @@
       <div class="footer-inner">
         <div class="copyright" >
   
-  &copy; 
-  <span itemprop="copyrightYear">2016</span>
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
