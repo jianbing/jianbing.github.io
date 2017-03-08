@@ -251,6 +251,116 @@
             
               
                 
+                <a class="post-title-link" href="/2016/04/27/adb-tool/" itemprop="url">
+                  ADB工具类分享
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-04-27T00:00:00+08:00" content="2016-04-27">
+              2016-04-27
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/04/27/adb-tool/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/27/adb-tool/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>之前封装了一批基于adb命令的函数，用于辅助游戏安卓版本的测试，<a href="https://github.com/jianbing/utils/blob/master/android.py">源码在此</a>。</p>
+<p>虽然已经比较方便了，但是在使用过程中，还是存在一些不足。</p>
+<ul>
+<li>不支持同时连接多部手机</li>
+<li>不支持adb通过wifi连接手机</li>
+<li>部分函数的写法不太合理</li>
+</ul>
+<p>周末的时候，重新封装了一个ADB工具类，把之前的函数整合进去。来看看怎么使用吧~</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/04/27/adb-tool/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/04/23/cpu-memory/" itemprop="url">
                   安卓性能专项之CPU内存篇
                 </a>
@@ -1194,117 +1304,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/03/13/selenium-bs4-data-capture/" itemprop="url">
-                  Teambition数据抓取
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-13T00:00:00+08:00" content="2016-03-13">
-              2016-03-13
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/03/13/selenium-bs4-data-capture/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/13/selenium-bs4-data-capture/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="起源"><a href="#起源" class="headerlink" title="起源"></a>起源</h3><p>自从工作室使用了Teambition作为项目管理工具后，为了统一管理，bug也开始记录到Teambition里边去。</p>
-<p>总体来说，Teambition轻便，多客户端支持，界面也很漂亮，但是如果用来管理bug的话，那么问题来了~</p>
-<p>因为用的是免费版，数据统计功能弱到几乎可以忽略，那么怎么做bug统计呢？以当前未修复的bug统计为例。</p>
-<p>最开始的几天，操作过程是这么做的：</p>
-<ol>
-<li>打开Teambition的客户端，进入到测试分组的主页</li>
-<li>右击打开开发者工具，把整个html内容保存到桌面</li>
-<li>运行一段python小程序，解析这个html，打印出未修复的bug统计</li>
-</ol>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/03/13/selenium-bs4-data-capture/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1350,7 +1349,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">24</span>
+              <span class="site-state-item-count">25</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

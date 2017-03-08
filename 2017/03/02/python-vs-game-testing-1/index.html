@@ -1,0 +1,713 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="游戏测试,Python," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="煎饼的博客" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="最近在TesterHome游戏测试群里，有时候会看到有童鞋问，游戏测试人员学了Python，可以干点什么。
+很多童鞋初学Python，学习了语法和基础类库后，开始迷茫如何实际使用到工作中去，其实Python可以做的事情是很多的，将日常工作的一些事情自动化，对我们的工作效率有很大的提升。
+本文面向Py新手，分享一些辅助工作的小工具思路。以下例子都是在Win10 + Py3.5下完成。
+调用CMDsu">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python与游戏测试(小工具篇)">
+<meta property="og:url" content="http://jianbing.github.io/2017/03/02/python-vs-game-testing-1/index.html">
+<meta property="og:site_name" content="煎饼的博客">
+<meta property="og:description" content="最近在TesterHome游戏测试群里，有时候会看到有童鞋问，游戏测试人员学了Python，可以干点什么。
+很多童鞋初学Python，学习了语法和基础类库后，开始迷茫如何实际使用到工作中去，其实Python可以做的事情是很多的，将日常工作的一些事情自动化，对我们的工作效率有很大的提升。
+本文面向Py新手，分享一些辅助工作的小工具思路。以下例子都是在Win10 + Py3.5下完成。
+调用CMDsu">
+<meta property="og:updated_time" content="2017-03-08T02:44:00.437Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python与游戏测试(小工具篇)">
+<meta name="twitter:description" content="最近在TesterHome游戏测试群里，有时候会看到有童鞋问，游戏测试人员学了Python，可以干点什么。
+很多童鞋初学Python，学习了语法和基础类库后，开始迷茫如何实际使用到工作中去，其实Python可以做的事情是很多的，将日常工作的一些事情自动化，对我们的工作效率有很大的提升。
+本文面向Py新手，分享一些辅助工作的小工具思路。以下例子都是在Win10 + Py3.5下完成。
+调用CMDsu">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://jianbing.github.io/2017/03/02/python-vs-game-testing-1/"/>
+
+
+  <title> Python与游戏测试(小工具篇) | 煎饼的博客 </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">煎饼的博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Python与游戏测试(小工具篇)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-03-02T00:00:00+08:00" content="2017-03-02">
+              2017-03-02
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/03/02/python-vs-game-testing-1/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/02/python-vs-game-testing-1/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>最近在TesterHome游戏测试群里，有时候会看到有童鞋问，游戏测试人员学了Python，可以干点什么。</p>
+<p>很多童鞋初学Python，学习了语法和基础类库后，开始迷茫如何实际使用到工作中去，其实Python可以做的事情是很多的，将日常工作的一些事情自动化，对我们的工作效率有很大的提升。</p>
+<p>本文面向Py新手，分享一些辅助工作的小工具思路。以下例子都是在Win10 + Py3.5下完成。</p>
+<h3 id="调用CMD"><a href="#调用CMD" class="headerlink" title="调用CMD"></a>调用CMD</h3><p>subprocess是Python自带的子进程管理模块，定义有数个创建子进程的函数，也提供了一些管理标准流(standard stream)和管道(pipe)的工具，从而在进程间使用文本通信。</p>
+<p>简单理解就是，你通过CMD敲的命令，都基本可以用subprocess来实现批量处理。</p>
+<a id="more"></a>
+<p>例子1：批量SVN操作</p>
+<p>以更新SVN为例，这是一个频繁的操作，尤其是多个SVN目录需要一一更新的时候，手动起来是挺麻烦的。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> subprocess</div><div class="line">subprocess.Popen(<span class="string">r'TortoiseProc.exe /command:update /path:"C:\project\策划文档" /closeonend:0'</span>)</div><div class="line">subprocess.Popen(<span class="string">r'TortoiseProc.exe /command:update /path:"C:\project\配置文档" /closeonend:0'</span>)</div></pre></td></tr></table></figure></p>
+<p>例子2：adb命令的封装</p>
+<p>做安卓手游测试的时候，adb是常用工具，我们可以通过它，进行apk的安装，卸载，截图，获取APK信息，性能数据，获取手机信息等等操作。</p>
+<p>比如获取当前运行在前台的apk的package和activity名称</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">run_cmd</span><span class="params">(cmd)</span>:</span></div><div class="line">    <span class="string">"""执行CMD命令"""</span></div><div class="line">    p = subprocess.Popen(cmd, stdout=subprocess.PIPE)</div><div class="line">    <span class="keyword">return</span> [i.decode() <span class="keyword">for</span> i <span class="keyword">in</span> p.communicate()[<span class="number">0</span>].splitlines()]</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_apk_info</span><span class="params">()</span>:</span></div><div class="line">    <span class="string">"""获取apk的package，activity名称</span></div><div class="line"></div><div class="line">    :return: list  eg ['com.android.calendar', 'com.meizu.flyme.calendar.AllInOneActivity']</div><div class="line">    """</div><div class="line">    result = run_cmd(<span class="string">"adb shell dumpsys activity top"</span>)</div><div class="line">    <span class="keyword">for</span> line <span class="keyword">in</span> result:</div><div class="line">        <span class="keyword">if</span> line.strip().startswith(<span class="string">'ACTIVITY'</span>):</div><div class="line">            <span class="keyword">return</span> line.split()[<span class="number">1</span>].split(<span class="string">'/'</span>)</div><div class="line"></div><div class="line">print(get_apk_info())</div><div class="line"></div><div class="line">output: [<span class="string">'com.android.calendar'</span>, <span class="string">'com.meizu.flyme.calendar.AllInOneActivity'</span>]</div></pre></td></tr></table></figure>
+<p>比如查看当前apk的内存占用<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_mem_using</span><span class="params">(package_name=None)</span>:</span></div><div class="line">    <span class="string">"""查看apk的内存占用</span></div><div class="line"></div><div class="line">    :param package_name:</div><div class="line">    :return: 单位KB</div><div class="line">    """</div><div class="line">    <span class="keyword">if</span> <span class="keyword">not</span> package_name:</div><div class="line">        package_name = get_apk_info()[<span class="number">0</span>]</div><div class="line">    result = run_cmd(<span class="string">"adb shell dumpsys meminfo &#123;&#125;"</span>.format(package_name))</div><div class="line">    info = re.search(<span class="string">'TOTAL\W+\d+'</span>, str(result)).group()</div><div class="line">    mem = <span class="string">''</span></div><div class="line">    <span class="keyword">try</span>:</div><div class="line">        mem = info.split()</div><div class="line">    <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</div><div class="line">        print(info)</div><div class="line">        print(e)</div><div class="line">    <span class="keyword">return</span> mem[<span class="number">-1</span>]</div><div class="line"></div><div class="line">output: <span class="number">37769</span></div></pre></td></tr></table></figure></p>
+<p>比如备份当前apk到桌面<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">backup_current_apk</span><span class="params">(path=<span class="string">r"C:\Users\jianbing\Desktop\apks"</span>)</span>:</span></div><div class="line">    package = get_apk_info()[<span class="number">0</span>]</div><div class="line">    result = run_cmd(<span class="string">"adb shell pm path &#123;&#125;"</span>.format(package))</div><div class="line">    cmd = <span class="string">"adb pull &#123;&#125; &#123;&#125;"</span>.format(result[<span class="number">0</span>].split(<span class="string">":"</span>)[<span class="number">-1</span>], os.path.join(path, <span class="string">"&#123;&#125;.apk"</span>.format(package)))</div><div class="line">    print(cmd)</div><div class="line">    run_cmd(cmd)</div></pre></td></tr></table></figure></p>
+<p>再进一步，将常用的adb操作封装为一个ADB工具类。社区里也有童鞋之前分享过，<a href="https://testerhome.com/topics/6938" target="_blank" rel="external">传送门</a>。</p>
+<h3 id="处理文本"><a href="#处理文本" class="headerlink" title="处理文本"></a>处理文本</h3><p>例子：在整个文件夹中搜索关键字</p>
+<p>某天策划说，这个版本他删掉了某个道具，让我检查下有没有删漏的地方，这个道具产出的地方不少，最佳的检查方式是各个相关配置表看下还有没有配置这个道具。</p>
+<p>那就写个脚本遍历整个文件夹来搜索指定关键字吧。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> os</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_files_by_suffix</span><span class="params">(path, suffixes=<span class="params">(<span class="string">"txt"</span>, <span class="string">"xml"</span>)</span>, traverse=True)</span>:</span></div><div class="line">    <span class="string">"""从path路径下，找出全部指定后缀名的文件</span></div><div class="line"></div><div class="line">    :param path: 根目录</div><div class="line">    :param suffixes: 指定查找的文件后缀名</div><div class="line">    :param traverse: 如果为False，只遍历一层目录</div><div class="line">    :return:</div><div class="line">    """</div><div class="line">    file_list = []</div><div class="line">    <span class="keyword">for</span> root, dirs, files <span class="keyword">in</span> os.walk(path):</div><div class="line">        <span class="keyword">for</span> file <span class="keyword">in</span> files:</div><div class="line">            file_suffix = os.path.splitext(file)[<span class="number">1</span>][<span class="number">1</span>:].lower()   <span class="comment"># 后缀名</span></div><div class="line">            <span class="keyword">if</span> file_suffix <span class="keyword">in</span> suffixes:</div><div class="line">                file_list.append(os.path.join(root, file))</div><div class="line">        <span class="keyword">if</span> <span class="keyword">not</span> traverse:</div><div class="line">            <span class="keyword">return</span> file_list</div><div class="line"></div><div class="line">    <span class="keyword">return</span> file_list</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line"></div><div class="line">    keyword = <span class="string">"XXX宝箱"</span></div><div class="line"></div><div class="line">    files = get_files_by_suffix(<span class="string">r"C:\project\config"</span>)</div><div class="line"></div><div class="line">    <span class="keyword">for</span> file <span class="keyword">in</span> files:</div><div class="line"></div><div class="line">        <span class="keyword">with</span> open(file, <span class="string">'r'</span>, encoding=<span class="string">'utf-8'</span>, errors=<span class="string">'ignore'</span>) <span class="keyword">as</span> f:</div><div class="line">            content = f.read().lower()</div><div class="line">            position = content.find(keyword.lower())</div><div class="line"></div><div class="line">            <span class="keyword">if</span> position != <span class="number">-1</span>:</div><div class="line">                print(<span class="string">"Find in &#123;0&#125;"</span>.format(file))</div><div class="line">                start = position - <span class="number">100</span> <span class="keyword">if</span> position - <span class="number">100</span> &gt; <span class="number">0</span> <span class="keyword">else</span> <span class="number">0</span></div><div class="line">                end = position + <span class="number">100</span> <span class="keyword">if</span> position + <span class="number">100</span> &lt; len(content) <span class="keyword">else</span> len(content)</div><div class="line">                print(content[start:end])</div><div class="line">                print(<span class="string">"_"</span> * <span class="number">100</span>)</div></pre></td></tr></table></figure>
+<h3 id="操作远程服务器"><a href="#操作远程服务器" class="headerlink" title="操作远程服务器"></a>操作远程服务器</h3><p>例子1：查看内网发版时间</p>
+<p>有时候问开发，最近一次内网服务端发版是什么时候？开发回答：有点忘记了。。那就得自力更生了~</p>
+<p>手动方式：使用FTP软件连入内网服务器，查看文件的更新日期，从而知道发版时间。</p>
+<p>懒人方式：Py大法好~</p>
+<p>paramiko是Python很有名的第三方库，遵循SSH2协议，支持以加密和认证的方式，进行远程服务器的连接。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> paramiko</div><div class="line"><span class="keyword">import</span> time</div><div class="line"></div><div class="line">_transport = paramiko.Transport(<span class="string">"192.168.1.10:22"</span>)</div><div class="line">_transport.connect(username=<span class="string">"root"</span>, password=<span class="string">"XXXXXX"</span>)</div><div class="line">sftp = paramiko.SFTPClient.from_transport(_transport)</div><div class="line"></div><div class="line">result = sftp.listdir_attr(<span class="string">"/data/www/sg/sg_dev/socket/conf/config/treasure"</span>)</div><div class="line">print(<span class="string">"发版时间是：&#123;&#125;"</span>.format(time.strftime(<span class="string">"%Y-%m-%d %H:%M:%S"</span>, time.localtime(result[<span class="number">0</span>].st_mtime))))</div><div class="line"></div><div class="line">sftp.close()</div></pre></td></tr></table></figure>
+<p>例子2：查看内网报错信息</p>
+<p>在进行测试的时候，需要多留意服务端是否有新的报错信息，有些报错在客户端并没有什么表现，比如数据进库失败，手动方式：通过SecureCRT连入内网服务器，CD到Log目录下，然后tail -n 200 sg_error.log 查看最新的报错信息。</p>
+<p>于是萌生了写一个小工具来定时检测，发现报错信息就保存起来的想法。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> datetime</div><div class="line"><span class="keyword">import</span> paramiko</div><div class="line"><span class="keyword">import</span> time</div><div class="line"><span class="keyword">import</span> os</div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ScanError</span><span class="params">(object)</span>:</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></div><div class="line"></div><div class="line">        self._ssh = paramiko.SSHClient()</div><div class="line">        self.last_error_log = <span class="keyword">None</span></div><div class="line">        self._init()</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">_init</span><span class="params">(self)</span>:</span></div><div class="line">        os.chdir(<span class="string">"data"</span>)   <span class="comment"># 打算将报错信息保存到data目录下</span></div><div class="line">        self._ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())</div><div class="line">        self._ssh.connect(<span class="string">"192.168.1.10"</span>, username=<span class="string">"root"</span>, password=<span class="string">"XXXXXX"</span>)</div><div class="line"></div><div class="line">        error_log = self.get_error_log(<span class="number">500</span>)</div><div class="line">        self.last_error_log = error_log</div><div class="line"></div><div class="line">        <span class="comment"># 检测最近三天有没有报错信息</span></div><div class="line">        today = datetime.date.today()</div><div class="line">        yesterday = today - datetime.timedelta(days=<span class="number">1</span>)</div><div class="line">        the_day_before_yesterday = today - datetime.timedelta(days=<span class="number">2</span>)</div><div class="line"></div><div class="line">        error_log_str = <span class="string">"\n"</span>.join(error_log)</div><div class="line">        <span class="keyword">if</span> error_log_str.find(str(today)) &gt; <span class="number">-1</span> <span class="keyword">or</span> error_log_str.find(str(yesterday)) &gt; <span class="number">-1</span> <span class="keyword">or</span> error_log_str.find(str(the_day_before_yesterday)) &gt; <span class="number">-1</span>:</div><div class="line">            self.save_error_log(<span class="string">"error.txt"</span>, error_log)</div><div class="line">            print(<span class="string">'内网最近三天有错误信息，请查看'</span>)</div><div class="line">            os.popen(<span class="string">'error.txt'</span>)</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_error_log</span><span class="params">(self, num=<span class="number">200</span>)</span>:</span></div><div class="line">        cmd = <span class="string">'cd /data/www/sg/sg_dev/socket/log&amp;&amp;tail -n &#123;&#125; sg_error.log'</span>.format(num)</div><div class="line">        stdin, stdout, stderr = self._ssh.exec_command(cmd)</div><div class="line">        error_log = [i.decode(<span class="string">"utf-8"</span>) <span class="keyword">for</span> i <span class="keyword">in</span> stdout.read().splitlines() <span class="keyword">if</span> i]</div><div class="line">        <span class="keyword">return</span> error_log</div><div class="line"></div><div class="line"><span class="meta">    @staticmethod</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">save_error_log</span><span class="params">(file_name, log: list)</span>:</span></div><div class="line">        <span class="keyword">with</span> open(file_name, <span class="string">'w'</span>, encoding=<span class="string">'utf-8'</span>) <span class="keyword">as</span> f:</div><div class="line">            f.write(<span class="string">"\n"</span>.join(log))</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run_forever</span><span class="params">(self, interval=<span class="number">30</span>, show_error=True)</span>:</span></div><div class="line">        <span class="string">"""运行检测工具</span></div><div class="line"></div><div class="line">        :param interval: 检测间隔</div><div class="line">        :param show_error: 是否检测到报错就自动弹出显示</div><div class="line">        :return:</div><div class="line">        """</div><div class="line">        <span class="keyword">while</span> <span class="number">1</span>:</div><div class="line">            time.sleep(interval)</div><div class="line">            error_log = self.get_error_log()</div><div class="line"></div><div class="line">            <span class="keyword">if</span> error_log != self.last_error_log <span class="keyword">and</span> <span class="string">"\n"</span>.join(set(error_log) - set(self.last_error_log)).find(<span class="string">"ERROR"</span>) &gt; <span class="number">-1</span>:</div><div class="line"></div><div class="line">                self.last_error_log = error_log</div><div class="line">                file_name = time.strftime(<span class="string">"%Y-%m-%d-%H-%M-%S.txt"</span>, time.localtime(time.time()))</div><div class="line">                print(<span class="string">'&#123;&#125; 检测到内网有新的错误信息'</span>.format(time.strftime(<span class="string">"%Y-%m-%d %H:%M:%S"</span>, time.localtime(time.time()))))</div><div class="line">                self.save_error_log(file_name, error_log)</div><div class="line"></div><div class="line">                <span class="keyword">if</span> show_error:</div><div class="line">                    os.popen(file_name)</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">    ScanError().run_forever()</div></pre></td></tr></table></figure>
+<h3 id="数据库操作"><a href="#数据库操作" class="headerlink" title="数据库操作"></a>数据库操作</h3><p>例子：找号功能</p>
+<p>内网的服务器建了N多的号，有时候看着排行榜某个帐号，想登录看下数据，可以使用Python写一个连接数据库的找号脚本。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> cymysql</div><div class="line"></div><div class="line">player_name = <span class="string">"XXXXXX"</span></div><div class="line">conn = cymysql.connect(host=<span class="string">'XXXXXX'</span>, user=<span class="string">'sg'</span>, passwd=<span class="string">'XXXXXX'</span>, db=<span class="string">"dev"</span>, charset=<span class="string">'utf8'</span>)</div><div class="line">cur = conn.cursor()</div><div class="line"></div><div class="line">sql = <span class="string">"select * from Player where name like '%&#123;0&#125;%'"</span>.format(player_name)   <span class="comment"># 模糊搜索，从玩家名称搜索玩家ID</span></div><div class="line">cur.execute(sql)</div><div class="line"><span class="keyword">for</span> r <span class="keyword">in</span> cur.fetchall():</div><div class="line">    sql = <span class="string">"select * from Account where uid = '&#123;0&#125;'"</span>.format(r[<span class="number">0</span>])   <span class="comment"># 从玩家ID搜索玩家帐号</span></div><div class="line">    cur.execute(sql)</div><div class="line">    <span class="keyword">for</span> row <span class="keyword">in</span> cur.fetchall():</div><div class="line">        print(<span class="string">'&#123;0&#125;, &#123;1&#125;, &#123;2&#125;'</span>.format(r[<span class="number">0</span>], r[<span class="number">1</span>], row[<span class="number">2</span>]))  <span class="comment"># 打印相关信息</span></div><div class="line"></div><div class="line">conn.close()</div></pre></td></tr></table></figure>
+<h3 id="扩展开发提供的工具"><a href="#扩展开发提供的工具" class="headerlink" title="扩展开发提供的工具"></a>扩展开发提供的工具</h3><p>在之前某个项目，开发做了一个给游戏帐号发道具的网页，提供测试使用，操作流程是这样的，在网页上的表单里边，填写玩家的ID，在下拉列表选中要发送的道具（支持模糊搜索），填写数量。</p>
+<p>这个网页使用起来，工作效率不高的地方就是，每次添加道具，都需要重新选择道具和填写数量，且添加过程没有记录下来，无法复用。</p>
+<p>优化方案，在网页上点击添加道具，其实就是网页给游戏服务器发送了一个HTTP请求，那就直接让Python来代劳吧~</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> requests</div><div class="line"></div><div class="line">player_id = <span class="number">1100000103</span></div><div class="line">server_ip = <span class="string">"192.168.1.21:5000"</span></div><div class="line"></div><div class="line">data = &#123;<span class="string">"stuffList"</span>: []&#125;</div><div class="line">url = <span class="string">"http://&#123;&#125;/api/&#123;&#125;/stuff"</span>.format(server_ip, player_id)</div><div class="line"></div><div class="line">data[<span class="string">"stuffList"</span>].append(&#123;<span class="string">"itemID"</span>: <span class="number">1104000007</span>, <span class="string">"number"</span>: <span class="number">1000</span>&#125;)  <span class="comment"># itemID为1104000007的物品，数量1000</span></div><div class="line">data[<span class="string">"stuffList"</span>].append(&#123;<span class="string">"itemID"</span>: <span class="number">1104000008</span>, <span class="string">"number"</span>: <span class="number">1000</span>&#125;)</div><div class="line">data[<span class="string">"stuffList"</span>].append(&#123;<span class="string">"itemID"</span>: <span class="number">1104000009</span>, <span class="string">"number"</span>: <span class="number">1000</span>&#125;)</div><div class="line">data[<span class="string">"stuffList"</span>].append(&#123;<span class="string">"itemID"</span>: <span class="number">1104000010</span>, <span class="string">"number"</span>: <span class="number">1000</span>&#125;)</div><div class="line">data[<span class="string">"stuffList"</span>].append(&#123;<span class="string">"itemID"</span>: <span class="number">1104000011</span>, <span class="string">"number"</span>: <span class="number">1000</span>&#125;)</div><div class="line">data[<span class="string">"stuffList"</span>].append(&#123;<span class="string">"itemID"</span>: <span class="number">1104000012</span>, <span class="string">"number"</span>: <span class="number">1000</span>&#125;)</div><div class="line"></div><div class="line">requests.post(url, json=data, timeout=<span class="number">5</span>)    <span class="comment"># 添加道具</span></div><div class="line"><span class="comment"># requests.delete(url, json=data, timeout=5)   # 删除道具</span></div></pre></td></tr></table></figure>
+<p>有没有发现，每个脚本都很简短~</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/游戏测试/" rel="tag">#游戏测试</a>
+          
+            <a href="/tags/Python/" rel="tag">#Python</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/01/14/count-pyfunc-running-time/" rel="next" title="计算Python函数的运行时间">
+                <i class="fa fa-chevron-left"></i> 计算Python函数的运行时间
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2017/03/02/python-vs-game-testing-1/"
+     data-title="Python与游戏测试(小工具篇)"
+     data-content=""
+     data-url="http://jianbing.github.io/2017/03/02/python-vs-game-testing-1/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/03/02/python-vs-game-testing-1/"
+           data-title="Python与游戏测试(小工具篇)" data-url="http://jianbing.github.io/2017/03/02/python-vs-game-testing-1/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="煎饼" />
+          <p class="site-author-name" itemprop="name">煎饼</p>
+          <p class="site-description motion-element" itemprop="description">爱折腾的游戏测试一枚，Py大法受益者</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">25</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/jianbing" target="_blank" title="github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  github
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://testerhome.com/" title="TesterHome" target="_blank">TesterHome</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://xuxu1988.com/" title="xuxu" target="_blank">xuxu</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://darker50.github.io/" title="幸福" target="_blank">幸福</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://testerlife.com/" title="在路上" target="_blank">在路上</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#调用CMD"><span class="nav-number">1.</span> <span class="nav-text">调用CMD</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#处理文本"><span class="nav-number">2.</span> <span class="nav-text">处理文本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#操作远程服务器"><span class="nav-number">3.</span> <span class="nav-text">操作远程服务器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库操作"><span class="nav-number">4.</span> <span class="nav-text">数据库操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#扩展开发提供的工具"><span class="nav-number">5.</span> <span class="nav-text">扩展开发提供的工具</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">煎饼</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"jianbing"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://jianbing.github.io/2017/03/02/python-vs-game-testing-1/</loc>
+    
+    <lastmod>2017-03-08T02:44:00.437Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jianbing.github.io/2016/03/05/search-content-in-files/</loc>
+    
+    <lastmod>2017-01-14T12:22:07.059Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://jianbing.github.io/2016/03/04/wxpython-textctrl-tips/</loc>
     
     <lastmod>2017-01-14T12:07:24.682Z</lastmod>
@@ -75,13 +89,6 @@
     <loc>http://jianbing.github.io/2016/04/27/adb-tool/</loc>
     
     <lastmod>2017-01-14T12:06:00.813Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://jianbing.github.io/2016/03/05/search-content-in-files/</loc>
-    
-    <lastmod>2017-01-14T12:05:54.075Z</lastmod>
     
   </url>
   
