@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jianbing.github.io/"/>
-  <updated>2017-03-08T02:44:00.437Z</updated>
+  <updated>2017-10-10T10:45:49.991Z</updated>
   <id>http://jianbing.github.io/</id>
   
   <author>
@@ -14,6 +14,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>博客迁移到简书</title>
+    <link href="http://jianbing.github.io/2017/10/10/blog-move-to-jianshu/"/>
+    <id>http://jianbing.github.io/2017/10/10/blog-move-to-jianshu/</id>
+    <published>2017-10-09T16:00:00.000Z</published>
+    <updated>2017-10-10T10:45:49.991Z</updated>
+    
+    <content type="html"><![CDATA[<p><a href="http://www.jianshu.com/users/edcad195b829/timeline" target="_blank" rel="external">新博客地址</a>，欢迎围观~</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;a href=&quot;http://www.jianshu.com/users/edcad195b829/timeline&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;新博客地址&lt;/a&gt;，欢迎围观~&lt;/p&gt;
+
+    
+    </summary>
+    
+    
+      <category term="杂" scheme="http://jianbing.github.io/tags/%E6%9D%82/"/>
+    
+  </entry>
   
   <entry>
     <title>Python与游戏测试(小工具篇)</title>
@@ -72,9 +94,9 @@
     </summary>
     
     
-      <category term="游戏测试" scheme="http://jianbing.github.io/tags/%E6%B8%B8%E6%88%8F%E6%B5%8B%E8%AF%95/"/>
-    
       <category term="Python" scheme="http://jianbing.github.io/tags/Python/"/>
+    
+      <category term="游戏测试" scheme="http://jianbing.github.io/tags/%E6%B8%B8%E6%88%8F%E6%B5%8B%E8%AF%95/"/>
     
   </entry>
   
@@ -621,9 +643,9 @@
     </summary>
     
     
-      <category term="游戏测试" scheme="http://jianbing.github.io/tags/%E6%B8%B8%E6%88%8F%E6%B5%8B%E8%AF%95/"/>
-    
       <category term="Python" scheme="http://jianbing.github.io/tags/Python/"/>
+    
+      <category term="游戏测试" scheme="http://jianbing.github.io/tags/%E6%B8%B8%E6%88%8F%E6%B5%8B%E8%AF%95/"/>
     
   </entry>
   
@@ -1042,42 +1064,6 @@
     
     
       <category term="游戏测试" scheme="http://jianbing.github.io/tags/%E6%B8%B8%E6%88%8F%E6%B5%8B%E8%AF%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Pycharm代码提示技巧</title>
-    <link href="http://jianbing.github.io/2016/03/17/pycharm-tips/"/>
-    <id>http://jianbing.github.io/2016/03/17/pycharm-tips/</id>
-    <published>2016-03-16T16:00:00.000Z</published>
-    <updated>2017-01-14T12:06:58.509Z</updated>
-    
-    <content type="html"><![CDATA[<p>分享一个Pycharm的代码提示技巧~</p>
-<p>有时候Pycharm并没有自动收集到对象可用的方法，比如这个对象的类型要运行的时候才知道，举个栗子：</p>
-<p><img src="/images/pycharm-tips/pic1.png" alt=""></p>
-<p>这个时候，我们可以用type来查看对象的类型。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">print</span> type(d)</div></pre></td></tr></table></figure>
-<p>发现类型是：atx.device.AndroidDevice</p>
-<a id="more"></a>
-<p>于是，我们可以在定义了d后，加上一句</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="string">""" :type: atx.device.AndroidDevice"""</span></div></pre></td></tr></table></figure>
-<p>这就告诉了Pycharm，d的类型是atx.device.AndroidDevice，于是乎，代码提示就出现了~</p>
-<p><img src="/images/pycharm-tips/pic2.png" alt=""></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;分享一个Pycharm的代码提示技巧~&lt;/p&gt;
-&lt;p&gt;有时候Pycharm并没有自动收集到对象可用的方法，比如这个对象的类型要运行的时候才知道，举个栗子：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/images/pycharm-tips/pic1.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;这个时候，我们可以用type来查看对象的类型。&lt;/p&gt;
-&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;print&lt;/span&gt; type(d)&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;发现类型是：atx.device.AndroidDevice&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="Python" scheme="http://jianbing.github.io/tags/Python/"/>
     
   </entry>
   
